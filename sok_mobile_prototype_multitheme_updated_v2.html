@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sok Multi Theme</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+ --bg:#f4f1eb;--panel:#fff;--panel2:#fcfaf6;--text:#171717;--muted:#7a746d;--line:#e9e2d9;
+ --primary:#de5a2a;--primarySoft:#fff1eb;--secondary:#2d3436;--green:#14a06f;--amber:#d88911;
+ --shadow:0 12px 26px rgba(35,25,15,.08);--radius:28px;--radiusSm:18px;--btnRadius:18px;
+ --fontScale:1;--tracking:-.03em;--chipRadius:999px;--navBg:rgba(255,255,255,.95);
+ --pageGrad:linear-gradient(180deg,#f4f1eb 0%,#faf7f2 100%);--themeRing:rgba(222,90,42,.18);
+ --themeHero:color-mix(in srgb,var(--primary) 10%, var(--panel) 90%);
+}
+html,body{min-height:100%}
+body{
+ font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);
+ letter-spacing:var(--tracking);font-size:calc(16px * var(--fontScale));transition:background .28s,color .28s
+}
+button,input{font:inherit}
+.app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--pageGrad);position:relative;transition:.3s}
+.page{display:none;min-height:100vh;padding-bottom:112px;animation:fade .22s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:.72;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.top{position:sticky;top:0;z-index:20;padding:calc(env(safe-area-inset-top) + 14px) 18px 12px;background:color-mix(in srgb,var(--bg) 90%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 88%, transparent)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-size:28px;font-weight:800;letter-spacing:-.05em}
+.icon,.back{
+ width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--panel) 92%, transparent);
+ display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);cursor:pointer;color:var(--text);transition:.2s
+}
+.icon:hover,.back:hover,.nav:hover,.setting:hover,.themeCard:hover,.langCard:hover,.card:hover,.tile:hover{transform:translateY(-1px)}
+.search{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:12px 14px;margin-top:12px;box-shadow:var(--shadow)}
+.search input{border:none;outline:none;background:transparent;color:var(--text);width:100%}
+.search input::placeholder{color:var(--muted)}
+.hero,.detail{padding:14px 18px}
+.eyebrow{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+h1{font-size:28px;line-height:1.03;letter-spacing:-.05em;margin-bottom:8px}
+.sub{font-size:15px;line-height:1.45;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px 18px 4px}
+.card,.tile,.setting,.themeCard,.langCard,.box{
+ background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;transition:.25s
+}
+.card,.tile,.setting,.themeCard,.langCard{cursor:pointer}
+.card{min-height:142px;display:flex;flex-direction:column;justify-content:space-between}
+.small{font-size:13px;color:var(--muted)}
+.big{font-size:38px;font-weight:800;letter-spacing:-.05em}
+.label{font-size:14px;color:var(--muted)}
+.section{padding:18px 18px 10px;display:flex;justify-content:space-between;align-items:center}
+.title{font-size:15px;font-weight:800}
+.link{background:none;border:none;color:var(--primary);font:inherit;font-weight:700;cursor:pointer}
+.stack{padding:0 18px;display:grid;gap:12px}
+.tileTitle{font-size:18px;font-weight:700;letter-spacing:-.04em;margin-bottom:4px}
+.tileSub{font-size:14px;color:var(--muted);line-height:1.45}
+.badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.urgent{background:var(--primarySoft);color:var(--primary)}
+.ok{background:color-mix(in srgb,var(--green) 16%, white);color:var(--green)}
+.info{background:color-mix(in srgb,var(--amber) 18%, white);color:var(--amber)}
+.meta{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.chips{display:flex;gap:8px;overflow:auto;padding:0 18px 8px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{padding:10px 14px;border-radius:var(--chipRadius);border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer}
+.chips .active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.calendar,.progress{margin:0 18px 14px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.bar{height:10px;border-radius:999px;background:color-mix(in srgb,var(--bg) 75%, var(--panel));overflow:hidden}
+.fill{height:100%;width:68%;background:linear-gradient(90deg,var(--primary),color-mix(in srgb,var(--primary) 70%, white))}
+.btns{display:grid;gap:10px;margin-top:14px}
+.btn{border:none;border-radius:var(--btnRadius);padding:15px 16px;font:inherit;font-weight:700;cursor:pointer}
+.primary{background:var(--primary);color:#fff}
+.secondary{background:var(--panel);color:var(--text);border:1px solid var(--line)}
+
+.themeShell{padding:0 18px 18px;display:grid;gap:14px}
+.themeHeroCard{
+ background:linear-gradient(135deg,color-mix(in srgb,var(--panel) 72%, var(--primarySoft) 28%) 0%, color-mix(in srgb,var(--panel2) 78%, var(--panel) 22%) 100%);
+ border:1px solid color-mix(in srgb,var(--line) 86%, transparent);border-radius:calc(var(--radius) + 4px);padding:18px;box-shadow:var(--shadow)
+}
+.themeHeroTop{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.themeHeroText h2{font-size:22px;letter-spacing:-.05em;margin-bottom:6px}
+.themeHeroText p{font-size:14px;line-height:1.5;color:var(--muted)}
+.themeHeroBadge{padding:8px 12px;border-radius:999px;background:var(--primary);color:#fff;font-size:12px;font-weight:800;white-space:nowrap}
+.themeHeroPreview{
+ margin-top:16px;border-radius:22px;border:1px solid color-mix(in srgb,var(--line) 70%, transparent);padding:12px;background:color-mix(in srgb,var(--panel) 88%, transparent);
+ display:grid;gap:10px
+}
+.themeHeroBars{display:flex;gap:8px}
+.themeHeroBars span{display:block;height:14px;border-radius:999px}
+.themeHeroLayout{display:grid;grid-template-columns:1.1fr .9fr;gap:10px}
+.themeHeroPane,.themeHeroPaneSmall{border-radius:16px;min-height:64px;background:var(--panel2);border:1px solid color-mix(in srgb,var(--line) 50%, transparent)}
+.themeHeroPaneAccent{background:var(--primary);border:none}
+.themeSection{display:grid;gap:10px}
+.themeSectionHead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.themeSectionTitle{font-size:14px;font-weight:800;letter-spacing:-.03em}
+.themeSectionHint{font-size:12px;color:var(--muted)}
+.themeList{display:grid;gap:12px}
+.themeCard{
+ position:relative;overflow:hidden;padding:16px;border-radius:calc(var(--radius) + 2px);
+ background:linear-gradient(180deg,color-mix(in srgb,var(--panel) 92%, transparent) 0%, color-mix(in srgb,var(--panel2) 96%, transparent) 100%)
+}
+.themeCard::before{
+ content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,transparent 0%, color-mix(in srgb,var(--primary) 10%, transparent) 100%);opacity:.9
+}
+.themeCard > *{position:relative;z-index:1}
+.themeCard.sel{
+ outline:2px solid var(--primary);outline-offset:2px;
+ box-shadow:0 0 0 8px var(--themeRing), var(--shadow)
+}
+.themeCard.sel .themeBadge{background:var(--primary);color:#fff;border-color:var(--primary)}
+.themeHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.themeMeta{display:grid;gap:6px;min-width:0}
+.themeName{font-size:17px;font-weight:800;letter-spacing:-.04em}
+.previewTag{font-size:12px;line-height:1.45;color:var(--muted)}
+.themeBadge{
+ padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 86%, transparent);
+ font-size:11px;font-weight:800;color:var(--muted);white-space:nowrap
+}
+.swatches{display:flex;gap:8px;margin-top:10px}
+.sw{width:24px;height:24px;border-radius:999px;border:1px solid rgba(0,0,0,.08)}
+.themeMini{
+ height:122px;border-radius:20px;border:1px solid color-mix(in srgb,var(--line) 70%, transparent);margin-top:14px;padding:10px;
+ display:grid;gap:8px;align-items:end;overflow:hidden;background:var(--panel2)
+}
+.themeMiniTop{display:flex;gap:6px}.pill{height:14px;border-radius:999px}
+.miniRow{display:grid;grid-template-columns:1.1fr .9fr;gap:8px}.miniBox{border-radius:14px;min-height:46px}
+.langList{padding:0 18px 18px;display:grid;gap:12px}
+.langCard{display:flex;justify-content:space-between;align-items:center}
+.sel{outline:2px solid var(--primary);outline-offset:2px}
+
+.bottom{
+ position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);
+ display:grid;grid-template-columns:repeat(5,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom));
+ background:var(--navBg);backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:30
+}
+.nav{
+ background:none;border:none;color:var(--muted);font:600 12px Inter,sans-serif;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;cursor:pointer
+}
+.nav svg,.icon svg{display:block}
+.nav.active{color:var(--primary)}
+
+body[data-theme="minimal-mono"]{--radius:12px;--radiusSm:12px;--btnRadius:0;--shadow:none;--tracking:-.05em;--chipRadius:10px;--themeRing:rgba(17,17,17,.10)}
+body[data-theme="stack-cards"] .stack .tile:nth-child(1){transform:rotate(-1deg)}
+body[data-theme="stack-cards"] .stack .tile:nth-child(2){transform:rotate(1deg)}
+body[data-theme="creative-library"] .card,body[data-theme="creative-library"] .tile,body[data-theme="creative-library"] .setting{border-radius:32px}
+body[data-theme="bold-travel"] h1,body[data-theme="bold-travel"] .tileTitle,body[data-theme="bold-travel"] .brand{letter-spacing:-.08em}
+body[data-theme="art-grid"] .card,body[data-theme="art-grid"] .tile,body[data-theme="art-grid"] .setting,body[data-theme="art-grid"] .calendar,body[data-theme="art-grid"] .progress,body[data-theme="art-grid"] .themeCard{border-radius:0;box-shadow:none}
+body[data-theme="habit-pill"] .card,body[data-theme="habit-pill"] .tile,body[data-theme="habit-pill"] .setting{border-radius:999px}
+body[data-theme="modern-web"] .card,body[data-theme="modern-web"] .tile,body[data-theme="modern-web"] .setting{border-radius:4px;box-shadow:none}
+
+@media (max-width:380px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body data-theme="default">
+<div class="app">
+  <div class="top">
+    <div class="row"><div class="brand">Sok</div><div class="row">
+<button class="icon" onclick="go('inbox')" style="position:relative"><span style="position:absolute;top:8px;right:9px;width:10px;height:10px;border-radius:50%;background:var(--primary);border:2px solid var(--panel)"></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg></button>
+<button class="icon" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></div>
+    <label class="search"><span>⌕</span><input id="search" placeholder="Search guests, tasks, or bookings"></label>
+  </div>
+
+  <section id="home" class="page active">
+    <div class="hero"><div class="eyebrow">Thursday, March 12, 2026</div><h1>Good morning, Wayan</h1><p class="sub">Villa Sari is running smoothly. You have 2 arrivals, 1 departure, and 2 unread guest conversations.</p></div>
+    <div class="grid">
+      <div class="card" onclick="go('calendar')"><div class="small">Today</div><div><div class="big">2</div><div class="label">Arrivals</div></div></div>
+      <div class="card" onclick="go('calendar')"><div class="small">Today</div><div><div class="big">1</div><div class="label">Departures</div></div></div>
+      <div class="card" onclick="go('profile')"><div class="small">Occupancy</div><div><div class="big">67%</div><div class="label">2 / 3 villas</div></div></div>
+      <div class="card" onclick="go('inbox')"><div class="small">Messages</div><div><div class="big">2</div><div class="label">Unread messages</div></div></div>
+    </div>
+    <div class="section"><div class="title">Next 24 Hours</div><button class="link" onclick="go('calendar')">View all</button></div>
+    <div class="stack">
+      <div class="tile" onclick="go('detail-checkin')"><div class="row"><div><div class="tileTitle">Chen Family check-out</div><div class="tileSub">Villa Sari • 11:00 AM departure • Cleaning team assigned</div></div><span class="badge urgent">Priority</span></div><div class="meta"><span>Ayu Ketut assigned</span><span>Due 3:00 PM</span></div></div>
+      <div class="tile" onclick="go('detail-experience')"><div class="row"><div><div class="tileTitle">Rice planting experience</div><div class="tileSub">3 guests • 3:00 PM • Confirm pickup and guide timing</div></div><span class="badge ok">Confirmed</span></div><div class="meta"><span>Made's Farm</span><span>Today</span></div></div>
+    </div>
+    <div class="section"><div class="title">Recent Messages</div><button class="link" onclick="go('inbox')">Open inbox</button></div>
+    <div class="stack">
+      <div class="tile" onclick="go('detail-message-chen')"><div class="row"><div><div class="tileTitle">Chen Family</div><div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div></div><span class="badge info">AI Draft</span></div></div>
+      <div class="tile" onclick="go('detail-message-sarah')"><div class="row"><div><div class="tileTitle">Sarah & Tom</div><div class="tileSub">“Can you recommend a romantic dinner spot?”</div></div><span class="badge urgent">Unread</span></div></div>
+    </div>
+  </section>
+
+  <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">Threaded by booking, sorted by urgency, and ready for quick action.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI Drafts</button></div><div class="stack"><div class="tile" onclick="go('detail-message-chen')"><div class="tileTitle">Chen Family</div><div class="tileSub">Temple visit timing and departure coordination</div></div><div class="tile" onclick="go('detail-message-sarah')"><div class="tileTitle">Sarah & Tom Johnson</div><div class="tileSub">Romantic dinner recommendations for tomorrow night</div></div></div></section>
+
+  <section id="calendar" class="page"><div class="hero"><div class="eyebrow">Scheduling</div><h1>Calendar</h1><p class="sub">March 2026 • Bookings, experiences, and operational blocks in one place.</p></div><div class="calendar"><div class="row" style="margin-bottom:16px"><button class="icon">‹</button><div class="title">March 2026</div><button class="icon">›</button></div><div class="tileSub">March 19 selected • Check-out and experience booking.</div></div></section>
+
+  <section id="tasks" class="page"><div class="hero"><div class="eyebrow">Operations</div><h1>Tasks</h1><p class="sub">5 open tasks. 3 need attention today.</p></div><div class="progress"><div class="row" style="margin-bottom:12px"><span>Today's progress</span><span style="color:var(--primary)">68%</span></div><div class="bar"><div class="fill"></div></div></div><div class="stack"><div class="tile" onclick="go('detail-task-cleaning')"><div class="tileTitle">Deep clean Villa Sari</div><div class="tileSub">Master bedroom AC issue reported. Inspect before next arrival.</div></div></div></section>
+
+  <section id="profile" class="page"><div class="hero"><div class="eyebrow">Account</div><h1>Wayan Sudarta</h1><p class="sub">Villa Manager • Sok Pro • 4 properties connected</p></div><div class="stack"><div class="setting" onclick="go('profile-account')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Account</div><div class="tileSub">Profile, security, notifications</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-villas')"><div class="row"><div><div class="tileTitle" style="font-size:17px">My Villas</div><div class="tileSub">Villa Sari, Villa Bambu, Villa Umah</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-team')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Team</div><div class="tileSub">8 members • roles and access</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-preferences')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Preferences</div><div class="tileSub">Language, alerts, and automation settings</div></div><div>›</div></div></div></div></section>
+
+  <section id="profile-account" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Profile settings</div><div class="tileTitle" style="font-size:30px">Account</div><p class="sub">Manage profile info, security preferences, and app notifications.</p></div></section>
+  <section id="profile-villas" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Portfolio</div><div class="tileTitle" style="font-size:30px">My Villas</div><p class="sub">Overview of connected villas and current occupancy.</p></div></section>
+  <section id="profile-team" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Team</div><div class="tileTitle" style="font-size:30px">Team members</div><p class="sub">Manage permissions for operations, housekeeping, and drivers.</p></div></section>
+  <section id="detail-checkin" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Departure workflow</div><div class="tileTitle" style="font-size:30px">Chen Family check-out</div><p class="sub">Villa Sari • 11:00 AM today • Cleaning and maintenance follow-up attached to this booking.</p></div></section>
+  <section id="detail-experience" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Experience booking</div><div class="tileTitle" style="font-size:30px">Rice planting with Made</div><p class="sub">3:00 PM • 3 guests • Pickup at 2:20 PM from Villa Sari.</p></div></section>
+  <section id="detail-message-chen" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Chen Family</div><p class="sub">Villa Sari • Temple visit tomorrow • AI drafted response ready.</p></div></section>
+  <section id="detail-message-sarah" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Sarah & Tom</div><p class="sub">Villa Bambu • Dining recommendations • Needs manager response.</p></div></section>
+  <section id="detail-task-cleaning" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Task detail</div><div class="tileTitle" style="font-size:30px">Deep clean Villa Sari</div><p class="sub">Assigned to Ayu Ketut • Due 3:00 PM • Includes maintenance inspection.</p></div></section>
+
+  <section id="profile-preferences" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">App Preferences</div><p class="sub">Set your theme, language, alerts, and automation settings.</p></div>
+    <div class="stack">
+      <div class="setting" onclick="go('preferences-theme')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Design & Theme</div><div class="tileSub">Change the app design style and color palette</div></div><div>›</div></div></div>
+      <div class="setting" onclick="go('preferences-language')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Language</div><div class="tileSub">Translate the whole app instantly</div></div><div>›</div></div></div>
+      <div class="setting"><div class="row"><div><div class="tileTitle" style="font-size:17px">Urgency alerts</div><div class="tileSub">High priority only</div></div><div>›</div></div></div>
+      <div class="setting"><div class="row"><div><div class="tileTitle" style="font-size:17px">AI reply approval</div><div class="tileSub">Manual approval required</div></div><div>›</div></div></div>
+    </div>
+  </section>
+
+  <section id="preferences-theme" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">Design & Theme</div><p class="sub">Choose a look and color palette for the app. Each style keeps Sok usable while refining tone, contrast, and card feel.</p></div>
+    <div class="themeShell">
+      <div class="themeHeroCard">
+        <div class="themeHeroTop">
+          <div class="themeHeroText">
+            <h2 id="currentThemeName">Sok Default</h2>
+            <p id="currentThemeDesc">Warm premium neutral with Sok orange accents.</p>
+          </div>
+          <div class="themeHeroBadge">Live preview</div>
+        </div>
+        <div class="themeHeroPreview">
+          <div class="themeHeroBars">
+            <span id="heroBar1" style="width:34%;background:var(--primary)"></span>
+            <span id="heroBar2" style="width:22%;background:var(--secondary)"></span>
+            <span id="heroBar3" style="width:18%;background:var(--panel2)"></span>
+          </div>
+          <div class="themeHeroLayout">
+            <div class="themeHeroPane themeHeroPaneAccent"></div>
+            <div class="themeHeroPaneSmall"></div>
+          </div>
+        </div>
+      </div>
+      <div class="themeSection">
+        <div class="themeSectionHead">
+          <div class="themeSectionTitle">Theme gallery</div>
+          <div class="themeSectionHint">Tap a theme to apply instantly</div>
+        </div>
+        <div class="themeList" id="themeList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preferences-language" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">Language</div><p class="sub">Choose a language and translate the visible UI labels.</p></div>
+    <div class="langList">
+      <div class="langCard" data-lang="en" onclick="applyLanguage('en')"><div><div class="tileTitle" style="font-size:17px">English</div><div class="tileSub">English</div></div><div>✓</div></div>
+      <div class="langCard" data-lang="id" onclick="applyLanguage('id')"><div><div class="tileTitle" style="font-size:17px">Indonesian</div><div class="tileSub">Bahasa Indonesia</div></div><div>○</div></div>
+      <div class="langCard" data-lang="ban" onclick="applyLanguage('ban')"><div><div class="tileTitle" style="font-size:17px">Balinese</div><div class="tileSub">Basa Bali</div></div><div>○</div></div>
+      <div class="langCard" data-lang="th" onclick="applyLanguage('th')"><div><div class="tileTitle" style="font-size:17px">Thai</div><div class="tileSub">ไทย</div></div><div>○</div></div>
+      <div class="langCard" data-lang="es" onclick="applyLanguage('es')"><div><div class="tileTitle" style="font-size:17px">Spanish</div><div class="tileSub">Español</div></div><div>○</div></div>
+      <div class="langCard" data-lang="zh" onclick="applyLanguage('zh')"><div><div class="tileTitle" style="font-size:17px">Chinese</div><div class="tileSub">中文</div></div><div>○</div></div>
+      <div class="langCard" data-lang="ko" onclick="applyLanguage('ko')"><div><div class="tileTitle" style="font-size:17px">Korean</div><div class="tileSub">한국어</div></div><div>○</div></div>
+      <div class="langCard" data-lang="ja" onclick="applyLanguage('ja')"><div><div class="tileTitle" style="font-size:17px">Japanese</div><div class="tileSub">日本語</div></div><div>○</div></div>
+    </div>
+  </section>
+
+  <nav class="bottom">
+    <button class="nav active" data-main="home" onclick="go('home')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></button>
+    <button class="nav" data-main="inbox" onclick="go('inbox')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Inbox</span></button>
+    <button class="nav" data-main="calendar" onclick="go('calendar')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><span>Calendar</span></button>
+    <button class="nav" data-main="tasks" onclick="go('tasks')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tasks</span></button>
+    <button class="nav" data-main="profile" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></button>
+  </nav>
+</div>
+
+<script>
+const rootPages = ['home','inbox','calendar','tasks','profile'];
+const pageHistory = ['home'];
+
+const themes = {
+default:{label:'Sok Default',desc:'Warm premium neutral with Sok orange accents.',tokens:{bg:'#f4f1eb',panel:'#fff',panel2:'#fcfaf6',text:'#171717',muted:'#7a746d',line:'#e9e2d9',primary:'#de5a2a',primarySoft:'#fff1eb',secondary:'#2d3436',green:'#14a06f',amber:'#d88911',shadow:'0 12px 26px rgba(35,25,15,.08)',radius:'28px',radiusSm:'18px',btnRadius:'18px',fontScale:'1',tracking:'-.03em',chipRadius:'999px',navBg:'rgba(255,255,255,.95)',pageGrad:'linear-gradient(180deg,#f4f1eb 0%,#faf7f2 100%)',themeRing:'rgba(222,90,42,.18)'},sw:['#f4f1eb','#ffffff','#de5a2a'],mini:'editorial'},
+'minimal-mono':{label:'Minimal Mono',desc:'Quiet grayscale with editorial typography.',tokens:{bg:'#ecebe7',panel:'#f8f8f5',panel2:'#f2f1ec',text:'#111',muted:'#8b8b86',line:'#cfcfc8',primary:'#111',primarySoft:'#ecece7',secondary:'#444',green:'#555',amber:'#666',shadow:'none',radius:'12px',radiusSm:'12px',btnRadius:'0px',fontScale:'1.04',tracking:'-.05em',chipRadius:'10px',navBg:'rgba(248,248,245,.96)',pageGrad:'linear-gradient(180deg,#ecebe7 0%,#f6f5f1 100%)',themeRing:'rgba(17,17,17,.10)'},sw:['#ecebe7','#111111','#cfcfc8'],mini:'mono'},
+'stack-cards':{label:'Stack Cards',desc:'Warm neutral stacked finance cards.',tokens:{bg:'#cdc9b7',panel:'#d6d0bf',panel2:'#e6dfcf',text:'#171411',muted:'#6f675a',line:'#bcb29c',primary:'#f44a14',primarySoft:'#ffd8cc',secondary:'#b5a27f',green:'#b7bf66',amber:'#f1df6e',shadow:'0 16px 28px rgba(55,34,15,.12)',radius:'26px',radiusSm:'20px',btnRadius:'24px',fontScale:'1.02',tracking:'-.04em',chipRadius:'24px',navBg:'rgba(214,208,191,.95)',pageGrad:'linear-gradient(180deg,#cdc9b7 0%,#ded8c8 100%)',themeRing:'rgba(244,74,20,.18)'},sw:['#cdc9b7','#f44a14','#f1df6e'],mini:'stack'},
+'creative-library':{label:'Creative Library',desc:'Art-led circles and quiet gray panels.',tokens:{bg:'#efefef',panel:'#f7f7f7',panel2:'#fff',text:'#151515',muted:'#7f7f7f',line:'#dbdbdb',primary:'#ff9e22',primarySoft:'#fff0dc',secondary:'#d3d3d3',green:'#d9ddd8',amber:'#ffb347',shadow:'0 12px 28px rgba(0,0,0,.05)',radius:'32px',radiusSm:'22px',btnRadius:'999px',fontScale:'1',tracking:'-.04em',chipRadius:'999px',navBg:'rgba(247,247,247,.96)',pageGrad:'linear-gradient(180deg,#efefef 0%,#fafafa 100%)',themeRing:'rgba(255,158,34,.16)'},sw:['#efefef','#ff9e22','#151515'],mini:'circles'},
+'bold-travel':{label:'Bold Travel',desc:'Black canvas, mint and orange modules, huge headlines.',tokens:{bg:'#050505',panel:'#0f0f10',panel2:'#121212',text:'#fefefe',muted:'#b8b8b8',line:'#2b2b2b',primary:'#ff5b0a',primarySoft:'#452313',secondary:'#38f4c3',green:'#38f4c3',amber:'#ff5b0a',shadow:'0 18px 34px rgba(0,0,0,.32)',radius:'24px',radiusSm:'16px',btnRadius:'999px',fontScale:'1.08',tracking:'-.07em',chipRadius:'18px',navBg:'rgba(8,8,8,.94)',pageGrad:'linear-gradient(180deg,#050505 0%,#0d0d0d 100%)',themeRing:'rgba(56,244,195,.14)'},sw:['#050505','#38f4c3','#ff5b0a'],mini:'travel'},
+'neon-dashboard':{label:'Neon Dashboard',desc:'Sporty pastel neon blocks with dark grounding.',tokens:{bg:'#112133',panel:'#101d2f',panel2:'#16253a',text:'#f5fbff',muted:'#c8d2de',line:'#263852',primary:'#c8ff2b',primarySoft:'#f0ffc8',secondary:'#5fb2e3',green:'#b9ecd9',amber:'#f1cce8',shadow:'0 18px 34px rgba(3,10,18,.26)',radius:'26px',radiusSm:'18px',btnRadius:'20px',fontScale:'1.02',tracking:'-.04em',chipRadius:'18px',navBg:'rgba(16,29,47,.95)',pageGrad:'linear-gradient(180deg,#112133 0%,#1b3047 100%)',themeRing:'rgba(200,255,43,.16)'},sw:['#112133','#c8ff2b','#5fb2e3'],mini:'dashboard'},
+'art-grid':{label:'Art Grid',desc:'Museum grid with precise lines and coral accents.',tokens:{bg:'#f2f0e8',panel:'#f7f4eb',panel2:'#fff',text:'#121212',muted:'#66645f',line:'#111111',primary:'#f55757',primarySoft:'#ffe1e1',secondary:'#f7f4eb',green:'#d8dbd2',amber:'#f6d7c6',shadow:'none',radius:'0px',radiusSm:'0px',btnRadius:'0px',fontScale:'1',tracking:'-.03em',chipRadius:'0px',navBg:'rgba(247,244,235,.98)',pageGrad:'linear-gradient(180deg,#f2f0e8 0%,#faf7f0 100%)',themeRing:'rgba(245,87,87,.14)'},sw:['#f2f0e8','#111111','#f55757'],mini:'grid'},
+'gradient-finance':{label:'Gradient Finance',desc:'Premium dark finance with glowing gradients.',tokens:{bg:'#0d1022',panel:'#161330',panel2:'#1b173d',text:'#fff',muted:'#b8b1e1',line:'#342d68',primary:'#ff59d4',primarySoft:'#3f2044',secondary:'#7f5cff',green:'#b4ff39',amber:'#5ad6ff',shadow:'0 18px 36px rgba(0,0,0,.35)',radius:'24px',radiusSm:'20px',btnRadius:'999px',fontScale:'1.02',tracking:'-.04em',chipRadius:'999px',navBg:'rgba(13,16,34,.92)',pageGrad:'linear-gradient(180deg,#0d1022 0%,#20153d 100%)',themeRing:'rgba(255,89,212,.16)'},sw:['#0d1022','#ff59d4','#b4ff39'],mini:'gradient'},
+'habit-pill':{label:'Habit Pill UI',desc:'Dark mode with playful pill cards.',tokens:{bg:'#252525',panel:'#090909',panel2:'#141414',text:'#fff',muted:'#d6d6d6',line:'#2f2f2f',primary:'#f2ff1f',primarySoft:'#f9ffd1',secondary:'#42d783',green:'#6da8ff',amber:'#ff8c43',shadow:'0 14px 28px rgba(0,0,0,.28)',radius:'999px',radiusSm:'999px',btnRadius:'999px',fontScale:'1.03',tracking:'-.05em',chipRadius:'999px',navBg:'rgba(9,9,9,.95)',pageGrad:'linear-gradient(180deg,#252525 0%,#191919 100%)',themeRing:'rgba(242,255,31,.16)'},sw:['#252525','#f2ff1f','#42d783'],mini:'pill'},
+'soft-product':{label:'Soft Product UI',desc:'Cream and orange retail styling with soft cards.',tokens:{bg:'#e6e1db',panel:'#f8f4ef',panel2:'#fff',text:'#23201b',muted:'#9e7f68',line:'#e4cdbf',primary:'#ff5a2d',primarySoft:'#ffe3d8',secondary:'#f8f4ef',green:'#d6c6b2',amber:'#f2b082',shadow:'0 8px 18px rgba(90,54,20,.05)',radius:'22px',radiusSm:'18px',btnRadius:'18px',fontScale:'1',tracking:'-.04em',chipRadius:'18px',navBg:'rgba(248,244,239,.96)',pageGrad:'linear-gradient(180deg,#e6e1db 0%,#f3eee8 100%)',themeRing:'rgba(255,90,45,.16)'},sw:['#e6e1db','#ff5a2d','#f8f4ef'],mini:'product'},
+'modern-web':{label:'Modern Web Minimal',desc:'Acid-lime flat web concept with editorial restraint.',tokens:{bg:'#b8ff2c',panel:'#fff',panel2:'#efffe0',text:'#0f1408',muted:'#425239',line:'#0f1408',primary:'#0f1408',primarySoft:'#ecffd1',secondary:'#b8ff2c',green:'#fff',amber:'#e9ffe4',shadow:'none',radius:'4px',radiusSm:'4px',btnRadius:'4px',fontScale:'1.01',tracking:'-.05em',chipRadius:'4px',navBg:'rgba(184,255,44,.96)',pageGrad:'linear-gradient(180deg,#b8ff2c 0%,#d9ff79 100%)',themeRing:'rgba(15,20,8,.12)'},sw:['#b8ff2c','#0f1408','#ffffff'],mini:'web'}
+};
+
+function miniHTML(t){
+ const map = {
+   editorial:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:34%"></div><div class="pill" style="background:${t.tokens.panel2};width:18%"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.panel2}"></div><div class="miniBox" style="background:${t.tokens.primary};opacity:.16"></div></div>`,
+   mono:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.text};width:40%"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.panel2};border:1px solid ${t.tokens.line}"></div><div class="miniBox" style="background:${t.tokens.bg};border:1px solid ${t.tokens.line}"></div></div>`,
+   stack:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:28%"></div><div class="pill" style="background:${t.tokens.amber};width:20%"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.secondary};transform:rotate(-2deg)"></div><div class="miniBox" style="background:${t.tokens.green};transform:rotate(2deg)"></div></div>`,
+   circles:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:22%;border-radius:999px"></div><div class="pill" style="background:${t.tokens.panel2};width:22%;border-radius:999px"></div></div><div class="miniRow"><div class="miniBox" style="background:radial-gradient(circle, ${t.tokens.primary} 0 38%, ${t.tokens.panel2} 39%)"></div><div class="miniBox" style="background:radial-gradient(circle, ${t.tokens.panel2} 0 38%, ${t.tokens.secondary} 39%)"></div></div>`,
+   travel:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.secondary};width:26%"></div><div class="pill" style="background:${t.tokens.primary};width:20%"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.primary}"></div><div class="miniBox" style="background:${t.tokens.panel2};border:1px solid ${t.tokens.secondary}"></div></div>`,
+   dashboard:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:30%"></div><div class="pill" style="background:${t.tokens.secondary};width:24%"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.secondary}"></div><div class="miniBox" style="background:${t.tokens.amber}"></div></div>`,
+   grid:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:18%"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.panel};border:1px solid ${t.tokens.line};border-radius:0"></div><div class="miniBox" style="background:${t.tokens.primary};opacity:.9;border-radius:0"></div></div>`,
+   gradient:`<div class="themeMiniTop"><div class="pill" style="background:linear-gradient(90deg, ${t.tokens.primary}, ${t.tokens.secondary});width:36%"></div></div><div class="miniRow"><div class="miniBox" style="background:linear-gradient(145deg, ${t.tokens.primary}, ${t.tokens.secondary})"></div><div class="miniBox" style="background:${t.tokens.green}"></div></div>`,
+   pill:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:34%;border-radius:999px"></div><div class="pill" style="background:${t.tokens.secondary};width:24%;border-radius:999px"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.amber};border-radius:999px"></div><div class="miniBox" style="background:${t.tokens.green};border-radius:999px"></div></div>`,
+   product:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:24%"></div><div class="pill" style="background:${t.tokens.panel};width:20%;border:1px solid ${t.tokens.line}"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.primary};opacity:.95"></div><div class="miniBox" style="background:${t.tokens.panel2}"></div></div>`,
+   web:`<div class="themeMiniTop"><div class="pill" style="background:${t.tokens.primary};width:40%;border-radius:2px"></div></div><div class="miniRow"><div class="miniBox" style="background:${t.tokens.panel};border-radius:2px"></div><div class="miniBox" style="background:${t.tokens.bg};border:1px solid ${t.tokens.line};border-radius:2px"></div></div>`
+ };
+ return map[t.mini];
+}
+
+function renderThemes(){
+ const order = ['default','soft-product','minimal-mono','creative-library','bold-travel','neon-dashboard','art-grid','gradient-finance','habit-pill','stack-cards','modern-web'];
+ document.getElementById('themeList').innerHTML = order.map((k,index)=>{
+   const t = themes[k];
+   const tag = index === 0 ? 'Current base' : 'Theme';
+   return `
+   <div class="themeCard ${k==='default'?'sel':''}" data-theme="${k}" onclick="applyTheme('${k}')">
+     <div class="themeHeader">
+       <div class="themeMeta">
+         <div class="themeName">${t.label}</div>
+         <div class="previewTag">${t.desc}</div>
+         <div class="swatches">${t.sw.map(c=>`<span class="sw" style="background:${c}"></span>`).join('')}</div>
+       </div>
+       <span class="themeBadge">${tag}</span>
+     </div>
+     <div class="themeMini" style="background:${t.tokens.panel};color:${t.tokens.text}">${miniHTML(t)}</div>
+   </div>`;
+ }).join('');
+}
+
+function getPage(id){ return document.getElementById(id); }
+
+function inferMainPage(id){
+ if(rootPages.includes(id)) return id;
+ if(id.startsWith('profile-') || id.startsWith('preferences-')) return 'profile';
+ if(id.startsWith('detail-message')) return 'inbox';
+ if(id.startsWith('detail-task')) return 'tasks';
+ if(id === 'detail-checkin' || id === 'detail-experience') return 'calendar';
+ return 'home';
+}
+
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ const page = getPage(id) || getPage('home');
+ page.classList.add('active');
+ const main = inferMainPage(page.id);
+ document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active', n.dataset.main === main));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function go(id, options = {}){
+ const page = getPage(id);
+ if(!page) return showPage('home');
+ const current = pageHistory[pageHistory.length - 1];
+ if(options.replace){
+   pageHistory[pageHistory.length - 1] = id;
+ }else if(!options.skipHistory && current !== id){
+   pageHistory.push(id);
+ }
+ showPage(id);
+}
+
+function back(){
+ if(pageHistory.length > 1){
+   pageHistory.pop();
+   const previous = pageHistory[pageHistory.length - 1];
+   showPage(previous || 'home');
+ }else{
+   pageHistory.length = 1;
+   pageHistory[0] = 'home';
+   showPage('home');
+ }
+}
+
+function updateThemeHero(theme){
+ document.getElementById('currentThemeName').textContent = theme.label;
+ document.getElementById('currentThemeDesc').textContent = theme.desc;
+ document.getElementById('heroBar1').style.background = theme.tokens.primary;
+ document.getElementById('heroBar2').style.background = theme.tokens.secondary;
+ document.getElementById('heroBar3').style.background = theme.tokens.panel2;
+}
+
+function applyTheme(name){
+ const t = themes[name] || themes.default;
+ const s = document.documentElement.style;
+ const tokens = {
+   '--bg':t.tokens.bg,'--panel':t.tokens.panel,'--panel2':t.tokens.panel2,'--text':t.tokens.text,'--muted':t.tokens.muted,
+   '--line':t.tokens.line,'--primary':t.tokens.primary,'--primarySoft':t.tokens.primarySoft,'--secondary':t.tokens.secondary,
+   '--green':t.tokens.green,'--amber':t.tokens.amber,'--shadow':t.tokens.shadow,'--radius':t.tokens.radius,
+   '--radiusSm':t.tokens.radiusSm,'--btnRadius':t.tokens.btnRadius,'--fontScale':t.tokens.fontScale,'--tracking':t.tokens.tracking,
+   '--chipRadius':t.tokens.chipRadius,'--navBg':t.tokens.navBg,'--pageGrad':t.tokens.pageGrad,'--themeRing':t.tokens.themeRing || 'rgba(222,90,42,.18)'
+ };
+ Object.entries(tokens).forEach(([k,v])=>s.setProperty(k,v));
+ document.body.dataset.theme = name;
+ document.querySelectorAll('.themeCard').forEach(c=>c.classList.toggle('sel', c.dataset.theme === name));
+ updateThemeHero(t);
+ localStorage.setItem('sok-theme', name);
+}
+
+function applyLanguage(lang){
+ document.querySelectorAll('.langCard').forEach(c=>{
+   const sel = c.dataset.lang === lang;
+   c.classList.toggle('sel', sel);
+   c.lastElementChild.textContent = sel ? '✓' : '○';
+ });
+ localStorage.setItem('sok-lang', lang);
+}
+
+document.getElementById('search').addEventListener('keydown', e => {
+ if(e.key !== 'Enter') return;
+ const q = e.target.value.toLowerCase().trim();
+ if(q.includes('task')) go('tasks');
+ else if(q.includes('message') || q.includes('guest')) go('inbox');
+ else if(q.includes('calendar') || q.includes('arrival')) go('calendar');
+ else if(q.includes('profile') || q.includes('villa')) go('profile');
+});
+
+document.querySelectorAll('.chips button').forEach(btn=>{
+ btn.addEventListener('click', () => {
+   const parent = btn.parentElement;
+   parent.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+   btn.classList.add('active');
+ });
+});
+
+renderThemes();
+applyTheme(localStorage.getItem('sok-theme') || 'default');
+applyLanguage(localStorage.getItem('sok-lang') || 'en');
+showPage('home');
+</script>
+</body>
+</html>
