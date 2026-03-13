@@ -26,15 +26,17 @@ button,input{font:inherit}
 @keyframes fade{from{opacity:.72;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .top{position:sticky;top:0;z-index:20;padding:calc(env(safe-area-inset-top) + 14px) 18px 12px;background:color-mix(in srgb,var(--bg) 90%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 88%, transparent)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{font-size:28px;font-weight:800;letter-spacing:-.05em}
+.brand{position:relative;display:inline-flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;letter-spacing:-.05em;padding:2px 8px 4px;isolation:isolate}
+.brand::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:128px;height:128px;background:radial-gradient(circle at 50% 50%, rgba(234,190,164,.82) 0%, rgba(234,190,164,.68) 28%, rgba(234,190,164,.46) 50%, rgba(234,190,164,.24) 68%, rgba(234,190,164,.10) 82%, transparent 100%);filter:blur(24px);opacity:.95;z-index:-1;pointer-events:none;border-radius:50%;}
 .icon,.back{
  width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--panel) 92%, transparent);
  display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);cursor:pointer;color:var(--text);transition:.2s
 }
 .icon:hover,.back:hover,.nav:hover,.setting:hover,.themeCard:hover,.langCard:hover,.card:hover,.tile:hover{transform:translateY(-1px)}
-.search{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:12px 14px;margin-top:12px;box-shadow:var(--shadow)}
+.search{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:12px 14px;margin-top:12px;box-shadow:var(--shadow);transform-origin:top center;transition:transform .28s ease,opacity .22s ease,max-height .28s ease,margin-top .28s ease,padding .28s ease;border-color .28s ease,box-shadow .28s ease;max-height:72px;opacity:1;overflow:hidden}
 .search input{border:none;outline:none;background:transparent;color:var(--text);width:100%}
 .search input::placeholder{color:var(--muted)}
+body.chrome-hidden .search{transform:translateY(-14px) scale(.98);opacity:0;max-height:0;margin-top:0;padding-top:0;padding-bottom:0;border-color:transparent;box-shadow:none;pointer-events:none}
 .hero,.detail{padding:14px 18px}
 .eyebrow{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
 h1{font-size:28px;line-height:1.03;letter-spacing:-.05em;margin-bottom:8px}
@@ -130,8 +132,10 @@ h1{font-size:28px;line-height:1.03;letter-spacing:-.05em;margin-bottom:8px}
 .bottom{
  position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);
  display:grid;grid-template-columns:repeat(5,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom));
- background:var(--navBg);backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:30
+ background:var(--navBg);backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:30;
+ transition:transform .3s ease,opacity .22s ease,filter .3s ease
 }
+body.chrome-hidden .bottom{transform:translateX(-50%) translateY(calc(100% + env(safe-area-inset-bottom) + 12px));opacity:0;filter:blur(6px);pointer-events:none}
 .nav{
  background:none;border:none;color:var(--muted);font:600 12px Inter,sans-serif;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;cursor:pointer
 }
@@ -148,40 +152,80 @@ body[data-theme="habit-pill"] .card,body[data-theme="habit-pill"] .tile,body[dat
 body[data-theme="modern-web"] .card,body[data-theme="modern-web"] .tile,body[data-theme="modern-web"] .setting{border-radius:4px;box-shadow:none}
 
 
-.homeTools{padding:4px 18px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.homeHint{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:12px;color:var(--muted);font-weight:700}
-.homeDoneBtn{display:none;border:none;border-radius:999px;background:var(--primary);color:#fff;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
-body.home-edit-mode .homeDoneBtn{display:inline-flex}
-body.home-edit-mode .homeHint{background:color-mix(in srgb,var(--primary) 16%, var(--panel));color:var(--text)}
-.homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.homeTools{padding:4px 18px 12px;display:flex;justify-content:flex-end;align-items:center;gap:10px;position:relative}
+.homeToolsRight{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.homeActionBtn,.homeDoneBtn,.homeResetBtn{border:none;border-radius:999px;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer;transition:.2s;min-height:42px}
+.homeActionBtn{background:color-mix(in srgb,var(--panel) 90%, transparent);color:var(--text);border:1px solid color-mix(in srgb,var(--line) 82%, transparent)}
+.homeDoneBtn{display:none;background:var(--primary);color:#fff}
+.homeResetBtn{display:none;background:color-mix(in srgb,var(--primary) 12%, var(--panel));color:var(--text);border:1px solid color-mix(in srgb,var(--line) 82%, transparent)}
+body.home-edit-mode .homeDoneBtn,body.home-edit-mode .homeResetBtn{display:inline-flex}
+body.home-edit-mode #homeEditBtn{display:none}
+.homeActionBtn::before{content:'✦';margin-right:8px;font-size:12px;opacity:.8}
+.homeDoneBtn::before{content:'✓';margin-right:8px;font-size:12px}
+.homeResetBtn::before{content:'↺';margin-right:8px;font-size:12px}
+.homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start;grid-auto-flow:row dense}
 .homeItem{position:relative;touch-action:manipulation;user-select:none;-webkit-user-select:none;transition:transform .22s ease, box-shadow .22s ease, opacity .2s ease}
+.homeItem[data-span="1"]{grid-column:span 1}
 .homeItem[data-span="2"]{grid-column:span 2}
-.homeGrip{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 78%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2}
+.homeItem[data-span="3"]{grid-column:1 / -1}
+.homeGrip,.homeResize{position:absolute;width:30px;height:30px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 78%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2}
+.homeGrip{top:12px;right:12px}
+.homeResize{top:12px;left:12px;font-size:10px;font-weight:900;letter-spacing:-.02em}
 .homeGrip::before{content:'⋮⋮';font-size:10px;line-height:1;letter-spacing:-1px;transform:rotate(90deg)}
-body.home-edit-mode .homeGrip{display:flex}
+body.home-edit-mode .homeGrip,body.home-edit-mode .homeResize{display:flex}
 body.home-edit-mode .homeItem{animation:wiggle .18s ease-in-out infinite alternate}
 body.home-edit-mode .homeItem:active{animation:none}
 .homeItem.dragging{z-index:80;opacity:.98;animation:none!important;box-shadow:0 26px 60px rgba(0,0,0,.20), var(--shadow);cursor:grabbing}
 .homeItem.dragging .box,.homeItem.dragging .card,.homeItem.dragging .tile{transform:scale(1.02)}
 .homeItem.lift-ready .box,.homeItem.lift-ready .card,.homeItem.lift-ready .tile{box-shadow:0 18px 40px rgba(0,0,0,.14), var(--shadow);transform:translateY(-2px) scale(1.01)}
-.homePlaceholder{border-radius:var(--radius);border:2px dashed color-mix(in srgb,var(--primary) 40%, var(--line));background:color-mix(in srgb,var(--primary) 8%, transparent)}
+.homePlaceholder{border-radius:var(--radius);border:2px dashed color-mix(in srgb,var(--primary) 40%, var(--line));background:color-mix(in srgb,var(--primary) 8%, transparent);min-height:120px}
 .homeBoard .box{height:100%}
 .homeMetaTag{display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));font-size:11px;font-weight:800;color:var(--muted);border:1px solid color-mix(in srgb,var(--line) 75%, transparent)}
 .homeMetaTag.dot::before{content:'';width:6px;height:6px;border-radius:999px;background:var(--primary)}
-.homeStat.card{min-height:150px}
-.homeTile.tile{min-height:136px}
-.homeTile .tileSub{padding-right:22px}
+.homeStat.card{min-height:150px;padding-top:18px}
+.homeTile.tile{min-height:136px;padding-top:22px}
+.homeTile .tileSub{padding-right:12px}
+.homeWidgetIcon{position:absolute;right:18px;top:18px;display:block;width:24px;height:24px;background-color:currentColor;-webkit-mask-image:var(--icon-mask);mask-image:var(--icon-mask);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;color:var(--muted);z-index:1;opacity:.98}
+.homeStat .homeWidgetIcon{position:static;right:auto;top:auto;flex:0 0 auto;width:24px;height:24px}
+.homeStatTop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.homeStatTop .small{margin:0}
+.homeStatTop .titleInline{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;width:100%}
+.homeStatTop .titleInline.right{margin-left:auto}
+.homeStatBody{display:flex;flex-direction:column;gap:6px}
+.homeTileTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}
+.homeTileTop .homeMetaTag{margin-bottom:0}
+.homeTileTop .homeWidgetIcon{position:static;right:auto;top:auto;flex:0 0 auto;width:22px;height:22px}
+.homeTileTitleRow{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;min-width:0;margin-bottom:18px}
+.homeTileTitleRow .tileTitle{min-width:0;flex:1}
+.homeTileSubRow{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.homeTileSubRow > div{flex:1;min-width:0}
+.homeTileSubRow .badge{margin-top:0;flex:0 0 auto;align-self:center}
+.homeTile .meta{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.homeTile .meta span:last-child{text-align:right}
+.homeTile hr.tileDivider{display:none}
+.homeWidgetIcon.arrivals{color:var(--green);--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABVUlEQVR4nO3Z0W7CMBAEQFP1/3+ZvlYRhSS27+zrzBuoxWTX5yBoDQAAAAAAAAAAAIAqHtlvINjz8Dj9+r+y30CgY/h/PRcqfQcEORN0Shb/YQLO7vKUaag+AXdDDcul8gSkn+9nVC3gXfiPttDkVyzgU/i9rzFUtQJGhH/1b7t8Ry002acdewx0mftDhQkYHX7o/WH3CRh15KTZeQLuhL/U7m9t3wJKhN9a7BEUcePb4tj5bdcJeOVd+Evu/tbqFNATYOrURC4+6wj6dA0z1h2W2+4TcDaI0Rvt2QYVu3MBV0KdNX3dr7vqp4YrF5ZxBF1Zf94/d4o8m5ctoVoBR7+vb+Z6CljArSx3vgmXsOoEZN9Y77qcZ3YBo9ZfoZBb17Lqx9AeWWUo4IWoMqrnCAAAAADA3kZ+j73Cr1LRuvPzo3wyBSRTQDIFJFMAAAAAAAAAMNEPtxgrPaGS6zsAAAAASUVORK5CYII=")}
+.homeWidgetIcon.departures{color:#e67a1d;--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABVUlEQVR4nO3Z0W7CMBAEQFP1/3+ZvlYRhSS27+zrzBuoxWTX5yBoDQAAAAAAAAAAAIAqHtlvINjz8Dj9+r+y30CgY/h/PRcqfQcEORN0Shb/YQLO7vKUaag+AXdDDcul8gSkn+9nVC3gXfiPttDkVyzgU/i9rzFUtQJGhH/1b7t8Ry002acdewx0mftDhQkYHX7o/WH3CRh15KTZeQLuhL/U7m9t3wJKhN9a7BEUcePb4tj5bdcJeOVd+Evu/tbqFNATYOrURC4+6wj6dA0z1h2W2+4TcDaI0Rvt2QYVu3MBV0KdNX3dr7vqp4YrF5ZxBF1Zf94/d4o8m5ctoVoBR7+vb+Z6CljArSx3vgmXsOoEZN9Y77qcZ3YBo9ZfoZBb17Lqx9AeWWUo4IWoMqrnCAAAAADA3kZ+j73Cr1LRuvPzo3wyBSRTQDIFJFMAAAAAAAAAMNEPtxgrPaGS6zsAAAAASUVORK5CYII=")}
+.homeWidgetIcon.occupancy{color:color-mix(in srgb,var(--green) 58%, var(--text));--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABsElEQVR4nO3bwW7CQAxF0QH1/38ZVpG6CTPR2H7PyT2rVqIi8cWQQjsGAAAAAAAAAAAAcGcv9QFs+vz7uuW5vNUHsOEz+b6FrgHOht0uQscAsyG3itAtwOpw20ToFODqUFtE6HDlMBvka/E2ltw3YHWwswHbboNzgKuP6pYRXFfz17BWjnn358s4bkDE8H7dzmoT3AJEPnJbRHAKkPG0YR/BJUDmc7Z1BPULUuX1u+XvCsoNqB6I5WWqKoDq0WgXQbF2LtfoFsdRvQEWJ71wf2WbUBnAafgr91sSoSqA4/BX7j89QkUA5+EfZBEyB2B53T1RfsxZG9Bx+GMILlMzAnQd/qE0QvQwOjzfX5F+PpEbcLfhj1Hw4hwV4I7DP6RGyL4M7T78Q9p5uHwe8FgEECOAGAHECCBGALE/9QGcyHwH0urSmA0Qc9qAqo8Brf6xjw0QI4AYAcScXgPORDxPy/8G9AwbIEYAMQKIEUCMAGIEECOAGAHECCBGADECiBFAjABiUZ8I2b7bWGBrhmyAGAHECCAWFUD+1wUi2+cduQFPi/C08wUAAAAAAAAAAOjpC4JaPHS5QrA0AAAAAElFTkSuQmCC")}
+.homeWidgetIcon.messages{color:var(--primary);--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABaklEQVR4nO3bW5LCMBBDUc0U+9/yzJd/eKQSKi257XsWQGzJJgGMBAAAAAAAAAAAAAAAAGA1P+br/Zmv9w1rJq6LdQj+mSWbX8M1OoYvmcZdXUDX8Ify8VcW0D38oXQeVQWsEv5QNp9H1QsfcD95XWFfOBU74GgSM4cvHY+vpBzHU9Awe/iDdZzOAvAGBYRRQBgFhFFAGAWEUUAYBYRRQBgFhFFAGAWEUUAYBYRRQBgFhFFAGAWEUUAYBYRRQBgFhDkL6HJazjrOigLsh5tuZD9UljiaOHsJVlVvQV1OwZ1VNp/Ke8AqJZTOo/om3L2E8vE7noK6lmAZN/+SfLXkvyQ/uVpIery36/ZJuMMOuiRZwDdhsgOClgtfyk3qyupfMvhh9h2wdPhSpoCzq3/58KV5d8AW4Uv+As6s/m3Cl+b7QWar8KXM7wHvbBf8MMM9YNvwpTkK2Fry29CtVz4AAAAAAAAAAAAAGPwDThobbmHFDCYAAAAASUVORK5CYII=")}
+.homeWidgetIcon.experience{color:color-mix(in srgb,var(--green) 40%, var(--amber));--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABX0lEQVR4nO3ZwU6DQBSG0anx/V9ZF7owpoUOcOfPJeesTAwM3A9bwDEAAAAAAAAAAO7oEV7/a+N3e8f2atut7c6sVyKx6NYQXnl2nO8GuGq9EisDHBnEf3+Pdy/A1euV+Khe4NcVw5jZz+r1DqsuXH4CC5XMqvIv4E7DH6PofD4rdjrh6B1Ll/V2pT6CZtZd/WX6bL2yOVV/CT878NmTOXvyZ9crvUhX3AU9Xvx8dB8rtyu/DU0/Cc+a+ThqcW6rngOu8u5QWwx/jH4BbqdjgL2ru83VP0bPALciQJgAYQKECRAmQFjHAHtPw61eg3cMcCvdAqz+l2S5TgHaDHVGpwAzrxjavI7oFGCM9wbbZvhj9Aswxs+AWw15S8cAtyJAmABhAoQJECZAmABhAoQJECZAmABhAoQJECZAmABhAoQJECZAmABhAoQJECZAmABhAoQJECYAAAAAAAAAAHBP31K7G3IpcUUvAAAAAElFTkSuQmCC")}
+.homeWidgetIcon.priority{color:#ef4444;--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAB+klEQVR4nO3c226DMBBFUafq//9y+hJHyErBJp45x7CX1LcK5uJbIkIpAAAAAAAAAAAAAICreqgDGPQc+N8lcnMPcqTgRyxztQyqzC18yypnq2BKbOFbFrlbBFFyC9+S1uBHefMXZfHl91fPgDPJ98Qcdd3pVA3IPk7aHl8VDegtRkRsyntrb/TSU4CMmFzisNiEt7IGhHrve8tswNGoyy7K0f1STkdZSe8l4zAaZfFlzAD1Of9bofH/Rl68wzej67/CnLnmY+d6oaJngPvSs7UXT1hzVKcgt+JX6XFFNmD1tb8Vko9iBriO/io1vqgGXG30V9Pzyp4B7qO/SovT7auI26EBYhENuOr6X03NL3MGrLL+V7f8Ovp2aIAYDRCjAWI0QIwGiNEAMRog5vRUhJuUeCMasNon3lFT82MJEqMBYlHLxUpPQ3ySFn/UDFihyGdMz0uxBLmfhlLji2zA1WZBSD6qTdh1FqTHFd0AyeN+J0kODupjqEsTZHFkNCByL3hu/qKE7mWZG+XMX8jMWi7kv9pxeioiexmQF78U/R7Q6mnC0f/MuEYax2dDI9f03mtf+tnQ3uRmNmLkWpf/pfzW2Xc6HG3CvCtigMN6LKuDwyasHgTS+6uTb/HGLBPLfrIdZRXMB7w10Yzti5cAAAAAAAAAAAAAwNAfuNFHWzYcAVsAAAAASUVORK5CYII=")}
+.homeStatWithIcon,.homeTile{position:relative}
+
+
 .homeItem[data-span="1"] .homeGrip{top:10px;right:10px}
-.homeItem.dragging .homeGrip, body.home-edit-mode .homeItem .homeGrip{display:flex}
+.homeItem[data-span="1"] .homeResize{top:10px;left:10px}
+.homeItem.dragging .homeGrip,.homeItem.dragging .homeResize, body.home-edit-mode .homeItem .homeGrip,body.home-edit-mode .homeItem .homeResize{display:flex}
 @keyframes wiggle{from{transform:rotate(-0.8deg)}to{transform:rotate(0.8deg)}}
 body.home-edit-mode .homeBoard{padding-bottom:24px}
 
 @media (max-width:380px){
  .grid{grid-template-columns:1fr}
+ .homeBoard{gap:10px}
 }
+
 </style>
 </head>
-<body data-theme="default">
+<body data-theme="soft-product">
 <div class="app">
   <div class="top">
     <div class="row"><div class="brand">Sok</div><div class="row">
@@ -199,12 +243,9 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
       <p class="sub">Villa Sari is running smoothly. You have 2 arrivals, 1 departure, and 2 unread guest conversations.</p>
     </div>
     <div class="homeTools">
-      <div>
-        <div class="title">Home layout</div>
-        <div class="small">Press and hold any box to rearrange</div>
-      </div>
-      <div class="row" style="gap:8px">
-        <span id="homeEditHint" class="homeHint">Touch and hold</span>
+      <div class="homeToolsRight">
+        <button id="homeEditBtn" class="homeActionBtn" type="button" onclick="enableHomeEditMode()">Customize</button>
+        <button id="homeResetBtn" class="homeResetBtn" type="button" onclick="resetHomeLayout()">Reset</button>
         <button id="homeDoneBtn" class="homeDoneBtn" type="button" onclick="disableHomeEditMode()">Done</button>
       </div>
     </div>
@@ -331,130 +372,154 @@ function miniHTML(t){
 }
 
 
-const HOME_LAYOUT_KEY = 'sok-home-layout-v1';
+const HOME_LAYOUT_KEY = 'sok-home-layout-v2';
 const homeItems = [
   {
-    id:'arrivals', span:1, target:'calendar',
-    markup:`<div class="card homeStat">
+    id:'arrivals', defaultSpan:1, target:'calendar',
+    markup:`<div class="card homeStat homeStatWithIcon">
+      <span class="homeResize" aria-label="Resize widget">1×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="small">Today</div>
-      <div><div class="big">2</div><div class="label">Arrivals</div></div>
+      <div class="homeStatTop"><div class="titleInline"><div class="small">Today</div><span class="homeWidgetIcon arrivals" aria-hidden="true"></span></div></div>
+      <div class="homeStatBody"><div class="big">2</div><div class="label">Arrivals</div></div>
     </div>`
   },
   {
-    id:'departures', span:1, target:'calendar',
-    markup:`<div class="card homeStat">
+    id:'departures', defaultSpan:1, target:'calendar',
+    markup:`<div class="card homeStat homeStatWithIcon">
+      <span class="homeResize" aria-label="Resize widget">1×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="small">Today</div>
-      <div><div class="big">1</div><div class="label">Departures</div></div>
+      <div class="homeStatTop"><div class="titleInline"><div class="small">Today</div><span class="homeWidgetIcon departures" aria-hidden="true"></span></div></div>
+      <div class="homeStatBody"><div class="big">1</div><div class="label">Departures</div></div>
     </div>`
   },
   {
-    id:'occupancy', span:1, target:'profile',
-    markup:`<div class="card homeStat">
+    id:'occupancy', defaultSpan:1, target:'profile',
+    markup:`<div class="card homeStat homeStatWithIcon">
+      <span class="homeResize" aria-label="Resize widget">1×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="small">Occupancy</div>
-      <div><div class="big">67%</div><div class="label">2 / 3 villas</div></div>
+      <div class="homeStatTop"><div class="titleInline"><div class="small">Occupancy</div><span class="homeWidgetIcon occupancy" aria-hidden="true"></span></div></div>
+      <div class="homeStatBody"><div class="big">67%</div><div class="label">2 / 3 villas</div></div>
     </div>`
   },
   {
-    id:'messages', span:1, target:'inbox',
-    markup:`<div class="card homeStat">
+    id:'messages', defaultSpan:1, target:'inbox',
+    markup:`<div class="card homeStat homeStatWithIcon">
+      <span class="homeResize" aria-label="Resize widget">1×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="small">Messages</div>
-      <div><div class="big">2</div><div class="label">Unread messages</div></div>
+      <div class="homeStatTop"><div class="titleInline"><div class="small">Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div></div>
+      <div class="homeStatBody"><div class="big">2</div><div class="label">Unread messages</div></div>
     </div>`
   },
   {
-    id:'checkout', span:2, target:'detail-checkin',
+    id:'checkout', defaultSpan:3, target:'detail-checkin',
     markup:`<div class="tile homeTile">
+      <span class="homeResize" aria-label="Resize widget">3×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeMetaTag dot">Next 24 Hours</div>
-      <div class="row"><div><div class="tileTitle">Chen Family check-out</div><div class="tileSub">Villa Sari • 11:00 AM departure • Cleaning team assigned</div></div><span class="badge urgent">Priority</span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon departures" aria-hidden="true"></span></div>
+      <div class="homeTileTitleRow"><div class="tileTitle">Chen Family check-out</div></div>
+      <div class="homeTileSubRow"><div><div class="tileSub">Villa Sari • 11:00 AM departure • Cleaning team assigned</div></div><span class="badge urgent">Priority</span></div>
       <div class="meta"><span>Ayu Ketut assigned</span><span>Due 3:00 PM</span></div>
     </div>`
   },
   {
-    id:'experience', span:2, target:'detail-experience',
+    id:'experience', defaultSpan:3, target:'detail-experience',
     markup:`<div class="tile homeTile">
+      <span class="homeResize" aria-label="Resize widget">3×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeMetaTag dot">Next 24 Hours</div>
-      <div class="row"><div><div class="tileTitle">Rice planting experience</div><div class="tileSub">3 guests • 3:00 PM • Confirm pickup and guide timing</div></div><span class="badge ok">Confirmed</span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon experience" aria-hidden="true"></span></div>
+      <div class="homeTileTitleRow"><div class="tileTitle">Rice planting experience</div></div>
+      <div class="homeTileSubRow"><div><div class="tileSub">3 guests • 3:00 PM • Confirm pickup and guide timing</div></div><span class="badge ok">Confirmed</span></div>
       <div class="meta"><span>Made's Farm</span><span>Today</span></div>
     </div>`
   },
   {
-    id:'chen-message', span:2, target:'detail-message-chen',
+    id:'chen-message', defaultSpan:3, target:'detail-message-chen',
     markup:`<div class="tile homeTile">
+      <span class="homeResize" aria-label="Resize widget">3×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeMetaTag dot">Recent Messages</div>
-      <div class="row"><div><div class="tileTitle">Chen Family</div><div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div></div><span class="badge info">AI Draft</span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
+      <div class="homeTileTitleRow"><div class="tileTitle">Chen Family</div></div>
+      <div class="homeTileSubRow"><div><div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div></div><span class="badge info">AI Draft</span></div>
     </div>`
   },
   {
-    id:'sarah-message', span:2, target:'detail-message-sarah',
+    id:'sarah-message', defaultSpan:3, target:'detail-message-sarah',
     markup:`<div class="tile homeTile">
+      <span class="homeResize" aria-label="Resize widget">3×</span>
       <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeMetaTag dot">Recent Messages</div>
-      <div class="row"><div><div class="tileTitle">Sarah & Tom</div><div class="tileSub">“Can you recommend a romantic dinner spot?”</div></div><span class="badge urgent">Unread</span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
+      <div class="homeTileTitleRow"><div class="tileTitle">Sarah & Tom</div></div>
+      <div class="homeTileSubRow"><div><div class="tileSub">“Can you recommend a romantic dinner spot?”</div></div><span class="badge urgent">Unread</span></div>
     </div>`
   }
 ];
 let homeEditMode = false;
 let longPressTimer = null;
 let dragState = null;
+let homeLayoutState = loadHomeLayout();
 
 function getHomeItemById(id){
   return homeItems.find(item => item.id === id);
 }
-
 function defaultHomeOrder(){
   return homeItems.map(item => item.id);
 }
-
+function defaultHomeSpans(){
+  return Object.fromEntries(homeItems.map(item => [item.id, item.defaultSpan || 1]));
+}
+function normalizeSpan(span){
+  const n = Number(span);
+  return n === 1 || n === 2 || n === 3 ? n : 1;
+}
+function normalizeHomeLayout(raw){
+  const defaults = defaultHomeOrder();
+  const validIds = new Set(defaults);
+  const order = Array.isArray(raw?.order) ? raw.order.filter(id => validIds.has(id)) : [];
+  const finalOrder = [...order, ...defaults.filter(id => !order.includes(id))];
+  const spans = defaultHomeSpans();
+  const rawSpans = raw?.spans && typeof raw.spans === 'object' ? raw.spans : {};
+  Object.keys(rawSpans).forEach(id => {
+    if(validIds.has(id)) spans[id] = normalizeSpan(rawSpans[id]);
+  });
+  return { order: finalOrder, spans };
+}
 function loadHomeLayout(){
   try{
-    const saved = JSON.parse(localStorage.getItem(HOME_LAYOUT_KEY) || '[]');
-    const validIds = new Set(defaultHomeOrder());
-    const filtered = saved.filter(id => validIds.has(id));
-    const missing = defaultHomeOrder().filter(id => !filtered.includes(id));
-    const finalOrder = [...filtered, ...missing];
-    return finalOrder.length ? finalOrder : defaultHomeOrder();
+    const raw = JSON.parse(localStorage.getItem(HOME_LAYOUT_KEY) || 'null');
+    return normalizeHomeLayout(raw);
   }catch(err){
-    return defaultHomeOrder();
+    return normalizeHomeLayout(null);
   }
 }
-
-function saveHomeLayout(){
-  const ids = [...document.querySelectorAll('#homeBoard .homeItem')].map(item => item.dataset.id);
-  localStorage.setItem(HOME_LAYOUT_KEY, JSON.stringify(ids));
+function persistHomeLayout(){
+  localStorage.setItem(HOME_LAYOUT_KEY, JSON.stringify(homeLayoutState));
 }
-
-function updateHomeHint(){
-  const hint = document.getElementById('homeEditHint');
-  if(!hint) return;
-  hint.textContent = homeEditMode ? 'Drag tiles, then tap Done' : 'Touch and hold';
-}
-
+function updateHomeHint(){}
 function renderHomeLayout(){
   const board = document.getElementById('homeBoard');
   if(!board) return;
-  const order = loadHomeLayout();
-  board.innerHTML = order.map(id => {
+  board.innerHTML = homeLayoutState.order.map(id => {
     const item = getHomeItemById(id);
     if(!item) return '';
-    return `<div class="homeItem" data-id="${item.id}" data-target="${item.target}" data-span="${item.span}" style="${item.span === 2 ? 'grid-column:span 2' : ''}">${item.markup}</div>`;
+    const span = normalizeSpan(homeLayoutState.spans[id] ?? item.defaultSpan ?? 1);
+    const sizeLabel = `${span}×`;
+    return `<div class="homeItem" data-id="${item.id}" data-target="${item.target}" data-span="${span}" aria-label="Home widget">${item.markup}</div>`;
   }).join('');
+  board.querySelectorAll('.homeItem').forEach(el => {
+    const sizeBtn = el.querySelector('.homeResize');
+    if(sizeBtn){
+      sizeBtn.textContent = `${el.dataset.span}×`;
+      sizeBtn.title = `Resize widget: ${el.dataset.span} columns`;
+    }
+  });
   bindHomeDragHandlers();
   updateHomeHint();
 }
-
 function enableHomeEditMode(){
   homeEditMode = true;
   document.body.classList.add('home-edit-mode');
   updateHomeHint();
 }
-
 function disableHomeEditMode(){
   finishDrag();
   homeEditMode = false;
@@ -462,7 +527,12 @@ function disableHomeEditMode(){
   document.querySelectorAll('#homeBoard .homeItem').forEach(item => item.classList.remove('lift-ready'));
   updateHomeHint();
 }
-
+function resetHomeLayout(){
+  homeLayoutState = normalizeHomeLayout(null);
+  persistHomeLayout();
+  renderHomeLayout();
+  enableHomeEditMode();
+}
 function clearLongPress(item){
   if(longPressTimer){
     clearTimeout(longPressTimer);
@@ -472,7 +542,6 @@ function clearLongPress(item){
     item.classList.remove('lift-ready');
   }
 }
-
 function bindHomeDragHandlers(){
   document.querySelectorAll('#homeBoard .homeItem').forEach(item => {
     item.addEventListener('click', onHomeItemClick);
@@ -481,9 +550,32 @@ function bindHomeDragHandlers(){
     item.addEventListener('pointerup', onHomePointerEnd);
     item.addEventListener('pointercancel', onHomePointerEnd);
     item.addEventListener('contextmenu', e => e.preventDefault());
+    const resizeBtn = item.querySelector('.homeResize');
+    if(resizeBtn){
+      resizeBtn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if(!homeEditMode) enableHomeEditMode();
+        cycleHomeItemSpan(item.dataset.id);
+      });
+    }
   });
 }
-
+function cycleHomeItemSpan(id){
+  const current = normalizeSpan(homeLayoutState.spans[id] ?? 1);
+  const next = current === 3 ? 1 : current + 1;
+  homeLayoutState.spans[id] = next;
+  persistHomeLayout();
+  renderHomeLayout();
+}
+function saveHomeLayoutFromDOM(){
+  const board = document.getElementById('homeBoard');
+  homeLayoutState.order = [...board.querySelectorAll('.homeItem')].map(item => item.dataset.id);
+  board.querySelectorAll('.homeItem').forEach(item => {
+    homeLayoutState.spans[item.dataset.id] = normalizeSpan(item.dataset.span);
+  });
+  persistHomeLayout();
+}
 function onHomeItemClick(e){
   if(homeEditMode){
     e.preventDefault();
@@ -493,9 +585,9 @@ function onHomeItemClick(e){
   const target = e.currentTarget.dataset.target;
   if(target) go(target);
 }
-
 function onHomePointerDown(e){
   const item = e.currentTarget;
+  if(e.target.closest('.homeResize')) return;
   if(dragState) return;
   if(e.pointerType === 'mouse' && e.button !== 0) return;
   item._pressMeta = { x:e.clientX, y:e.clientY };
@@ -511,7 +603,6 @@ function onHomePointerDown(e){
     startDrag(item, e);
   }, 320);
 }
-
 function onHomePointerMove(e){
   const item = e.currentTarget;
   if(dragState && dragState.item === item){
@@ -526,7 +617,6 @@ function onHomePointerMove(e){
     clearLongPress(item);
   }
 }
-
 function onHomePointerEnd(e){
   const item = e.currentTarget;
   if(dragState && dragState.item === item){
@@ -537,19 +627,16 @@ function onHomePointerEnd(e){
   clearLongPress(item);
   item._pressMeta = null;
 }
-
 function startDrag(item, e){
   const board = document.getElementById('homeBoard');
   if(!board || dragState) return;
   clearLongPress(item);
   const rect = item.getBoundingClientRect();
   const placeholder = document.createElement('div');
+  const span = normalizeSpan(item.dataset.span);
   placeholder.className = 'homePlaceholder';
+  placeholder.dataset.span = span;
   placeholder.style.height = `${rect.height}px`;
-  if(item.dataset.span === '2'){
-    placeholder.style.gridColumn = 'span 2';
-  }
-  item.after(placeholder);
   dragState = {
     item,
     placeholder,
@@ -557,6 +644,8 @@ function startDrag(item, e){
     offsetX: e.clientX - rect.left,
     offsetY: e.clientY - rect.top
   };
+  updatePlaceholderSpan(placeholder, span);
+  item.after(placeholder);
   item.classList.add('dragging');
   item.style.width = `${rect.width}px`;
   item.style.height = `${rect.height}px`;
@@ -570,29 +659,26 @@ function startDrag(item, e){
   window.addEventListener('pointerup', onGlobalDragEnd, {passive:false});
   window.addEventListener('pointercancel', onGlobalDragEnd, {passive:false});
 }
-
+function updatePlaceholderSpan(placeholder, span){
+  placeholder.dataset.span = span;
+  placeholder.style.gridColumn = span === 3 ? '1 / -1' : `span ${span}`;
+}
 function onGlobalDragMove(e){
   if(!dragState) return;
   e.preventDefault();
   moveDrag(e);
 }
-
 function moveDrag(e){
   if(!dragState) return;
   const { item, placeholder, board } = dragState;
   item.style.left = `${e.clientX - dragState.offsetX}px`;
   item.style.top = `${e.clientY - dragState.offsetY}px`;
-
   const hit = document.elementFromPoint(e.clientX, e.clientY);
   const over = hit && hit.closest('#homeBoard .homeItem');
   if(over && over !== item && over.parentNode === board){
     const rect = over.getBoundingClientRect();
-    let insertAfter;
-    if(item.dataset.span === '1' && over.dataset.span === '1' && Math.abs(e.clientY - (rect.top + rect.height / 2)) < rect.height * 0.35){
-      insertAfter = e.clientX > rect.left + rect.width / 2;
-    }else{
-      insertAfter = e.clientY > rect.top + rect.height / 2;
-    }
+    const sameRow = Math.abs(e.clientY - (rect.top + rect.height / 2)) < rect.height * 0.38;
+    const insertAfter = sameRow ? e.clientX > rect.left + rect.width / 2 : e.clientY > rect.top + rect.height / 2;
     if(insertAfter){
       over.after(placeholder);
     }else{
@@ -600,19 +686,16 @@ function moveDrag(e){
     }
     return;
   }
-
   const boardRect = board.getBoundingClientRect();
-  if(e.clientY > boardRect.bottom - 24){
+  if(e.clientY > boardRect.bottom - 28){
     board.appendChild(placeholder);
   }
 }
-
 function onGlobalDragEnd(e){
   if(!dragState) return;
   e.preventDefault();
   finishDrag();
 }
-
 function finishDrag(){
   if(!dragState) return;
   const { item, placeholder } = dragState;
@@ -628,17 +711,16 @@ function finishDrag(){
   item.style.margin = '';
   item.style.pointerEvents = '';
   placeholder.replaceWith(item);
-  saveHomeLayout();
+  saveHomeLayoutFromDOM();
   dragState = null;
 }
-
 function renderThemes(){
  const order = ['default','soft-product','minimal-mono','creative-library','bold-travel','neon-dashboard','art-grid','gradient-finance','habit-pill','stack-cards','modern-web'];
  document.getElementById('themeList').innerHTML = order.map((k,index)=>{
    const t = themes[k];
    const tag = index === 0 ? 'Current base' : 'Theme';
    return `
-   <div class="themeCard ${k==='default'?'sel':''}" data-theme="${k}" onclick="applyTheme('${k}')">
+   <div class="themeCard ${k==='soft-product'?'sel':''}" data-theme="${k}" onclick="applyTheme('${k}')">
      <div class="themeHeader">
        <div class="themeMeta">
          <div class="themeName">${t.label}</div>
@@ -669,6 +751,8 @@ function showPage(id){
  page.classList.add('active');
  const main = inferMainPage(page.id);
  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active', n.dataset.main === main));
+ setChromeHidden(false);
+ chromeState.lastY = 0;
  window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -753,9 +837,42 @@ document.querySelectorAll('.chips button').forEach(btn=>{
  });
 });
 
+
+const chromeState = { lastY: 0, ticking: false, hidden: false };
+function setChromeHidden(hidden){
+ if(chromeState.hidden === hidden) return;
+ chromeState.hidden = hidden;
+ document.body.classList.toggle('chrome-hidden', hidden);
+}
+function onScrollChrome(){
+ const y = window.scrollY || 0;
+ const delta = y - chromeState.lastY;
+ const activePage = document.querySelector('.page.active');
+ const pageId = activePage ? activePage.id : 'home';
+ const allowHide = pageId !== 'preferences-theme' && pageId !== 'preferences-language';
+ if(y < 36 || !allowHide){
+   setChromeHidden(false);
+ }else if(delta > 10){
+   setChromeHidden(true);
+ }else if(delta < -8){
+   setChromeHidden(false);
+ }
+ chromeState.lastY = y;
+ chromeState.ticking = false;
+}
+window.addEventListener('scroll', () => {
+ if(!chromeState.ticking){
+   chromeState.ticking = true;
+   requestAnimationFrame(onScrollChrome);
+ }
+}, { passive:true });
+document.addEventListener('pointerdown', () => {
+ if(homeEditMode) setChromeHidden(false);
+}, { passive:true });
+
 renderThemes();
 renderHomeLayout();
-applyTheme(localStorage.getItem('sok-theme') || 'default');
+applyTheme(localStorage.getItem('sok-theme') || 'soft-product');
 applyLanguage(localStorage.getItem('sok-lang') || 'en');
 showPage('home');
 </script>
