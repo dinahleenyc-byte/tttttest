@@ -147,6 +147,35 @@ body[data-theme="art-grid"] .card,body[data-theme="art-grid"] .tile,body[data-th
 body[data-theme="habit-pill"] .card,body[data-theme="habit-pill"] .tile,body[data-theme="habit-pill"] .setting{border-radius:999px}
 body[data-theme="modern-web"] .card,body[data-theme="modern-web"] .tile,body[data-theme="modern-web"] .setting{border-radius:4px;box-shadow:none}
 
+
+.homeTools{padding:4px 18px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.homeHint{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:12px;color:var(--muted);font-weight:700}
+.homeDoneBtn{display:none;border:none;border-radius:999px;background:var(--primary);color:#fff;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
+body.home-edit-mode .homeDoneBtn{display:inline-flex}
+body.home-edit-mode .homeHint{background:color-mix(in srgb,var(--primary) 16%, var(--panel));color:var(--text)}
+.homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.homeItem{position:relative;touch-action:manipulation;user-select:none;-webkit-user-select:none;transition:transform .22s ease, box-shadow .22s ease, opacity .2s ease}
+.homeItem[data-span="2"]{grid-column:span 2}
+.homeGrip{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 78%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2}
+.homeGrip::before{content:'⋮⋮';font-size:10px;line-height:1;letter-spacing:-1px;transform:rotate(90deg)}
+body.home-edit-mode .homeGrip{display:flex}
+body.home-edit-mode .homeItem{animation:wiggle .18s ease-in-out infinite alternate}
+body.home-edit-mode .homeItem:active{animation:none}
+.homeItem.dragging{z-index:80;opacity:.98;animation:none!important;box-shadow:0 26px 60px rgba(0,0,0,.20), var(--shadow);cursor:grabbing}
+.homeItem.dragging .box,.homeItem.dragging .card,.homeItem.dragging .tile{transform:scale(1.02)}
+.homeItem.lift-ready .box,.homeItem.lift-ready .card,.homeItem.lift-ready .tile{box-shadow:0 18px 40px rgba(0,0,0,.14), var(--shadow);transform:translateY(-2px) scale(1.01)}
+.homePlaceholder{border-radius:var(--radius);border:2px dashed color-mix(in srgb,var(--primary) 40%, var(--line));background:color-mix(in srgb,var(--primary) 8%, transparent)}
+.homeBoard .box{height:100%}
+.homeMetaTag{display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));font-size:11px;font-weight:800;color:var(--muted);border:1px solid color-mix(in srgb,var(--line) 75%, transparent)}
+.homeMetaTag.dot::before{content:'';width:6px;height:6px;border-radius:999px;background:var(--primary)}
+.homeStat.card{min-height:150px}
+.homeTile.tile{min-height:136px}
+.homeTile .tileSub{padding-right:22px}
+.homeItem[data-span="1"] .homeGrip{top:10px;right:10px}
+.homeItem.dragging .homeGrip, body.home-edit-mode .homeItem .homeGrip{display:flex}
+@keyframes wiggle{from{transform:rotate(-0.8deg)}to{transform:rotate(0.8deg)}}
+body.home-edit-mode .homeBoard{padding-bottom:24px}
+
 @media (max-width:380px){
  .grid{grid-template-columns:1fr}
 }
@@ -162,25 +191,26 @@ body[data-theme="modern-web"] .card,body[data-theme="modern-web"] .tile,body[dat
     <label class="search"><span>⌕</span><input id="search" placeholder="Search guests, tasks, or bookings"></label>
   </div>
 
+  
   <section id="home" class="page active">
-    <div class="hero"><div class="eyebrow">Thursday, March 12, 2026</div><h1>Good morning, Wayan</h1><p class="sub">Villa Sari is running smoothly. You have 2 arrivals, 1 departure, and 2 unread guest conversations.</p></div>
-    <div class="grid">
-      <div class="card" onclick="go('calendar')"><div class="small">Today</div><div><div class="big">2</div><div class="label">Arrivals</div></div></div>
-      <div class="card" onclick="go('calendar')"><div class="small">Today</div><div><div class="big">1</div><div class="label">Departures</div></div></div>
-      <div class="card" onclick="go('profile')"><div class="small">Occupancy</div><div><div class="big">67%</div><div class="label">2 / 3 villas</div></div></div>
-      <div class="card" onclick="go('inbox')"><div class="small">Messages</div><div><div class="big">2</div><div class="label">Unread messages</div></div></div>
+    <div class="hero">
+      <div class="eyebrow">Thursday, March 12, 2026</div>
+      <h1>Good morning, Wayan</h1>
+      <p class="sub">Villa Sari is running smoothly. You have 2 arrivals, 1 departure, and 2 unread guest conversations.</p>
     </div>
-    <div class="section"><div class="title">Next 24 Hours</div><button class="link" onclick="go('calendar')">View all</button></div>
-    <div class="stack">
-      <div class="tile" onclick="go('detail-checkin')"><div class="row"><div><div class="tileTitle">Chen Family check-out</div><div class="tileSub">Villa Sari • 11:00 AM departure • Cleaning team assigned</div></div><span class="badge urgent">Priority</span></div><div class="meta"><span>Ayu Ketut assigned</span><span>Due 3:00 PM</span></div></div>
-      <div class="tile" onclick="go('detail-experience')"><div class="row"><div><div class="tileTitle">Rice planting experience</div><div class="tileSub">3 guests • 3:00 PM • Confirm pickup and guide timing</div></div><span class="badge ok">Confirmed</span></div><div class="meta"><span>Made's Farm</span><span>Today</span></div></div>
+    <div class="homeTools">
+      <div>
+        <div class="title">Home layout</div>
+        <div class="small">Press and hold any box to rearrange</div>
+      </div>
+      <div class="row" style="gap:8px">
+        <span id="homeEditHint" class="homeHint">Touch and hold</span>
+        <button id="homeDoneBtn" class="homeDoneBtn" type="button" onclick="disableHomeEditMode()">Done</button>
+      </div>
     </div>
-    <div class="section"><div class="title">Recent Messages</div><button class="link" onclick="go('inbox')">Open inbox</button></div>
-    <div class="stack">
-      <div class="tile" onclick="go('detail-message-chen')"><div class="row"><div><div class="tileTitle">Chen Family</div><div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div></div><span class="badge info">AI Draft</span></div></div>
-      <div class="tile" onclick="go('detail-message-sarah')"><div class="row"><div><div class="tileTitle">Sarah & Tom</div><div class="tileSub">“Can you recommend a romantic dinner spot?”</div></div><span class="badge urgent">Unread</span></div></div>
-    </div>
+    <div id="homeBoard" class="homeBoard"></div>
   </section>
+
 
   <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">Threaded by booking, sorted by urgency, and ready for quick action.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI Drafts</button></div><div class="stack"><div class="tile" onclick="go('detail-message-chen')"><div class="tileTitle">Chen Family</div><div class="tileSub">Temple visit timing and departure coordination</div></div><div class="tile" onclick="go('detail-message-sarah')"><div class="tileTitle">Sarah & Tom Johnson</div><div class="tileSub">Romantic dinner recommendations for tomorrow night</div></div></div></section>
 
@@ -300,6 +330,308 @@ function miniHTML(t){
  return map[t.mini];
 }
 
+
+const HOME_LAYOUT_KEY = 'sok-home-layout-v1';
+const homeItems = [
+  {
+    id:'arrivals', span:1, target:'calendar',
+    markup:`<div class="card homeStat">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="small">Today</div>
+      <div><div class="big">2</div><div class="label">Arrivals</div></div>
+    </div>`
+  },
+  {
+    id:'departures', span:1, target:'calendar',
+    markup:`<div class="card homeStat">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="small">Today</div>
+      <div><div class="big">1</div><div class="label">Departures</div></div>
+    </div>`
+  },
+  {
+    id:'occupancy', span:1, target:'profile',
+    markup:`<div class="card homeStat">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="small">Occupancy</div>
+      <div><div class="big">67%</div><div class="label">2 / 3 villas</div></div>
+    </div>`
+  },
+  {
+    id:'messages', span:1, target:'inbox',
+    markup:`<div class="card homeStat">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="small">Messages</div>
+      <div><div class="big">2</div><div class="label">Unread messages</div></div>
+    </div>`
+  },
+  {
+    id:'checkout', span:2, target:'detail-checkin',
+    markup:`<div class="tile homeTile">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeMetaTag dot">Next 24 Hours</div>
+      <div class="row"><div><div class="tileTitle">Chen Family check-out</div><div class="tileSub">Villa Sari • 11:00 AM departure • Cleaning team assigned</div></div><span class="badge urgent">Priority</span></div>
+      <div class="meta"><span>Ayu Ketut assigned</span><span>Due 3:00 PM</span></div>
+    </div>`
+  },
+  {
+    id:'experience', span:2, target:'detail-experience',
+    markup:`<div class="tile homeTile">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeMetaTag dot">Next 24 Hours</div>
+      <div class="row"><div><div class="tileTitle">Rice planting experience</div><div class="tileSub">3 guests • 3:00 PM • Confirm pickup and guide timing</div></div><span class="badge ok">Confirmed</span></div>
+      <div class="meta"><span>Made's Farm</span><span>Today</span></div>
+    </div>`
+  },
+  {
+    id:'chen-message', span:2, target:'detail-message-chen',
+    markup:`<div class="tile homeTile">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeMetaTag dot">Recent Messages</div>
+      <div class="row"><div><div class="tileTitle">Chen Family</div><div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div></div><span class="badge info">AI Draft</span></div>
+    </div>`
+  },
+  {
+    id:'sarah-message', span:2, target:'detail-message-sarah',
+    markup:`<div class="tile homeTile">
+      <span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeMetaTag dot">Recent Messages</div>
+      <div class="row"><div><div class="tileTitle">Sarah & Tom</div><div class="tileSub">“Can you recommend a romantic dinner spot?”</div></div><span class="badge urgent">Unread</span></div>
+    </div>`
+  }
+];
+let homeEditMode = false;
+let longPressTimer = null;
+let dragState = null;
+
+function getHomeItemById(id){
+  return homeItems.find(item => item.id === id);
+}
+
+function defaultHomeOrder(){
+  return homeItems.map(item => item.id);
+}
+
+function loadHomeLayout(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(HOME_LAYOUT_KEY) || '[]');
+    const validIds = new Set(defaultHomeOrder());
+    const filtered = saved.filter(id => validIds.has(id));
+    const missing = defaultHomeOrder().filter(id => !filtered.includes(id));
+    const finalOrder = [...filtered, ...missing];
+    return finalOrder.length ? finalOrder : defaultHomeOrder();
+  }catch(err){
+    return defaultHomeOrder();
+  }
+}
+
+function saveHomeLayout(){
+  const ids = [...document.querySelectorAll('#homeBoard .homeItem')].map(item => item.dataset.id);
+  localStorage.setItem(HOME_LAYOUT_KEY, JSON.stringify(ids));
+}
+
+function updateHomeHint(){
+  const hint = document.getElementById('homeEditHint');
+  if(!hint) return;
+  hint.textContent = homeEditMode ? 'Drag tiles, then tap Done' : 'Touch and hold';
+}
+
+function renderHomeLayout(){
+  const board = document.getElementById('homeBoard');
+  if(!board) return;
+  const order = loadHomeLayout();
+  board.innerHTML = order.map(id => {
+    const item = getHomeItemById(id);
+    if(!item) return '';
+    return `<div class="homeItem" data-id="${item.id}" data-target="${item.target}" data-span="${item.span}" style="${item.span === 2 ? 'grid-column:span 2' : ''}">${item.markup}</div>`;
+  }).join('');
+  bindHomeDragHandlers();
+  updateHomeHint();
+}
+
+function enableHomeEditMode(){
+  homeEditMode = true;
+  document.body.classList.add('home-edit-mode');
+  updateHomeHint();
+}
+
+function disableHomeEditMode(){
+  finishDrag();
+  homeEditMode = false;
+  document.body.classList.remove('home-edit-mode');
+  document.querySelectorAll('#homeBoard .homeItem').forEach(item => item.classList.remove('lift-ready'));
+  updateHomeHint();
+}
+
+function clearLongPress(item){
+  if(longPressTimer){
+    clearTimeout(longPressTimer);
+    longPressTimer = null;
+  }
+  if(item){
+    item.classList.remove('lift-ready');
+  }
+}
+
+function bindHomeDragHandlers(){
+  document.querySelectorAll('#homeBoard .homeItem').forEach(item => {
+    item.addEventListener('click', onHomeItemClick);
+    item.addEventListener('pointerdown', onHomePointerDown);
+    item.addEventListener('pointermove', onHomePointerMove);
+    item.addEventListener('pointerup', onHomePointerEnd);
+    item.addEventListener('pointercancel', onHomePointerEnd);
+    item.addEventListener('contextmenu', e => e.preventDefault());
+  });
+}
+
+function onHomeItemClick(e){
+  if(homeEditMode){
+    e.preventDefault();
+    e.stopPropagation();
+    return;
+  }
+  const target = e.currentTarget.dataset.target;
+  if(target) go(target);
+}
+
+function onHomePointerDown(e){
+  const item = e.currentTarget;
+  if(dragState) return;
+  if(e.pointerType === 'mouse' && e.button !== 0) return;
+  item._pressMeta = { x:e.clientX, y:e.clientY };
+  if(homeEditMode){
+    e.preventDefault();
+    startDrag(item, e);
+    return;
+  }
+  item.classList.add('lift-ready');
+  longPressTimer = setTimeout(() => {
+    longPressTimer = null;
+    enableHomeEditMode();
+    startDrag(item, e);
+  }, 320);
+}
+
+function onHomePointerMove(e){
+  const item = e.currentTarget;
+  if(dragState && dragState.item === item){
+    e.preventDefault();
+    moveDrag(e);
+    return;
+  }
+  if(!item._pressMeta || homeEditMode) return;
+  const dx = e.clientX - item._pressMeta.x;
+  const dy = e.clientY - item._pressMeta.y;
+  if(Math.hypot(dx,dy) > 8){
+    clearLongPress(item);
+  }
+}
+
+function onHomePointerEnd(e){
+  const item = e.currentTarget;
+  if(dragState && dragState.item === item){
+    e.preventDefault();
+    finishDrag();
+    return;
+  }
+  clearLongPress(item);
+  item._pressMeta = null;
+}
+
+function startDrag(item, e){
+  const board = document.getElementById('homeBoard');
+  if(!board || dragState) return;
+  clearLongPress(item);
+  const rect = item.getBoundingClientRect();
+  const placeholder = document.createElement('div');
+  placeholder.className = 'homePlaceholder';
+  placeholder.style.height = `${rect.height}px`;
+  if(item.dataset.span === '2'){
+    placeholder.style.gridColumn = 'span 2';
+  }
+  item.after(placeholder);
+  dragState = {
+    item,
+    placeholder,
+    board,
+    offsetX: e.clientX - rect.left,
+    offsetY: e.clientY - rect.top
+  };
+  item.classList.add('dragging');
+  item.style.width = `${rect.width}px`;
+  item.style.height = `${rect.height}px`;
+  item.style.left = `${rect.left}px`;
+  item.style.top = `${rect.top}px`;
+  item.style.position = 'fixed';
+  item.style.margin = '0';
+  item.style.pointerEvents = 'none';
+  moveDrag(e);
+  window.addEventListener('pointermove', onGlobalDragMove, {passive:false});
+  window.addEventListener('pointerup', onGlobalDragEnd, {passive:false});
+  window.addEventListener('pointercancel', onGlobalDragEnd, {passive:false});
+}
+
+function onGlobalDragMove(e){
+  if(!dragState) return;
+  e.preventDefault();
+  moveDrag(e);
+}
+
+function moveDrag(e){
+  if(!dragState) return;
+  const { item, placeholder, board } = dragState;
+  item.style.left = `${e.clientX - dragState.offsetX}px`;
+  item.style.top = `${e.clientY - dragState.offsetY}px`;
+
+  const hit = document.elementFromPoint(e.clientX, e.clientY);
+  const over = hit && hit.closest('#homeBoard .homeItem');
+  if(over && over !== item && over.parentNode === board){
+    const rect = over.getBoundingClientRect();
+    let insertAfter;
+    if(item.dataset.span === '1' && over.dataset.span === '1' && Math.abs(e.clientY - (rect.top + rect.height / 2)) < rect.height * 0.35){
+      insertAfter = e.clientX > rect.left + rect.width / 2;
+    }else{
+      insertAfter = e.clientY > rect.top + rect.height / 2;
+    }
+    if(insertAfter){
+      over.after(placeholder);
+    }else{
+      over.before(placeholder);
+    }
+    return;
+  }
+
+  const boardRect = board.getBoundingClientRect();
+  if(e.clientY > boardRect.bottom - 24){
+    board.appendChild(placeholder);
+  }
+}
+
+function onGlobalDragEnd(e){
+  if(!dragState) return;
+  e.preventDefault();
+  finishDrag();
+}
+
+function finishDrag(){
+  if(!dragState) return;
+  const { item, placeholder } = dragState;
+  window.removeEventListener('pointermove', onGlobalDragMove);
+  window.removeEventListener('pointerup', onGlobalDragEnd);
+  window.removeEventListener('pointercancel', onGlobalDragEnd);
+  item.classList.remove('dragging');
+  item.style.width = '';
+  item.style.height = '';
+  item.style.left = '';
+  item.style.top = '';
+  item.style.position = '';
+  item.style.margin = '';
+  item.style.pointerEvents = '';
+  placeholder.replaceWith(item);
+  saveHomeLayout();
+  dragState = null;
+}
+
 function renderThemes(){
  const order = ['default','soft-product','minimal-mono','creative-library','bold-travel','neon-dashboard','art-grid','gradient-finance','habit-pill','stack-cards','modern-web'];
  document.getElementById('themeList').innerHTML = order.map((k,index)=>{
@@ -343,6 +675,9 @@ function showPage(id){
 function go(id, options = {}){
  const page = getPage(id);
  if(!page) return showPage('home');
+ if(id !== 'home' && homeEditMode){
+   disableHomeEditMode();
+ }
  const current = pageHistory[pageHistory.length - 1];
  if(options.replace){
    pageHistory[pageHistory.length - 1] = id;
@@ -353,6 +688,9 @@ function go(id, options = {}){
 }
 
 function back(){
+ if(homeEditMode){
+   disableHomeEditMode();
+ }
  if(pageHistory.length > 1){
    pageHistory.pop();
    const previous = pageHistory[pageHistory.length - 1];
@@ -416,6 +754,7 @@ document.querySelectorAll('.chips button').forEach(btn=>{
 });
 
 renderThemes();
+renderHomeLayout();
 applyTheme(localStorage.getItem('sok-theme') || 'default');
 applyLanguage(localStorage.getItem('sok-lang') || 'en');
 showPage('home');
