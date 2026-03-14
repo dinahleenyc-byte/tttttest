@@ -7,11 +7,11 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
- --bg:#e6e1db;--panel:#f8f4ef;--panel2:#fff;--text:#23201b;--muted:#9e7f68;--line:#e4cdbf;
- --primary:#ff5a2d;--primarySoft:#ffe3d8;--secondary:#f8f4ef;--green:#d6c6b2;--amber:#f2b082;
- --shadow:0 8px 18px rgba(90,54,20,.05);--radius:22px;--radiusSm:18px;--btnRadius:18px;
- --fontScale:1;--tracking:-.04em;--chipRadius:18px;--navBg:rgba(248,244,239,.96);
- --pageGrad:linear-gradient(180deg,#e6e1db 0%,#f3eee8 100%);--themeRing:rgba(255,90,45,.16);
+ --bg:#f4f1eb;--panel:#fff;--panel2:#fcfaf6;--text:#171717;--muted:#7a746d;--line:#e9e2d9;
+ --primary:#de5a2a;--primarySoft:#fff1eb;--secondary:#2d3436;--green:#14a06f;--amber:#d88911;
+ --shadow:0 12px 26px rgba(35,25,15,.08);--radius:28px;--radiusSm:18px;--btnRadius:18px;
+ --fontScale:1;--tracking:-.03em;--chipRadius:999px;--navBg:rgba(255,255,255,.95);
+ --pageGrad:linear-gradient(180deg,#f4f1eb 0%,#faf7f2 100%);--themeRing:rgba(222,90,42,.18);
  --themeHero:color-mix(in srgb,var(--primary) 10%, var(--panel) 90%);
 }
 html,body{min-height:100%}
@@ -26,17 +26,16 @@ button,input{font:inherit}
 @keyframes fade{from{opacity:.72;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .top{position:sticky;top:0;z-index:20;padding:calc(env(safe-area-inset-top) + 14px) 18px 12px;background:color-mix(in srgb,var(--bg) 90%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 88%, transparent)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{position:relative;display:inline-flex;align-items:center;justify-content:flex-start;font-size:28px;font-weight:800;letter-spacing:-.05em;padding:0;isolation:isolate}
-.brand::before{content:'';position:absolute;left:34%;top:52%;transform:translate(-50%,-50%);width:104px;height:84px;background:radial-gradient(circle at 50% 50%, rgba(234,190,164,.70) 0%, rgba(234,190,164,.52) 34%, rgba(234,190,164,.28) 58%, rgba(234,190,164,.12) 78%, transparent 100%);filter:blur(18px);opacity:.96;z-index:-1;pointer-events:none;border-radius:50%;}
+.brand{font-size:28px;font-weight:800;letter-spacing:-.05em}
 .icon,.back{
  width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--panel) 92%, transparent);
  display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);cursor:pointer;color:var(--text);transition:.2s
 }
 .icon:hover,.back:hover,.nav:hover,.setting:hover,.themeCard:hover,.langCard:hover,.card:hover,.tile:hover{transform:translateY(-1px)}
-.search{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:12px 14px;margin-top:12px;box-shadow:var(--shadow);transform-origin:top center;transition:transform .28s ease,opacity .22s ease,max-height .28s ease,margin-top .28s ease,padding .28s ease;border-color .28s ease,box-shadow .28s ease;max-height:72px;opacity:1;overflow:hidden}
+.search{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:12px 14px;margin-top:12px;box-shadow:var(--shadow);transition:transform .34s cubic-bezier(.22,.61,.36,1),opacity .28s ease,max-height .34s cubic-bezier(.22,.61,.36,1),margin-top .34s cubic-bezier(.22,.61,.36,1),padding .34s cubic-bezier(.22,.61,.36,1),filter .34s ease,border-color .28s ease,box-shadow .28s ease;max-height:72px;opacity:1;overflow:hidden;filter:blur(0)}
 .search input{border:none;outline:none;background:transparent;color:var(--text);width:100%}
 .search input::placeholder{color:var(--muted)}
-body.chrome-hidden .search{transform:translateY(-14px) scale(.98);opacity:0;max-height:0;margin-top:0;padding-top:0;padding-bottom:0;border-color:transparent;box-shadow:none;pointer-events:none}
+body.chrome-hidden .search{transform:translateY(-18px) scale(.975);opacity:0;max-height:0;margin-top:0;padding-top:0;padding-bottom:0;border-color:transparent;box-shadow:none;pointer-events:none;filter:blur(5px)}
 .hero,.detail{padding:14px 18px}
 .eyebrow{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
 h1{font-size:28px;line-height:1.03;letter-spacing:-.05em;margin-bottom:8px}
@@ -133,9 +132,9 @@ h1{font-size:28px;line-height:1.03;letter-spacing:-.05em;margin-bottom:8px}
  position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);
  display:grid;grid-template-columns:repeat(5,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom));
  background:var(--navBg);backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:30;
- transition:transform .3s ease,opacity .22s ease,filter .3s ease
+ transition:transform .34s cubic-bezier(.22,.61,.36,1),opacity .26s ease,filter .34s cubic-bezier(.22,.61,.36,1)
 }
-body.chrome-hidden .bottom{transform:translateX(-50%) translateY(calc(100% + env(safe-area-inset-bottom) + 12px));opacity:0;filter:blur(6px);pointer-events:none}
+body.chrome-hidden .bottom{transform:translateX(-50%) translateY(calc(100% + env(safe-area-inset-bottom) + 16px));opacity:0;filter:blur(8px);pointer-events:none}
 .nav{
  background:none;border:none;color:var(--muted);font:600 12px Inter,sans-serif;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;cursor:pointer
 }
@@ -152,80 +151,195 @@ body[data-theme="habit-pill"] .card,body[data-theme="habit-pill"] .tile,body[dat
 body[data-theme="modern-web"] .card,body[data-theme="modern-web"] .tile,body[data-theme="modern-web"] .setting{border-radius:4px;box-shadow:none}
 
 
-.homeTools{padding:4px 18px 12px;display:flex;justify-content:flex-end;align-items:center;gap:10px;position:relative}
-.homeToolsRight{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.homeActionBtn,.homeDoneBtn,.homeResetBtn{border:none;border-radius:999px;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer;transition:.2s;min-height:42px}
-.homeActionBtn{background:color-mix(in srgb,var(--panel) 90%, transparent);color:var(--text);border:1px solid color-mix(in srgb,var(--line) 82%, transparent)}
-.homeDoneBtn{display:none;background:var(--primary);color:#fff}
-.homeResetBtn{display:none;background:color-mix(in srgb,var(--primary) 12%, var(--panel));color:var(--text);border:1px solid color-mix(in srgb,var(--line) 82%, transparent)}
-body.home-edit-mode .homeDoneBtn,body.home-edit-mode .homeResetBtn{display:inline-flex}
-body.home-edit-mode #homeEditBtn{display:none}
-.homeActionBtn::before{content:'✦';margin-right:8px;font-size:12px;opacity:.8}
-.homeDoneBtn::before{content:'✓';margin-right:8px;font-size:12px}
-.homeResetBtn::before{content:'↺';margin-right:8px;font-size:12px}
-.homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start;grid-auto-flow:row dense}
+.homeTools{padding:4px 18px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.homeHint{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:12px;color:var(--muted);font-weight:700}
+.homeDoneBtn{display:none;border:none;border-radius:999px;background:var(--primary);color:#fff;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
+body.home-edit-mode .homeDoneBtn{display:inline-flex}
+body.home-edit-mode .homeHint{background:color-mix(in srgb,var(--primary) 16%, var(--panel));color:var(--text)}
+.homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
 .homeItem{position:relative;touch-action:manipulation;user-select:none;-webkit-user-select:none;transition:transform .22s ease, box-shadow .22s ease, opacity .2s ease}
-.homeItem[data-span="1"]{grid-column:span 1}
 .homeItem[data-span="2"]{grid-column:span 2}
-.homeItem[data-span="3"]{grid-column:1 / -1}
-.homeGrip,.homeResize{position:absolute;width:30px;height:30px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 78%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2}
-.homeGrip{top:12px;right:12px}
-.homeResize{top:12px;left:12px;font-size:10px;font-weight:900;letter-spacing:-.02em}
+.homeGrip{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 78%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2}
 .homeGrip::before{content:'⋮⋮';font-size:10px;line-height:1;letter-spacing:-1px;transform:rotate(90deg)}
-body.home-edit-mode .homeGrip,body.home-edit-mode .homeResize{display:flex}
+body.home-edit-mode .homeGrip{display:flex}
 body.home-edit-mode .homeItem{animation:wiggle .18s ease-in-out infinite alternate}
 body.home-edit-mode .homeItem:active{animation:none}
 .homeItem.dragging{z-index:80;opacity:.98;animation:none!important;box-shadow:0 26px 60px rgba(0,0,0,.20), var(--shadow);cursor:grabbing}
 .homeItem.dragging .box,.homeItem.dragging .card,.homeItem.dragging .tile{transform:scale(1.02)}
 .homeItem.lift-ready .box,.homeItem.lift-ready .card,.homeItem.lift-ready .tile{box-shadow:0 18px 40px rgba(0,0,0,.14), var(--shadow);transform:translateY(-2px) scale(1.01)}
-.homePlaceholder{border-radius:var(--radius);border:2px dashed color-mix(in srgb,var(--primary) 40%, var(--line));background:color-mix(in srgb,var(--primary) 8%, transparent);min-height:120px}
+.homePlaceholder{border-radius:var(--radius);border:2px dashed color-mix(in srgb,var(--primary) 40%, var(--line));background:color-mix(in srgb,var(--primary) 8%, transparent)}
 .homeBoard .box{height:100%}
 .homeMetaTag{display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;padding:6px 10px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));font-size:11px;font-weight:800;color:var(--muted);border:1px solid color-mix(in srgb,var(--line) 75%, transparent)}
 .homeMetaTag.dot::before{content:'';width:6px;height:6px;border-radius:999px;background:var(--primary)}
-.homeStat.card{min-height:150px;padding-top:18px}
-.homeTile.tile{min-height:136px;padding-top:22px}
-.homeTile .tileSub{padding-right:12px}
-.homeWidgetIcon{position:absolute;right:18px;top:18px;display:block;width:24px;height:24px;background-color:currentColor;-webkit-mask-image:var(--icon-mask);mask-image:var(--icon-mask);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;color:var(--muted);z-index:1;opacity:.98}
-.homeStat .homeWidgetIcon{position:static;right:auto;top:auto;flex:0 0 auto;width:24px;height:24px}
-.homeStatTop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-.homeStatTop .small{margin:0}
-.homeStatTop .titleInline{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;width:100%}
-.homeStatTop .titleInline.right{margin-left:auto}
-.homeStatBody{display:flex;flex-direction:column;gap:6px}
-.homeTileTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}
-.homeTileTop .homeMetaTag{margin-bottom:0}
-.homeTileTop .homeWidgetIcon{position:static;right:auto;top:auto;flex:0 0 auto;width:22px;height:22px}
-.homeTileTitleRow{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;min-width:0;margin-bottom:18px}
-.homeTileTitleRow .tileTitle{min-width:0;flex:1}
-.homeTileSubRow{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
-.homeTileSubRow > div{flex:1;min-width:0}
-.homeTileSubRow .badge{margin-top:0;flex:0 0 auto;align-self:center}
-.homeTile .meta{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
-.homeTile .meta span:last-child{text-align:right}
-.homeTile hr.tileDivider{display:none}
-.homeWidgetIcon.arrivals{color:var(--green);--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABVUlEQVR4nO3Z0W7CMBAEQFP1/3+ZvlYRhSS27+zrzBuoxWTX5yBoDQAAAAAAAAAAAIAqHtlvINjz8Dj9+r+y30CgY/h/PRcqfQcEORN0Shb/YQLO7vKUaag+AXdDDcul8gSkn+9nVC3gXfiPttDkVyzgU/i9rzFUtQJGhH/1b7t8Ry002acdewx0mftDhQkYHX7o/WH3CRh15KTZeQLuhL/U7m9t3wJKhN9a7BEUcePb4tj5bdcJeOVd+Evu/tbqFNATYOrURC4+6wj6dA0z1h2W2+4TcDaI0Rvt2QYVu3MBV0KdNX3dr7vqp4YrF5ZxBF1Zf94/d4o8m5ctoVoBR7+vb+Z6CljArSx3vgmXsOoEZN9Y77qcZ3YBo9ZfoZBb17Lqx9AeWWUo4IWoMqrnCAAAAADA3kZ+j73Cr1LRuvPzo3wyBSRTQDIFJFMAAAAAAAAAMNEPtxgrPaGS6zsAAAAASUVORK5CYII=")}
-.homeWidgetIcon.departures{color:#e67a1d;--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABVUlEQVR4nO3Z0W7CMBAEQFP1/3+ZvlYRhSS27+zrzBuoxWTX5yBoDQAAAAAAAAAAAIAqHtlvINjz8Dj9+r+y30CgY/h/PRcqfQcEORN0Shb/YQLO7vKUaag+AXdDDcul8gSkn+9nVC3gXfiPttDkVyzgU/i9rzFUtQJGhH/1b7t8Ry002acdewx0mftDhQkYHX7o/WH3CRh15KTZeQLuhL/U7m9t3wJKhN9a7BEUcePb4tj5bdcJeOVd+Evu/tbqFNATYOrURC4+6wj6dA0z1h2W2+4TcDaI0Rvt2QYVu3MBV0KdNX3dr7vqp4YrF5ZxBF1Zf94/d4o8m5ctoVoBR7+vb+Z6CljArSx3vgmXsOoEZN9Y77qcZ3YBo9ZfoZBb17Lqx9AeWWUo4IWoMqrnCAAAAADA3kZ+j73Cr1LRuvPzo3wyBSRTQDIFJFMAAAAAAAAAMNEPtxgrPaGS6zsAAAAASUVORK5CYII=")}
-.homeWidgetIcon.occupancy{color:color-mix(in srgb,var(--green) 58%, var(--text));--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABsElEQVR4nO3bwW7CQAxF0QH1/38ZVpG6CTPR2H7PyT2rVqIi8cWQQjsGAAAAAAAAAAAAcGcv9QFs+vz7uuW5vNUHsOEz+b6FrgHOht0uQscAsyG3itAtwOpw20ToFODqUFtE6HDlMBvka/E2ltw3YHWwswHbboNzgKuP6pYRXFfz17BWjnn358s4bkDE8H7dzmoT3AJEPnJbRHAKkPG0YR/BJUDmc7Z1BPULUuX1u+XvCsoNqB6I5WWqKoDq0WgXQbF2LtfoFsdRvQEWJ71wf2WbUBnAafgr91sSoSqA4/BX7j89QkUA5+EfZBEyB2B53T1RfsxZG9Bx+GMILlMzAnQd/qE0QvQwOjzfX5F+PpEbcLfhj1Hw4hwV4I7DP6RGyL4M7T78Q9p5uHwe8FgEECOAGAHECCBGALE/9QGcyHwH0urSmA0Qc9qAqo8Brf6xjw0QI4AYAcScXgPORDxPy/8G9AwbIEYAMQKIEUCMAGIEECOAGAHECCBGADECiBFAjABiUZ8I2b7bWGBrhmyAGAHECCAWFUD+1wUi2+cduQFPi/C08wUAAAAAAAAAAOjpC4JaPHS5QrA0AAAAAElFTkSuQmCC")}
-.homeWidgetIcon.messages{color:var(--primary);--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABaklEQVR4nO3bW5LCMBBDUc0U+9/yzJd/eKQSKi257XsWQGzJJgGMBAAAAAAAAAAAAAAAAGA1P+br/Zmv9w1rJq6LdQj+mSWbX8M1OoYvmcZdXUDX8Ify8VcW0D38oXQeVQWsEv5QNp9H1QsfcD95XWFfOBU74GgSM4cvHY+vpBzHU9Awe/iDdZzOAvAGBYRRQBgFhFFAGAWEUUAYBYRRQBgFhFFAGAWEUUAYBYRRQBgFhFFAGAWEUUAYBYRRQBgFhDkL6HJazjrOigLsh5tuZD9UljiaOHsJVlVvQV1OwZ1VNp/Ke8AqJZTOo/om3L2E8vE7noK6lmAZN/+SfLXkvyQ/uVpIery36/ZJuMMOuiRZwDdhsgOClgtfyk3qyupfMvhh9h2wdPhSpoCzq3/58KV5d8AW4Uv+As6s/m3Cl+b7QWar8KXM7wHvbBf8MMM9YNvwpTkK2Fry29CtVz4AAAAAAAAAAAAAGPwDThobbmHFDCYAAAAASUVORK5CYII=")}
-.homeWidgetIcon.experience{color:color-mix(in srgb,var(--green) 40%, var(--amber));--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABX0lEQVR4nO3ZwU6DQBSG0anx/V9ZF7owpoUOcOfPJeesTAwM3A9bwDEAAAAAAAAAAO7oEV7/a+N3e8f2atut7c6sVyKx6NYQXnl2nO8GuGq9EisDHBnEf3+Pdy/A1euV+Khe4NcVw5jZz+r1DqsuXH4CC5XMqvIv4E7DH6PofD4rdjrh6B1Ll/V2pT6CZtZd/WX6bL2yOVV/CT878NmTOXvyZ9crvUhX3AU9Xvx8dB8rtyu/DU0/Cc+a+ThqcW6rngOu8u5QWwx/jH4BbqdjgL2ru83VP0bPALciQJgAYQKECRAmQFjHAHtPw61eg3cMcCvdAqz+l2S5TgHaDHVGpwAzrxjavI7oFGCM9wbbZvhj9Aswxs+AWw15S8cAtyJAmABhAoQJECZAmABhAoQJECZAmABhAoQJECZAmABhAoQJECZAmABhAoQJECZAmABhAoQJECYAAAAAAAAAAHBP31K7G3IpcUUvAAAAAElFTkSuQmCC")}
-.homeWidgetIcon.priority{color:#ef4444;--icon-mask:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAB+klEQVR4nO3c226DMBBFUafq//9y+hJHyErBJp45x7CX1LcK5uJbIkIpAAAAAAAAAAAAAICreqgDGPQc+N8lcnMPcqTgRyxztQyqzC18yypnq2BKbOFbFrlbBFFyC9+S1uBHefMXZfHl91fPgDPJ98Qcdd3pVA3IPk7aHl8VDegtRkRsyntrb/TSU4CMmFzisNiEt7IGhHrve8tswNGoyy7K0f1STkdZSe8l4zAaZfFlzAD1Of9bofH/Rl68wzej67/CnLnmY+d6oaJngPvSs7UXT1hzVKcgt+JX6XFFNmD1tb8Vko9iBriO/io1vqgGXG30V9Pzyp4B7qO/SovT7auI26EBYhENuOr6X03NL3MGrLL+V7f8Ovp2aIAYDRCjAWI0QIwGiNEAMRog5vRUhJuUeCMasNon3lFT82MJEqMBYlHLxUpPQ3ySFn/UDFihyGdMz0uxBLmfhlLji2zA1WZBSD6qTdh1FqTHFd0AyeN+J0kODupjqEsTZHFkNCByL3hu/qKE7mWZG+XMX8jMWi7kv9pxeioiexmQF78U/R7Q6mnC0f/MuEYax2dDI9f03mtf+tnQ3uRmNmLkWpf/pfzW2Xc6HG3CvCtigMN6LKuDwyasHgTS+6uTb/HGLBPLfrIdZRXMB7w10Yzti5cAAAAAAAAAAAAAwNAfuNFHWzYcAVsAAAAASUVORK5CYII=")}
-.homeStatWithIcon,.homeTile{position:relative}
-
-
+.homeStat.card{min-height:150px}
+.homeTile.tile{min-height:136px}
+.homeTile .tileSub{padding-right:22px}
 .homeItem[data-span="1"] .homeGrip{top:10px;right:10px}
-.homeItem[data-span="1"] .homeResize{top:10px;left:10px}
-.homeItem.dragging .homeGrip,.homeItem.dragging .homeResize, body.home-edit-mode .homeItem .homeGrip,body.home-edit-mode .homeItem .homeResize{display:flex}
+.homeItem.dragging .homeGrip, body.home-edit-mode .homeItem .homeGrip{display:flex}
 @keyframes wiggle{from{transform:rotate(-0.8deg)}to{transform:rotate(0.8deg)}}
 body.home-edit-mode .homeBoard{padding-bottom:24px}
 
+
+.dashboardShell{padding:0 18px 18px;display:grid;gap:14px}
+.dashboardHeroCard{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--green) 22%, var(--panel)) 0%, color-mix(in srgb,var(--primary) 14%, var(--panel)) 100%);
+  border:1px solid var(--line);border-radius:calc(var(--radius) + 2px);box-shadow:var(--shadow);padding:18px
+}
+.dashboardHeroTop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.dashboardHeroDate{font-size:12px;color:var(--muted);text-align:right}
+.dashboardHeroDate strong{display:block;font-size:34px;line-height:.95;color:var(--text)}
+.dashboardHeroName{font-size:28px;font-weight:800;letter-spacing:-.05em;margin-top:4px}
+.dashboardPills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.dashboardPill{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 80%, transparent);font-size:13px;color:var(--muted)}
+.kpiGrid{padding:0 18px 4px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpiCard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.kpiCardHead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.kpiIcon{width:38px;height:38px;border-radius:999px;display:grid;place-items:center;font-size:16px}
+.kpiIcon.green{background:color-mix(in srgb,var(--green) 18%, white);color:var(--green)}
+.kpiIcon.blue{background:color-mix(in srgb,var(--primary) 10%, white);color:var(--primary)}
+.kpiIcon.purple{background:color-mix(in srgb,var(--amber) 15%, white);color:var(--amber)}
+.kpiIcon.gold{background:color-mix(in srgb,var(--primarySoft) 70%, white);color:var(--primary)}
+.kpiNumber{font-size:32px;font-weight:800;letter-spacing:-.05em;margin-top:2px}
+.kpiCaption{font-size:13px;color:var(--muted);margin-top:6px}
+.panelStack{padding:0 18px 18px;display:grid;gap:14px}
+.panelCard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.panelHead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.panelTitle{font-size:19px;font-weight:800;letter-spacing:-.04em;display:flex;align-items:center;gap:10px}
+.panelLink{border:none;background:none;color:var(--primary);font:inherit;font-weight:800;cursor:pointer}
+.checklistCard{border:1px solid var(--line);border-radius:calc(var(--radiusSm) + 2px);padding:14px;background:color-mix(in srgb,var(--panel2) 84%, var(--panel))}
+.checklistCard+.checklistCard,.messageCard+.messageCard,.experienceRow+.experienceRow,.providerMini+.providerMini{margin-top:12px}
+.checklistRow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.checklistMeta{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.45}
+.progressSlim{height:10px;border-radius:999px;background:color-mix(in srgb,var(--bg) 86%, var(--panel));overflow:hidden;margin-top:12px}
+.progressSlim > span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary),color-mix(in srgb,var(--primary) 70%, white))}
+.messageCard{display:flex;gap:12px;align-items:flex-start;padding:12px 0}
+.messageAvatar{width:42px;height:42px;border-radius:999px;background:color-mix(in srgb,var(--primarySoft) 60%, var(--panel));display:grid;place-items:center;font-weight:800;flex:0 0 auto}
+.messageContent{min-width:0;flex:1}
+.messageContent .tileSub{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.messageTime{font-size:12px;color:var(--muted);margin-top:6px}
+.emptyState{padding:22px;border-radius:calc(var(--radiusSm) + 2px);border:1px dashed var(--line);background:color-mix(in srgb,var(--panel2) 85%, var(--panel));text-align:center;color:var(--muted)}
+.emptyState .emptyIcon{font-size:40px;opacity:.6;margin-bottom:8px}
+.quickBtn{display:flex;align-items:center;gap:10px;padding:14px;border-radius:16px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel2) 88%, var(--panel));font-weight:700;color:var(--text);cursor:pointer}
+.quickBtn + .quickBtn{margin-top:10px}
+.splitPane{padding:0 18px 18px;display:grid;gap:14px}
+.inboxShell{padding:0 18px 18px;display:grid;gap:14px}
+.inboxShell .search{margin-top:0}
+.chatThread{display:grid;gap:12px}
+.chatMessage{display:grid;gap:6px}
+.chatWho{font-size:13px;color:var(--muted)}
+.chatBubble{padding:14px 16px;border-radius:18px;background:color-mix(in srgb,var(--panel2) 90%, var(--panel));line-height:1.5;border:1px solid color-mix(in srgb,var(--line) 70%, transparent)}
+.chatBubble.ai{background:color-mix(in srgb,var(--primarySoft) 50%, var(--panel));}
+.statTabs{display:flex;gap:8px;overflow:auto;padding-bottom:4px;scrollbar-width:none}
+.statTabs::-webkit-scrollbar{display:none}
+.statTabs button{padding:9px 12px;border:1px solid var(--line);background:var(--panel);border-radius:12px;font-weight:700;color:var(--text)}
+.featureGrid{padding:0 18px 18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.featureTile{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;display:grid;place-items:center;gap:10px;text-align:center;font-weight:700;min-height:120px}
+.featureTile .kpiIcon{width:46px;height:46px}
+.sceneGrid{padding:0 18px 18px;display:grid;gap:14px}
+.sceneCard,.marketCardWide,.providerCardWide{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.sceneImage{height:170px;background:linear-gradient(135deg,#c8b9a4,#f3ebe1)}
+.sceneImage.pool{background:linear-gradient(135deg,#8fb1c6,#eaf2f5 55%,#74bcd7)}
+.sceneImage.living{background:linear-gradient(135deg,#7ea77f,#b9d4d1 58%,#e7d7b1)}
+.sceneImage.kitchen{background:linear-gradient(135deg,#5a6168,#e5ddd3 60%,#d28d4e)}
+.sceneImage.bedrooms{background:linear-gradient(135deg,#464d56,#ddd8d1)}
+.sceneCardBody{padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.stayCard{padding:16px}
+.stayGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.stayItem{display:flex;gap:12px;align-items:flex-start}
+.mapHero{height:220px;border-radius:calc(var(--radiusSm) + 2px);margin:14px 0;background:linear-gradient(rgba(255,255,255,.42),rgba(255,255,255,.42)),linear-gradient(135deg,#b79272,#eadcc7);position:relative;overflow:hidden;border:1px solid var(--line)}
+.mapPin{position:absolute;display:grid;place-items:center;text-align:center;color:var(--text)}
+.mapPinDot{width:42px;height:42px;border-radius:999px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800}
+.placeCard{display:flex;gap:12px;align-items:flex-start;padding:16px}
+.placeThumb{width:88px;height:88px;border-radius:16px;flex:0 0 auto;background:linear-gradient(135deg,#7a5f49,#e0c29d)}
+.placeThumb.temple{background:linear-gradient(135deg,#6aa2df,#dceef8)}
+.placeThumb.yoga{background:linear-gradient(135deg,#323847,#efb49e)}
+.placeThumb.ridge{background:linear-gradient(135deg,#6b81a6,#d7dded)}
+.marketGrid{padding:0 18px 18px;display:grid;gap:14px}
+.marketCardWide .sceneImage{height:150px}
+.marketCardWide .sceneImage.temple{background:linear-gradient(135deg,#79aee6,#cde8f5)}
+.marketCardWide .sceneImage.land{background:linear-gradient(135deg,#778d58,#d7bc84)}
+.marketCardWide .sceneImage.wellness{background:linear-gradient(135deg,#29334d,#f0c4b6)}
+.marketCardWide .sceneImage.craft{background:linear-gradient(135deg,#ece4da,#b99a7b)}
+.marketCardWide .sceneImage.transport{background:linear-gradient(135deg,#1a233b,#7080a1 50%,#e6a381)}
+.marketCardWide .sceneImage.table{background:linear-gradient(135deg,#6d513e,#f1c88f)}
+.marketCardWideBody{padding:16px}
+.marketInfoMeta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;margin-top:12px;flex-wrap:wrap}
+.marketPriceRow{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-top:14px}
+.providerGrid{padding:0 18px 18px;display:grid;gap:14px}
+.providerCardWide{padding:16px}
+.providerTop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.providerLeft{display:flex;gap:12px;align-items:flex-start}
+.providerAvatar{width:58px;height:58px;border-radius:18px;background:linear-gradient(135deg,#efd9b2,#9bc0f2);flex:0 0 auto}
+.providerAvatar.nyoman{background:linear-gradient(135deg,#f0b9a3,#b46c61)}
+.providerAvatar.made{background:linear-gradient(135deg,#8af1b8,#d89b6b)}
+.providerActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.providerActions button{border:1px solid var(--line);background:var(--panel2);border-radius:14px;padding:12px;font-weight:700;color:var(--text)}
+.calendarGrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.calendarCell{background:var(--panel2);border:1px solid var(--line);border-radius:12px;min-height:86px;padding:10px;font-weight:700}
+.calendarCell.active{outline:2px solid var(--primary);outline-offset:-2px;color:var(--primary)}
+.sectionActions{display:flex;gap:10px;align-items:center}
+.togglePill{border:none;border-radius:14px;padding:11px 14px;font-weight:800;background:var(--panel);border:1px solid var(--line);color:var(--text)}
+.togglePill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.homeItem[data-span="2"]{grid-column:span 2}
+.homeItem[data-span="3"]{grid-column:span 3}
+.homeResize{position:absolute;left:12px;top:12px;min-width:34px;height:26px;padding:0 8px;border-radius:999px;border:1px solid color-mix(in srgb,var(--line) 82%, transparent);background:color-mix(in srgb,var(--panel) 86%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2;font-size:11px;font-weight:800}
+body.home-edit-mode .homeResize{display:flex}
+.homeStatTop,.homeTileTop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.homeWidgetIcon{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background-position:center;background-repeat:no-repeat;background-size:contain;flex:0 0 auto}
+.homeWidgetIcon.arrival{color:var(--green)}
+.homeWidgetIcon.departure{color:var(--primary)}
+.homeWidgetIcon.occupancy{color:var(--muted)}
+.homeWidgetIcon.messages{color:var(--primary)}
+.homeWidgetIcon.experience{color:var(--amber)}
+.homeWidgetIcon.priority{color:var(--primary)}
+.homeWidgetIcon::before{font-size:22px;line-height:1}
+.homeWidgetIcon.arrival::before{content:'↘'}
+.homeWidgetIcon.departure::before{content:'↗'}
+.homeWidgetIcon.occupancy::before{content:'⌂'}
+.homeWidgetIcon.messages::before{content:'◻'}
+.homeWidgetIcon.experience::before{content:'✦'}
+.homeWidgetIcon.priority::before{content:'!'}
+.homeStat .small{padding-right:28px}
+.homeStat .big{font-size:32px}
+.homeStatTop .small{font-size:12px}
+.homeTileTitleRow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.homeTileSubRow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:12px}
+.inboxShell{padding:0 18px 18px;display:grid;gap:14px}
+.inboxThreadList{display:grid;gap:12px}
+.inboxThreadCard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;display:grid;gap:10px;cursor:pointer}
+.inboxThreadHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.inboxThreadWho{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.inboxAvatar{width:40px;height:40px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--text);flex:0 0 auto}
+.inboxMeta{min-width:0;display:grid;gap:2px}
+.inboxName{font-size:17px;font-weight:800;letter-spacing:-.04em}
+.inboxSnippet{font-size:14px;color:var(--muted);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.inboxFooter{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.inboxTags{display:flex;gap:8px;flex-wrap:wrap}
+.inboxPill{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:color-mix(in srgb,var(--panel2) 80%, transparent);border:1px solid color-mix(in srgb,var(--line) 85%, transparent);font-size:11px;font-weight:800;color:var(--muted)}
+.inboxUnread{min-width:24px;height:24px;border-radius:999px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.messageThread{padding:0 18px 18px;display:grid;gap:12px}
+.messageBubble{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:14px 16px;box-shadow:var(--shadow)}
+.messageBubble.ai{background:color-mix(in srgb,var(--primarySoft) 46%, var(--panel))}
+.messageBubble .who{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}
+.messageBubble .body{font-size:15px;line-height:1.55;color:var(--text)}
+.messageBubble .time{margin-top:10px;font-size:12px;color:var(--muted)}
+.messageAssist{display:flex;gap:8px;flex-wrap:wrap}
+.messageAssist .badge{padding:7px 10px}
 @media (max-width:380px){
- .grid{grid-template-columns:1fr}
- .homeBoard{gap:10px}
+  .stayGrid,.featureGrid{grid-template-columns:1fr}
+  .calendarGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 
+@media (max-width:380px){
+ .grid{grid-template-columns:1fr}
+ .homeBoard{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .homeItem[data-span="3"]{grid-column:span 2}
+}
 </style>
 </head>
-<body data-theme="soft-product">
+<body data-theme="default">
 <div class="app">
   <div class="top">
     <div class="row"><div class="brand">Sok</div><div class="row">
@@ -243,9 +357,12 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
       <p class="sub">Villa Sari is running smoothly. You have 2 arrivals, 1 departure, and 2 unread guest conversations.</p>
     </div>
     <div class="homeTools">
-      <div class="homeToolsRight">
-        <button id="homeEditBtn" class="homeActionBtn" type="button" onclick="enableHomeEditMode()">Customize</button>
-        <button id="homeResetBtn" class="homeResetBtn" type="button" onclick="resetHomeLayout()">Reset</button>
+      <div>
+        <div class="title">Home layout</div>
+        <div class="small">Press and hold to rearrange. Resize cards from 1, 2, or 3 columns.</div>
+      </div>
+      <div class="row" style="gap:8px">
+        <span id="homeEditHint" class="homeHint">Touch and hold</span>
         <button id="homeDoneBtn" class="homeDoneBtn" type="button" onclick="disableHomeEditMode()">Done</button>
       </div>
     </div>
@@ -253,24 +370,135 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
 
-  <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">Threaded by booking, sorted by urgency, and ready for quick action.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI Drafts</button></div><div class="stack"><div class="tile" onclick="go('detail-message-chen')"><div class="tileTitle">Chen Family</div><div class="tileSub">Temple visit timing and departure coordination</div></div><div class="tile" onclick="go('detail-message-sarah')"><div class="tileTitle">Sarah & Tom Johnson</div><div class="tileSub">Romantic dinner recommendations for tomorrow night</div></div></div></section>
+  <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">Compact guest threads designed to feel native on mobile. Open any conversation for the full context and quick reply actions.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI drafts</button></div><div class="inboxShell"><label class="search"><span>⌕</span><input placeholder="Search conversations..."></label><div class="inboxThreadList"><div class="inboxThreadCard" onclick="go('detail-message-chen')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">C</div><div class="inboxMeta"><div class="inboxName">Chen Family</div><div class="small">Villa Sari • Temple visit tomorrow</div></div></div><div class="inboxUnread">1</div></div><div class="inboxSnippet">Thank you! We're excited for the temple visit. What time should we be ready and should the kids wear anything specific?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">AI draft ready</span><span class="inboxPill">Departure</span></div><div class="small">1:30 PM</div></div></div><div class="inboxThreadCard" onclick="go('detail-message-sarah')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">S</div><div class="inboxMeta"><div class="inboxName">Sarah &amp; Tom</div><div class="small">Villa Bambu • Dining request</div></div></div><span class="badge urgent">Unread</span></div><div class="inboxSnippet">Can you recommend a romantic dinner spot for tomorrow night and arrange transport after dessert?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">Needs manager</span></div><div class="small">11:10 AM</div></div></div></div></section>
 
-  <section id="calendar" class="page"><div class="hero"><div class="eyebrow">Scheduling</div><h1>Calendar</h1><p class="sub">March 2026 • Bookings, experiences, and operational blocks in one place.</p></div><div class="calendar"><div class="row" style="margin-bottom:16px"><button class="icon">‹</button><div class="title">March 2026</div><button class="icon">›</button></div><div class="tileSub">March 19 selected • Check-out and experience booking.</div></div></section>
+  <section id="calendar" class="page"><div class="hero"><div class="eyebrow">Scheduling</div><h1>Calendar</h1><p class="sub">Villa bookings, experiences, and maintenance in one place.</p></div><div class="calendar"><div class="row" style="margin-bottom:16px"><div class="row"><button class="icon">‹</button><div class="title">March 2026</div><button class="icon">›</button></div><div class="row"><button class="secondary btn" style="padding:10px 12px">Month</button><button class="secondary btn" style="padding:10px 12px">Week</button></div></div><div class="chips" style="padding:0 0 12px"><button>Booked (Airbnb)</button><button>Booked (Direct)</button><button>Available</button><button>Experience</button><button>Maintenance</button></div><div class="calendarGrid" id="calendarGrid"></div></div></section>
 
   <section id="tasks" class="page"><div class="hero"><div class="eyebrow">Operations</div><h1>Tasks</h1><p class="sub">5 open tasks. 3 need attention today.</p></div><div class="progress"><div class="row" style="margin-bottom:12px"><span>Today's progress</span><span style="color:var(--primary)">68%</span></div><div class="bar"><div class="fill"></div></div></div><div class="stack"><div class="tile" onclick="go('detail-task-cleaning')"><div class="tileTitle">Deep clean Villa Sari</div><div class="tileSub">Master bedroom AC issue reported. Inspect before next arrival.</div></div></div></section>
 
-  <section id="profile" class="page"><div class="hero"><div class="eyebrow">Account</div><h1>Wayan Sudarta</h1><p class="sub">Villa Manager • Sok Pro • 4 properties connected</p></div><div class="stack"><div class="setting" onclick="go('profile-account')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Account</div><div class="tileSub">Profile, security, notifications</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-villas')"><div class="row"><div><div class="tileTitle" style="font-size:17px">My Villas</div><div class="tileSub">Villa Sari, Villa Bambu, Villa Umah</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-team')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Team</div><div class="tileSub">8 members • roles and access</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-preferences')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Preferences</div><div class="tileSub">Language, alerts, and automation settings</div></div><div>›</div></div></div></div></section>
+  <section id="profile" class="page"><div class="hero"><div class="eyebrow">Account</div><h1>Wayan Sudarta</h1><p class="sub">Villa Manager • Sok Pro • 4 properties connected</p></div><div class="stack"><div class="setting" onclick="go('dashboard-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Villa Intelligence Dashboard</div><div class="tileSub">Expanded dashboard, KPIs, and operational overview</div></div><div>›</div></div></div><div class="setting" onclick="go('manuals-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Operating Manuals</div><div class="tileSub">Checklists, issues, owner standards, and live progress</div></div><div>›</div></div></div><div class="setting" onclick="go('guest-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Guest Experience</div><div class="tileSub">Villa manual, local map, stay info, and curated places</div></div><div>›</div></div></div><div class="setting" onclick="go('marketplace-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Experience Marketplace</div><div class="tileSub">Bookings, revenue, provider settings, and offers</div></div><div>›</div></div></div><div class="setting" onclick="go('providers-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Service Providers</div><div class="tileSub">Drivers, priests, and local specialists</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-account')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Account</div><div class="tileSub">Profile, security, notifications</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-villas')"><div class="row"><div><div class="tileTitle" style="font-size:17px">My Villas</div><div class="tileSub">Villa Sari, Villa Bambu, Villa Umah</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-team')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Team</div><div class="tileSub">8 members • roles and access</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-preferences')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Preferences</div><div class="tileSub">Language, alerts, and automation settings</div></div><div>›</div></div></div></div></section>
 
   <section id="profile-account" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Profile settings</div><div class="tileTitle" style="font-size:30px">Account</div><p class="sub">Manage profile info, security preferences, and app notifications.</p></div></section>
   <section id="profile-villas" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Portfolio</div><div class="tileTitle" style="font-size:30px">My Villas</div><p class="sub">Overview of connected villas and current occupancy.</p></div></section>
   <section id="profile-team" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Team</div><div class="tileTitle" style="font-size:30px">Team members</div><p class="sub">Manage permissions for operations, housekeeping, and drivers.</p></div></section>
   <section id="detail-checkin" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Departure workflow</div><div class="tileTitle" style="font-size:30px">Chen Family check-out</div><p class="sub">Villa Sari • 11:00 AM today • Cleaning and maintenance follow-up attached to this booking.</p></div></section>
   <section id="detail-experience" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Experience booking</div><div class="tileTitle" style="font-size:30px">Rice planting with Made</div><p class="sub">3:00 PM • 3 guests • Pickup at 2:20 PM from Villa Sari.</p></div></section>
-  <section id="detail-message-chen" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Chen Family</div><p class="sub">Villa Sari • Temple visit tomorrow • AI drafted response ready.</p></div></section>
-  <section id="detail-message-sarah" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Sarah & Tom</div><p class="sub">Villa Bambu • Dining recommendations • Needs manager response.</p></div></section>
+  <section id="detail-message-chen" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Chen Family</div><p class="sub">Villa Sari • Temple visit tomorrow • AI drafted response ready.</p></div><div class="messageThread"><div class="messageBubble"><div class="who">Chen Family</div><div class="body">Hi! We’re excited for tomorrow’s temple visit. What time should we be ready, and is there anything special the kids should wear?</div><div class="time">9:00 AM</div></div><div class="messageBubble ai"><div class="who">Kadek AI</div><div class="body">Please be ready in the lobby at <strong>8:15 AM</strong>. I recommend light temple-appropriate clothing, covered shoulders, and sandals that are easy to remove. I can also prepare child-friendly snacks for the drive.</div><div class="time">Draft ready</div></div><div class="messageAssist"><span class="badge ok">Send AI reply</span><span class="badge info">Edit draft</span><span class="badge urgent">Call guest</span></div></div></section>
+  <section id="detail-message-sarah" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Sarah &amp; Tom</div><p class="sub">Villa Bambu • Dining recommendations • Needs manager response.</p></div><div class="messageThread"><div class="messageBubble"><div class="who">Sarah &amp; Tom</div><div class="body">Can you recommend a romantic dinner spot for tomorrow night? We'd love something beautiful, intimate, and easy to reach from the villa.</div><div class="time">11:10 AM</div></div><div class="messageBubble ai"><div class="who">Suggested reply</div><div class="body">I’d recommend <strong>Locavore NXT</strong> for a special tasting-menu evening or <strong>Apéritif</strong> for a more cinematic, elegant setting. I can hold a reservation and arrange transport both ways.</div><div class="time">Awaiting approval</div></div><div class="messageAssist"><span class="badge ok">Approve &amp; send</span><span class="badge info">Swap restaurant</span></div></div></section>
   <section id="detail-task-cleaning" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Task detail</div><div class="tileTitle" style="font-size:30px">Deep clean Villa Sari</div><p class="sub">Assigned to Ayu Ketut • Due 3:00 PM • Includes maintenance inspection.</p></div></section>
 
-  <section id="profile-preferences" class="page">
+  
+  <section id="dashboard-hub" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Villa Intelligence</div><div class="tileTitle" style="font-size:30px">Dashboard</div><p class="sub">Expanded dashboard widgets translated into the existing Sok mobile design.</p></div>
+    <div class="dashboardShell">
+      <div class="dashboardHeroCard">
+        <div class="dashboardHeroTop">
+          <div><div class="eyebrow" style="margin-bottom:6px">Good morning,</div><div class="dashboardHeroName">Wayan Sudarta</div><div class="sub">Villa Manager • Villa Sari</div></div>
+          <div class="dashboardHeroDate"><strong>14</strong>Mar 2026</div>
+        </div>
+        <div class="dashboardPills"><div class="dashboardPill">👥 Current Guest: <strong>Chen Family</strong></div><div class="dashboardPill">🕘 Checkout: <strong>Today 11am</strong></div></div>
+      </div>
+    </div>
+    <div class="kpiGrid">
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Response Time</div><div class="kpiNumber">1.8m</div><div class="kpiCaption" style="color:var(--green)">↗ Below 2min target</div></div><div class="kpiIcon green">💬</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Checklists</div><div class="kpiNumber">94%</div><div class="kpiCaption">On-time completion</div></div><div class="kpiIcon blue">📋</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Experiences</div><div class="kpiNumber">8</div><div class="kpiCaption">$680 revenue</div></div><div class="kpiIcon purple">✨</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Compliance</div><div class="kpiNumber">94%</div><div class="kpiCaption">Owner standards met</div></div><div class="kpiIcon gold">⭐</div></div></div>
+    </div>
+    <div class="panelStack">
+      <div class="panelCard"><div class="panelHead"><div class="panelTitle">✅ Active Checklists</div><button class="panelLink" onclick="go('manuals-hub')">View All</button></div><div class="checklistCard"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Turnover: Chen Family</div><div class="checklistMeta">Assigned to Ayu Ketut • Due 2:00 PM</div></div><div style="text-align:right"><div class="tileTitle" style="font-size:16px">12/18</div><div class="small">tasks</div></div></div><div style="display:flex;gap:8px;margin-top:10px"><span class="badge info">In Progress</span><span class="badge urgent">1 Issue</span></div><div class="progressSlim"><span style="width:67%"></span></div><div class="checklistMeta">🕘 Started 7:00 AM</div></div><div class="checklistCard"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Turnover: Sarah &amp; Tom Johnson</div><div class="checklistMeta">Assigned to Wayan Sudarta • Due 1:00 PM</div></div><div style="text-align:right"><div class="tileTitle" style="font-size:16px">0/8</div><div class="small">tasks</div></div></div><div class="progressSlim"><span style="width:0%"></span></div></div></div>
+      <div class="panelCard"><div class="panelHead"><div class="panelTitle">💬 Recent Messages</div><button class="panelLink" onclick="go('inbox')">View All</button></div><div class="messageCard"><div class="messageAvatar">C</div><div class="messageContent"><div class="tileTitle" style="font-size:18px">Chen Family</div><div class="tileSub">Thank you! We're excited for the temple visit tomorrow...</div><div class="messageTime">1:30 PM</div></div><span class="badge ok">1</span></div><div class="messageCard"><div class="messageAvatar">S</div><div class="messageContent"><div class="tileTitle" style="font-size:18px">Sarah &amp; Tom Johnson</div><div class="tileSub">Looking forward to our stay! Can you recommend...</div><div class="messageTime">8:15 AM</div></div></div><div class="messageCard"><div class="messageAvatar">J</div><div class="messageContent"><div class="tileTitle" style="font-size:18px">Johnson Group</div><div class="tileSub">Is late check-out possible on Sunday?</div><div class="messageTime">3:45 PM</div></div></div></div>
+      <div class="panelCard"><div class="panelHead"><div class="panelTitle">📅 Today's Schedule</div><button class="panelLink" onclick="go('calendar')">Full Calendar</button></div><div class="emptyState"><div class="emptyIcon">📅</div><div class="tileTitle" style="font-size:17px">No events scheduled for today</div></div></div>
+      <div class="panelCard"><div class="panelHead"><div class="panelTitle">✨ Experience Bookings</div><button class="panelLink" onclick="go('marketplace-hub')">View All</button></div><div class="experienceRow"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Melukat Purification Ceremony</div><div class="checklistMeta">Chen Family • Mar 19 • 5:00 AM • 3 guests</div></div><span class="badge" style="background:var(--text);color:var(--panel)">Confirmed</span></div></div><div class="experienceRow"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Rice Planting with Made</div><div class="checklistMeta">Chen Family • Mar 19 • 2:00 PM • 3 guests</div></div><span class="badge" style="background:var(--text);color:var(--panel)">Confirmed</span></div></div></div>
+      <div class="panelCard"><div class="panelHead"><div class="panelTitle">⚡ Quick Actions</div></div><button class="quickBtn" onclick="go('inbox')">💬 Send Message to Guest</button><button class="quickBtn" onclick="go('manuals-hub')">📋 Start New Checklist</button><button class="quickBtn" onclick="go('marketplace-hub')">✨ Suggest Experience</button><button class="quickBtn" onclick="go('providers-hub')">📞 Contact Staff</button></div>
+    </div>
+  </section>
+
+  <section id="manuals-hub" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Operations</div><div class="tileTitle" style="font-size:30px">Operating Manuals</div><p class="sub">Digital checklists for consistent villa operations.</p></div>
+    <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Start New Checklist</button></div>
+    <div class="kpiGrid">
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active</div><div class="kpiNumber">1</div></div><div class="kpiIcon blue">▶</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Scheduled</div><div class="kpiNumber">1</div></div><div class="kpiIcon purple">🗓</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Issues</div><div class="kpiNumber">2</div></div><div class="kpiIcon gold">!</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Compliance</div><div class="kpiNumber">94%</div></div><div class="kpiIcon green">↗</div></div></div>
+    </div>
+    <div class="chips"><button class="active">Active (1)</button><button>Scheduled (1)</button><button>Completed (0)</button><button>Maintenance (2)</button><button>Owner Standards</button></div>
+    <div class="panelStack"><div class="panelCard"><div style="display:flex;gap:8px;margin-bottom:10px"><span class="badge info">In Progress</span><span class="badge urgent">1 Issue</span></div><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Turnover: Chen Family</div><div class="checklistMeta">Checkout: Today 11am • Checkin: Today 3pm</div><div class="checklistMeta">👤 Ayu Ketut &nbsp;&nbsp; 🕘 Started 7:00 AM</div></div><div style="text-align:right"><div class="tileTitle" style="font-size:16px">12/18</div><div class="small">tasks done</div></div></div><div class="progressSlim"><span style="width:67%"></span></div><div class="row" style="margin-top:12px"><div class="checklistMeta">67% complete</div><button class="secondary btn" style="padding:12px 16px;background:var(--text);color:var(--panel);border:none">Resume ›</button></div></div></div>
+  </section>
+
+  <section id="guest-hub" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest Experience</div><div class="tileTitle" style="font-size:30px">Guest Experience Platform</div><p class="sub">Digital villa manual and local guide.</p></div>
+    <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button id="guestManualBtn" class="togglePill active" onclick="setGuestHubMode('manual')">Villa Manual</button><button id="guestMapBtn" class="togglePill" onclick="setGuestHubMode('map')">Local Map</button></div>
+    <div class="dashboardShell"><div class="dashboardHeroCard"><div class="dashboardHeroTop"><div><div class="eyebrow" style="margin-bottom:6px">Current Guest</div><div class="dashboardHeroName">Chen Family</div><div class="sub">Check-in: 3/18/2025 &nbsp; • &nbsp; Check-out: 3/25/2025</div></div><div class="dashboardHeroDate"><strong>-354</strong>nights left</div></div></div></div>
+    <div id="guestHubManual">
+      <div class="featureGrid">
+        <div class="featureTile"><div class="kpiIcon blue">📶</div><div>WiFi</div></div>
+        <div class="featureTile"><div class="kpiIcon purple">🗝</div><div>Keys</div></div>
+        <div class="featureTile"><div class="kpiIcon gold">📞</div><div>Emergency</div></div>
+        <div class="featureTile"><div class="kpiIcon green">💬</div><div>Message Us</div></div>
+      </div>
+      <div class="sceneGrid">
+        <div class="sceneCard"><div class="sceneImage living"></div><div class="sceneCardBody"><div><div class="tileTitle">Living Room</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
+        <div class="sceneCard"><div class="sceneImage kitchen"></div><div class="sceneCardBody"><div><div class="tileTitle">Kitchen</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
+        <div class="sceneCard"><div class="sceneImage bedrooms"></div><div class="sceneCardBody"><div><div class="tileTitle">Bedrooms</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
+        <div class="sceneCard"><div class="sceneImage pool"></div><div class="sceneCardBody"><div><div class="tileTitle">Pool &amp; Garden</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
+        <div class="panelCard stayCard"><div class="tileTitle" style="font-size:24px">Your Stay</div><div class="stayGrid"><div class="stayItem"><div class="kpiIcon blue">🕘</div><div><div class="small">Check-in</div><div class="tileTitle" style="font-size:18px">3/18/2025 3:00 PM</div></div></div><div class="stayItem"><div class="kpiIcon blue">🕘</div><div><div class="small">Check-out</div><div class="tileTitle" style="font-size:18px">3/25/2025 11:00 AM</div></div></div><div class="stayItem"><div class="kpiIcon blue">📶</div><div><div class="small">WiFi</div><div class="tileTitle" style="font-size:18px">VillaSari_Guest</div></div></div><div class="stayItem"><div class="kpiIcon purple">🗝</div><div><div class="small">Password</div><div class="tileTitle" style="font-size:18px">Ubud2025!</div></div></div></div></div>
+      </div>
+    </div>
+    <div id="guestHubMap" style="display:none">
+      <div class="chips"><button class="active">All</button><button>Eat</button><button>See</button><button>Do</button><button>Shop</button><button>Wellness</button><button>Emergency</button></div>
+      <div class="dashboardShell"><div class="mapHero"><div class="mapPin" style="left:34%;top:40%"><div class="mapPinDot">🛏</div><div class="badge" style="background:var(--panel2);margin-top:8px">You are here</div></div><div class="mapPin" style="left:58%;top:34%"><div class="mapPinDot">📍</div><div class="tileTitle" style="font-size:18px;margin-top:10px">Interactive Map</div><div class="tileSub">Showing places near Villa Sari</div></div></div></div></div>
+      <div class="panelStack">
+        <div class="sceneCard"><div class="placeCard"><div class="placeThumb"></div><div style="flex:1;min-width:0"><div class="row"><div><div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><span>🍴</span><span class="badge info" style="padding:4px 8px">restaurant</span></div><div class="tileTitle">Warung Biah Biah</div><div class="tileSub">Authentic Balinese flavors in a casual setting. Famous for gado-gado and nasi campur.</div><div class="checklistMeta">✈ 3 min walk &nbsp; $ &nbsp; 🕘 7am – 12am</div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.7</div></div></div></div>
+        <div class="sceneCard"><div class="placeCard"><div class="placeThumb temple"></div><div style="flex:1;min-width:0"><div class="row"><div><div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><span>🛡</span><span class="badge info" style="padding:4px 8px">temple</span></div><div class="tileTitle">Pura Taman Saraswati</div><div class="tileSub">Beautiful water temple with lotus pond. Free entry. Traditional dance performances some evenings.</div><div class="checklistMeta">✈ 5 min walk &nbsp; $ &nbsp; 🕘 7am – 5pm</div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</div></div></div></div>
+        <div class="sceneCard"><div class="placeCard"><div class="placeThumb yoga"></div><div style="flex:1;min-width:0"><div class="row"><div><div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><span>〰</span><span class="badge info" style="padding:4px 8px">wellness</span></div><div class="tileTitle">The Yoga Barn</div><div class="tileSub">World-famous yoga studio offering daily classes. Beautiful setting in the heart of Ubud.</div><div class="checklistMeta">✈ 12 min drive &nbsp; $$ &nbsp; 🕘 7am – 9pm</div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.6</div></div></div></div>
+        <div class="sceneCard"><div class="placeCard"><div class="placeThumb"></div><div style="flex:1;min-width:0"><div class="row"><div><div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><span>🍴</span><span class="badge info" style="padding:4px 8px">restaurant</span></div><div class="tileTitle">Locavore</div><div class="tileSub">2 Michelin stars. Modern Indonesian tasting menus by Chef Eelke &amp; Ray. Reservations essential.</div><div class="checklistMeta">✈ 12 min drive &nbsp; $$$$ &nbsp; 🕘 6pm – 11pm</div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.8</div></div></div></div>
+        <div class="sceneCard"><div class="placeCard"><div class="placeThumb ridge"></div><div style="flex:1;min-width:0"><div class="row"><div><div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><span>📍</span><span class="badge info" style="padding:4px 8px">attraction</span></div><div class="tileTitle">Campuhan Ridge Walk</div><div class="tileSub">Scenic ridge walk with stunning valley views. Best at sunrise or sunset.</div><div class="checklistMeta">✈ 8 min drive &nbsp; $$ &nbsp; 🕘 24 hours</div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.8</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="marketplace-hub" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Experiences</div><div class="tileTitle" style="font-size:30px">Experience Marketplace</div><p class="sub">Curated local experiences for your guests.</p></div>
+    <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Add Experience</button></div>
+    <div class="kpiGrid">
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Total Bookings</div><div class="kpiNumber">2</div></div><div class="kpiIcon blue">🗓</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Revenue</div><div class="kpiNumber">$200</div></div><div class="kpiIcon green">$</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Providers</div><div class="kpiNumber">3</div></div><div class="kpiIcon purple">👥</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Avg Rating</div><div class="kpiNumber">4.8</div></div><div class="kpiIcon gold">⭐</div></div></div>
+    </div>
+    <div class="chips"><button class="active">Browse (6)</button><button>Bookings (2)</button><button>Providers (3)</button><button>Settings</button></div>
+    <div class="dashboardShell" style="padding-top:14px"><label class="search"><span>⌕</span><input placeholder="Search experiences..."></label></div>
+    <div class="chips"><button class="active">All</button><button>Sacred &amp; Cultural</button><button>Wellness</button><button>Food &amp; Drink</button><button>Adventure</button><button>Transport</button><button>Crafts</button></div>
+    <div class="marketGrid">
+      <div class="marketCardWide"><div class="sceneImage temple"></div><div class="marketCardWideBody"><div class="row"><span class="badge info">Sacred</span><span class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</span></div><div class="tileTitle" style="margin-top:14px">Melukat Purification Ceremony</div><div class="tileSub">Pak Nyoman</div><div class="checklistMeta" style="margin-top:10px">Sacred water blessing ceremony with traditional priest</div><div class="marketInfoMeta">🕘 3 hours <span>👥 Max 6</span></div><div class="marketPriceRow"><div class="tileTitle" style="font-size:20px;color:var(--green)">$85 <span class="small">/person</span></div><button class="primary btn" style="padding:12px 16px">Book Now</button></div></div></div>
+      <div class="marketCardWide"><div class="sceneImage land"></div><div class="marketCardWideBody"><div class="row"><span class="badge ok">Land</span><span class="badge" style="background:transparent;color:var(--amber)">⭐ 4.7</span></div><div class="tileTitle" style="margin-top:14px">Rice Planting with Made</div><div class="tileSub">Made</div><div class="checklistMeta" style="margin-top:10px">Work the rice paddies with a local farmer</div><div class="marketInfoMeta">🕘 2 hours <span>👥 Max 8</span></div><div class="marketPriceRow"><div class="tileTitle" style="font-size:20px;color:var(--green)">$45 <span class="small">/person</span></div><button class="primary btn" style="padding:12px 16px">Book Now</button></div></div></div>
+      <div class="marketCardWide"><div class="sceneImage wellness"></div><div class="marketCardWideBody"><div class="row"><span class="badge ok">Wellness</span><span class="badge" style="background:transparent;color:var(--amber)">⭐ 4.8</span></div><div class="tileTitle" style="margin-top:14px">Family Yoga at Villa</div><div class="tileSub">Yoga Instructor Dewi</div><div class="checklistMeta" style="margin-top:10px">Private yoga session at your villa</div><div class="marketInfoMeta">🕘 1 hour <span>👥 Max 6</span></div><div class="marketPriceRow"><div class="tileTitle" style="font-size:20px;color:var(--green)">$35 <span class="small">/person</span></div><button class="primary btn" style="padding:12px 16px">Book Now</button></div></div></div>
+      <div class="marketCardWide"><div class="sceneImage craft"></div><div class="marketCardWideBody"><div class="row"><span class="badge info">Craft</span><span class="badge" style="background:transparent;color:var(--amber)">⭐ 4.8</span></div><div class="tileTitle" style="margin-top:14px">Silver Jewelry Making</div><div class="tileSub">Celuk Silver Studio</div><div class="checklistMeta" style="margin-top:10px">Create silver jewelry with master artisans</div><div class="marketInfoMeta">🕘 3 hours <span>👥 Max 4</span></div><div class="marketPriceRow"><div class="tileTitle" style="font-size:20px;color:var(--green)">$65 <span class="small">/person</span></div><button class="primary btn" style="padding:12px 16px">Book Now</button></div></div></div>
+      <div class="marketCardWide"><div class="sceneImage transport"></div><div class="marketCardWideBody"><div class="row"><span class="badge info">Transport</span><span class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</span></div><div class="tileTitle" style="margin-top:14px">Day Driver with Ketut</div><div class="tileSub">Ketut Sudarta</div><div class="checklistMeta" style="margin-top:10px">Private driver for the day</div><div class="marketInfoMeta">🕘 8 hours <span>👥 Max 6</span></div><div class="marketPriceRow"><div class="tileTitle" style="font-size:20px;color:var(--green)">$55 <span class="small">/person</span></div><button class="primary btn" style="padding:12px 16px">Book Now</button></div></div></div>
+      <div class="marketCardWide"><div class="sceneImage table"></div><div class="marketCardWideBody"><div class="row"><span class="badge info">Table</span><span class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</span></div><div class="tileTitle" style="margin-top:14px">Private Villa Dinner</div><div class="tileSub">Chef Wayan</div><div class="checklistMeta" style="margin-top:10px">Private chef dinner at your villa</div><div class="marketInfoMeta">🕘 4 hours <span>👥 Max 8</span></div><div class="marketPriceRow"><div class="tileTitle" style="font-size:20px;color:var(--green)">$100 <span class="small">/person</span></div><button class="primary btn" style="padding:12px 16px">Book Now</button></div></div></div>
+    </div>
+  </section>
+
+  <section id="providers-hub" class="page">
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Providers</div><div class="tileTitle" style="font-size:30px">Service Providers</div><p class="sub">Manage your local service provider network.</p></div>
+    <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Add Provider</button></div>
+    <div class="kpiGrid">
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active Providers</div><div class="kpiNumber">3</div></div><div class="kpiIcon green">👥</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Pending Approval</div><div class="kpiNumber">0</div></div><div class="kpiIcon gold">🕘</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Avg Rating</div><div class="kpiNumber">4.8</div></div><div class="kpiIcon gold">⭐</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Total Bookings</div><div class="kpiNumber">170</div></div><div class="kpiIcon blue">🗓</div></div></div>
+    </div>
+    <div class="chips"><button class="active">Active (3)</button><button>Pending (0)</button><button>All Providers</button></div>
+    <div class="providerGrid">
+      <div class="providerCardWide"><div class="providerTop"><div class="providerLeft"><div class="providerAvatar"></div><div><div class="tileTitle">Ketut Sudarta</div><div style="margin-top:8px"><span class="badge info">Transport</span></div></div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</div></div><div class="checklistMeta" style="margin-top:14px">Born and raised in Ubud. 15 years experience as a driver. Knows all the hidden gems!</div><div class="checklistMeta" style="margin-top:10px">🗓 47 bookings &nbsp;&nbsp; $0 earned</div><div class="checklistMeta" style="margin-top:6px">🚙 Toyota Innova</div><div class="providerActions"><button>💬 Message</button><button>📞 Call</button></div></div>
+      <div class="providerCardWide"><div class="providerTop"><div class="providerLeft"><div class="providerAvatar nyoman"></div><div><div class="tileTitle">Pak Nyoman</div><div style="margin-top:8px"><span class="badge info">Sacred</span></div></div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</div></div><div class="checklistMeta" style="margin-top:14px">Temple priest with 30 years experience. Specializes in purification ceremonies for visitors.</div><div class="checklistMeta" style="margin-top:10px">🗓 89 bookings &nbsp;&nbsp; $68 earned</div><div class="providerActions"><button>💬 Message</button><button>📞 Call</button></div></div>
+      <div class="providerCardWide"><div class="providerTop"><div class="providerLeft"><div class="providerAvatar made"></div><div><div class="tileTitle">Made</div><div style="margin-top:8px"><span class="badge ok">Land</span></div></div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.7</div></div><div class="checklistMeta" style="margin-top:14px">Third-generation rice farmer. Loves sharing the Subak system with visitors.</div><div class="checklistMeta" style="margin-top:10px">🗓 34 bookings &nbsp;&nbsp; $90 earned</div><div class="providerActions"><button>💬 Message</button><button>📞 Call</button></div></div>
+    </div>
+  </section>
+
+<section id="profile-preferences" class="page">
     <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">App Preferences</div><p class="sub">Set your theme, language, alerts, and automation settings.</p></div>
     <div class="stack">
       <div class="setting" onclick="go('preferences-theme')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Design & Theme</div><div class="tileSub">Change the app design style and color palette</div></div><div>›</div></div></div>
@@ -373,49 +601,45 @@ function miniHTML(t){
 
 
 const HOME_LAYOUT_KEY = 'sok-home-layout-v2';
+const HOME_SPAN_KEY = 'sok-home-spans-v2';
 const homeItems = [
   {
     id:'arrivals', defaultSpan:1, target:'calendar',
-    markup:`<div class="card homeStat homeStatWithIcon">
-      <span class="homeResize" aria-label="Resize widget">1×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="titleInline"><div class="small">Today</div><span class="homeWidgetIcon arrivals" aria-hidden="true"></span></div></div>
+    markup:`<div class="card homeStat">
+      <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon arrival" aria-hidden="true"></span></div>
       <div class="homeStatBody"><div class="big">2</div><div class="label">Arrivals</div></div>
     </div>`
   },
   {
     id:'departures', defaultSpan:1, target:'calendar',
-    markup:`<div class="card homeStat homeStatWithIcon">
-      <span class="homeResize" aria-label="Resize widget">1×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="titleInline"><div class="small">Today</div><span class="homeWidgetIcon departures" aria-hidden="true"></span></div></div>
+    markup:`<div class="card homeStat">
+      <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon departure" aria-hidden="true"></span></div>
       <div class="homeStatBody"><div class="big">1</div><div class="label">Departures</div></div>
     </div>`
   },
   {
     id:'occupancy', defaultSpan:1, target:'profile',
-    markup:`<div class="card homeStat homeStatWithIcon">
-      <span class="homeResize" aria-label="Resize widget">1×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="titleInline"><div class="small">Occupancy</div><span class="homeWidgetIcon occupancy" aria-hidden="true"></span></div></div>
+    markup:`<div class="card homeStat">
+      <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeStatTop"><div class="small">Occupancy</div><span class="homeWidgetIcon occupancy" aria-hidden="true"></span></div>
       <div class="homeStatBody"><div class="big">67%</div><div class="label">2 / 3 villas</div></div>
     </div>`
   },
   {
     id:'messages', defaultSpan:1, target:'inbox',
-    markup:`<div class="card homeStat homeStatWithIcon">
-      <span class="homeResize" aria-label="Resize widget">1×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="titleInline"><div class="small">Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div></div>
+    markup:`<div class="card homeStat">
+      <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeStatTop"><div class="small">Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
       <div class="homeStatBody"><div class="big">2</div><div class="label">Unread messages</div></div>
     </div>`
   },
   {
     id:'checkout', defaultSpan:3, target:'detail-checkin',
     markup:`<div class="tile homeTile">
-      <span class="homeResize" aria-label="Resize widget">3×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon departures" aria-hidden="true"></span></div>
+      <span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon departure" aria-hidden="true"></span></div>
       <div class="homeTileTitleRow"><div class="tileTitle">Chen Family check-out</div></div>
       <div class="homeTileSubRow"><div><div class="tileSub">Villa Sari • 11:00 AM departure • Cleaning team assigned</div></div><span class="badge urgent">Priority</span></div>
       <div class="meta"><span>Ayu Ketut assigned</span><span>Due 3:00 PM</span></div>
@@ -424,8 +648,7 @@ const homeItems = [
   {
     id:'experience', defaultSpan:3, target:'detail-experience',
     markup:`<div class="tile homeTile">
-      <span class="homeResize" aria-label="Resize widget">3×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
+      <span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span>
       <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon experience" aria-hidden="true"></span></div>
       <div class="homeTileTitleRow"><div class="tileTitle">Rice planting experience</div></div>
       <div class="homeTileSubRow"><div><div class="tileSub">3 guests • 3:00 PM • Confirm pickup and guide timing</div></div><span class="badge ok">Confirmed</span></div>
@@ -433,93 +656,131 @@ const homeItems = [
     </div>`
   },
   {
-    id:'chen-message', defaultSpan:3, target:'detail-message-chen',
+    id:'chen-message', defaultSpan:2, target:'detail-message-chen',
     markup:`<div class="tile homeTile">
-      <span class="homeResize" aria-label="Resize widget">3×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
+      <span class="homeResize" aria-label="Resize widget">2×</span><span class="homeGrip" aria-hidden="true"></span>
       <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
       <div class="homeTileTitleRow"><div class="tileTitle">Chen Family</div></div>
-      <div class="homeTileSubRow"><div><div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div></div><span class="badge info">AI Draft</span></div>
+      <div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div>
     </div>`
   },
   {
-    id:'sarah-message', defaultSpan:3, target:'detail-message-sarah',
+    id:'sarah-message', defaultSpan:2, target:'detail-message-sarah',
     markup:`<div class="tile homeTile">
-      <span class="homeResize" aria-label="Resize widget">3×</span>
-      <span class="homeGrip" aria-hidden="true"></span>
+      <span class="homeResize" aria-label="Resize widget">2×</span><span class="homeGrip" aria-hidden="true"></span>
       <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
       <div class="homeTileTitleRow"><div class="tileTitle">Sarah & Tom</div></div>
-      <div class="homeTileSubRow"><div><div class="tileSub">“Can you recommend a romantic dinner spot?”</div></div><span class="badge urgent">Unread</span></div>
+      <div class="tileSub">“Can you recommend a romantic dinner spot?”</div>
     </div>`
+  },
+  {
+    id:'response-time', defaultSpan:1, target:'dashboard-hub',
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Response Time</div><div class="kpiIcon green" style="width:32px;height:32px;font-size:13px">💬</div></div><div class="homeStatBody"><div class="big">1.8m</div><div class="label">Below 2min target</div></div></div>`
+  },
+  {
+    id:'checklists-score', defaultSpan:1, target:'manuals-hub',
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Checklists</div><div class="kpiIcon blue" style="width:32px;height:32px;font-size:13px">📋</div></div><div class="homeStatBody"><div class="big">94%</div><div class="label">On-time completion</div></div></div>`
+  },
+  {
+    id:'experiences-score', defaultSpan:1, target:'marketplace-hub',
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Experiences</div><div class="kpiIcon purple" style="width:32px;height:32px;font-size:13px">✨</div></div><div class="homeStatBody"><div class="big">8</div><div class="label">$680 revenue</div></div></div>`
+  },
+  {
+    id:'compliance-score', defaultSpan:1, target:'manuals-hub',
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Compliance</div><div class="kpiIcon gold" style="width:32px;height:32px;font-size:13px">⭐</div></div><div class="homeStatBody"><div class="big">94%</div><div class="label">Owner standards met</div></div></div>`
+  },
+  {
+    id:'active-checklists-panel', defaultSpan:3, target:'manuals-hub',
+    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Active Checklists</div><span class="homeWidgetIcon priority" aria-hidden="true"></span></div><div class="homeTileTitleRow"><div class="tileTitle">Turnover: Chen Family</div></div><div class="homeTileSubRow"><div><div class="tileSub">Assigned to Ayu Ketut • Due 2:00 PM • 12 / 18 tasks complete</div></div><span class="badge urgent">1 Issue</span></div><div class="meta"><span>Started 7:00 AM</span><span>View checklist</span></div></div>`
+  },
+  {
+    id:'schedule-panel', defaultSpan:3, target:'calendar',
+    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Today's Schedule</div><span class="homeWidgetIcon occupancy" aria-hidden="true"></span></div><div class="homeTileTitleRow"><div class="tileTitle">No events scheduled for today</div></div><div class="tileSub">Use the calendar board to pin airport transfers, ceremonies, wellness bookings, and owner visits.</div></div>`
+  },
+  {
+    id:'experience-bookings-panel', defaultSpan:3, target:'marketplace-hub',
+    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Experience Bookings</div><span class="homeWidgetIcon experience" aria-hidden="true"></span></div><div class="homeTileTitleRow"><div class="tileTitle">Melukat + Rice Planting confirmed</div></div><div class="homeTileSubRow"><div><div class="tileSub">Chen Family • Mar 19 • 2 bookings confirmed</div></div><span class="badge ok">Confirmed</span></div></div>`
+  },
+  {
+    id:'quick-actions-panel', defaultSpan:3, target:'dashboard-hub',
+    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Quick Actions</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div><div class="tileSub">Send message to guest • Start new checklist • Suggest experience • Contact staff</div></div>`
   }
 ];
 let homeEditMode = false;
 let longPressTimer = null;
 let dragState = null;
-let homeLayoutState = loadHomeLayout();
 
 function getHomeItemById(id){
   return homeItems.find(item => item.id === id);
 }
+
 function defaultHomeOrder(){
   return homeItems.map(item => item.id);
 }
-function defaultHomeSpans(){
-  return Object.fromEntries(homeItems.map(item => [item.id, item.defaultSpan || 1]));
-}
-function normalizeSpan(span){
-  const n = Number(span);
-  return n === 1 || n === 2 || n === 3 ? n : 1;
-}
-function normalizeHomeLayout(raw){
-  const defaults = defaultHomeOrder();
-  const validIds = new Set(defaults);
-  const order = Array.isArray(raw?.order) ? raw.order.filter(id => validIds.has(id)) : [];
-  const finalOrder = [...order, ...defaults.filter(id => !order.includes(id))];
-  const spans = defaultHomeSpans();
-  const rawSpans = raw?.spans && typeof raw.spans === 'object' ? raw.spans : {};
-  Object.keys(rawSpans).forEach(id => {
-    if(validIds.has(id)) spans[id] = normalizeSpan(rawSpans[id]);
-  });
-  return { order: finalOrder, spans };
-}
+
 function loadHomeLayout(){
   try{
-    const raw = JSON.parse(localStorage.getItem(HOME_LAYOUT_KEY) || 'null');
-    return normalizeHomeLayout(raw);
+    const saved = JSON.parse(localStorage.getItem(HOME_LAYOUT_KEY) || '[]');
+    const validIds = new Set(defaultHomeOrder());
+    const filtered = saved.filter(id => validIds.has(id));
+    const missing = defaultHomeOrder().filter(id => !filtered.includes(id));
+    const finalOrder = [...filtered, ...missing];
+    return finalOrder.length ? finalOrder : defaultHomeOrder();
   }catch(err){
-    return normalizeHomeLayout(null);
+    return defaultHomeOrder();
   }
 }
-function persistHomeLayout(){
-  localStorage.setItem(HOME_LAYOUT_KEY, JSON.stringify(homeLayoutState));
+function loadHomeSpans(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(HOME_SPAN_KEY) || '{}');
+    const out = {};
+    homeItems.forEach(item => {
+      const raw = Number(saved[item.id]);
+      out[item.id] = [1,2,3].includes(raw) ? raw : item.defaultSpan;
+    });
+    return out;
+  }catch(err){
+    const out = {};
+    homeItems.forEach(item => out[item.id] = item.defaultSpan);
+    return out;
+  }
 }
-function updateHomeHint(){}
+
+function saveHomeLayout(){
+  const ids = [...document.querySelectorAll('#homeBoard .homeItem')].map(item => item.dataset.id);
+  localStorage.setItem(HOME_LAYOUT_KEY, JSON.stringify(ids));
+  const spans = {};
+  document.querySelectorAll('#homeBoard .homeItem').forEach(item => spans[item.dataset.id] = Number(item.dataset.span) || 1);
+  localStorage.setItem(HOME_SPAN_KEY, JSON.stringify(spans));
+}
+
+function updateHomeHint(){
+  const hint = document.getElementById('homeEditHint');
+  if(!hint) return;
+  hint.textContent = homeEditMode ? 'Drag tiles, then tap Done' : 'Touch and hold';
+}
+
 function renderHomeLayout(){
   const board = document.getElementById('homeBoard');
   if(!board) return;
-  board.innerHTML = homeLayoutState.order.map(id => {
+  const order = loadHomeLayout();
+  const spans = loadHomeSpans();
+  board.innerHTML = order.map(id => {
     const item = getHomeItemById(id);
     if(!item) return '';
-    const span = normalizeSpan(homeLayoutState.spans[id] ?? item.defaultSpan ?? 1);
-    const sizeLabel = `${span}×`;
-    return `<div class="homeItem" data-id="${item.id}" data-target="${item.target}" data-span="${span}" aria-label="Home widget">${item.markup}</div>`;
+    const span = spans[id] || item.defaultSpan || 1;
+    return `<div class="homeItem" data-id="${item.id}" data-target="${item.target}" data-span="${span}" style="${span > 1 ? `grid-column:span ${span}` : ''}">${item.markup}</div>`;
   }).join('');
-  board.querySelectorAll('.homeItem').forEach(el => {
-    const sizeBtn = el.querySelector('.homeResize');
-    if(sizeBtn){
-      sizeBtn.textContent = `${el.dataset.span}×`;
-      sizeBtn.title = `Resize widget: ${el.dataset.span} columns`;
-    }
-  });
   bindHomeDragHandlers();
   updateHomeHint();
 }
+
 function enableHomeEditMode(){
   homeEditMode = true;
   document.body.classList.add('home-edit-mode');
   updateHomeHint();
 }
+
 function disableHomeEditMode(){
   finishDrag();
   homeEditMode = false;
@@ -527,12 +788,7 @@ function disableHomeEditMode(){
   document.querySelectorAll('#homeBoard .homeItem').forEach(item => item.classList.remove('lift-ready'));
   updateHomeHint();
 }
-function resetHomeLayout(){
-  homeLayoutState = normalizeHomeLayout(null);
-  persistHomeLayout();
-  renderHomeLayout();
-  enableHomeEditMode();
-}
+
 function clearLongPress(item){
   if(longPressTimer){
     clearTimeout(longPressTimer);
@@ -542,6 +798,7 @@ function clearLongPress(item){
     item.classList.remove('lift-ready');
   }
 }
+
 function bindHomeDragHandlers(){
   document.querySelectorAll('#homeBoard .homeItem').forEach(item => {
     item.addEventListener('click', onHomeItemClick);
@@ -550,32 +807,18 @@ function bindHomeDragHandlers(){
     item.addEventListener('pointerup', onHomePointerEnd);
     item.addEventListener('pointercancel', onHomePointerEnd);
     item.addEventListener('contextmenu', e => e.preventDefault());
-    const resizeBtn = item.querySelector('.homeResize');
-    if(resizeBtn){
-      resizeBtn.addEventListener('click', e => {
+    const resize = item.querySelector('.homeResize');
+    if(resize){
+      resize.textContent = `${item.dataset.span}×`;
+      resize.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if(!homeEditMode) enableHomeEditMode();
-        cycleHomeItemSpan(item.dataset.id);
+        cycleHomeSpan(item);
       });
     }
   });
 }
-function cycleHomeItemSpan(id){
-  const current = normalizeSpan(homeLayoutState.spans[id] ?? 1);
-  const next = current === 3 ? 1 : current + 1;
-  homeLayoutState.spans[id] = next;
-  persistHomeLayout();
-  renderHomeLayout();
-}
-function saveHomeLayoutFromDOM(){
-  const board = document.getElementById('homeBoard');
-  homeLayoutState.order = [...board.querySelectorAll('.homeItem')].map(item => item.dataset.id);
-  board.querySelectorAll('.homeItem').forEach(item => {
-    homeLayoutState.spans[item.dataset.id] = normalizeSpan(item.dataset.span);
-  });
-  persistHomeLayout();
-}
+
 function onHomeItemClick(e){
   if(homeEditMode){
     e.preventDefault();
@@ -585,9 +828,9 @@ function onHomeItemClick(e){
   const target = e.currentTarget.dataset.target;
   if(target) go(target);
 }
+
 function onHomePointerDown(e){
   const item = e.currentTarget;
-  if(e.target.closest('.homeResize')) return;
   if(dragState) return;
   if(e.pointerType === 'mouse' && e.button !== 0) return;
   item._pressMeta = { x:e.clientX, y:e.clientY };
@@ -603,6 +846,7 @@ function onHomePointerDown(e){
     startDrag(item, e);
   }, 320);
 }
+
 function onHomePointerMove(e){
   const item = e.currentTarget;
   if(dragState && dragState.item === item){
@@ -617,6 +861,7 @@ function onHomePointerMove(e){
     clearLongPress(item);
   }
 }
+
 function onHomePointerEnd(e){
   const item = e.currentTarget;
   if(dragState && dragState.item === item){
@@ -627,16 +872,19 @@ function onHomePointerEnd(e){
   clearLongPress(item);
   item._pressMeta = null;
 }
+
 function startDrag(item, e){
   const board = document.getElementById('homeBoard');
   if(!board || dragState) return;
   clearLongPress(item);
   const rect = item.getBoundingClientRect();
   const placeholder = document.createElement('div');
-  const span = normalizeSpan(item.dataset.span);
   placeholder.className = 'homePlaceholder';
-  placeholder.dataset.span = span;
   placeholder.style.height = `${rect.height}px`;
+  if(Number(item.dataset.span) > 1){
+    placeholder.style.gridColumn = `span ${item.dataset.span}`;
+  }
+  item.after(placeholder);
   dragState = {
     item,
     placeholder,
@@ -644,8 +892,6 @@ function startDrag(item, e){
     offsetX: e.clientX - rect.left,
     offsetY: e.clientY - rect.top
   };
-  updatePlaceholderSpan(placeholder, span);
-  item.after(placeholder);
   item.classList.add('dragging');
   item.style.width = `${rect.width}px`;
   item.style.height = `${rect.height}px`;
@@ -659,26 +905,29 @@ function startDrag(item, e){
   window.addEventListener('pointerup', onGlobalDragEnd, {passive:false});
   window.addEventListener('pointercancel', onGlobalDragEnd, {passive:false});
 }
-function updatePlaceholderSpan(placeholder, span){
-  placeholder.dataset.span = span;
-  placeholder.style.gridColumn = span === 3 ? '1 / -1' : `span ${span}`;
-}
+
 function onGlobalDragMove(e){
   if(!dragState) return;
   e.preventDefault();
   moveDrag(e);
 }
+
 function moveDrag(e){
   if(!dragState) return;
   const { item, placeholder, board } = dragState;
   item.style.left = `${e.clientX - dragState.offsetX}px`;
   item.style.top = `${e.clientY - dragState.offsetY}px`;
+
   const hit = document.elementFromPoint(e.clientX, e.clientY);
   const over = hit && hit.closest('#homeBoard .homeItem');
   if(over && over !== item && over.parentNode === board){
     const rect = over.getBoundingClientRect();
-    const sameRow = Math.abs(e.clientY - (rect.top + rect.height / 2)) < rect.height * 0.38;
-    const insertAfter = sameRow ? e.clientX > rect.left + rect.width / 2 : e.clientY > rect.top + rect.height / 2;
+    let insertAfter;
+    if(item.dataset.span === '1' && over.dataset.span === '1' && Math.abs(e.clientY - (rect.top + rect.height / 2)) < rect.height * 0.35){
+      insertAfter = e.clientX > rect.left + rect.width / 2;
+    }else{
+      insertAfter = e.clientY > rect.top + rect.height / 2;
+    }
     if(insertAfter){
       over.after(placeholder);
     }else{
@@ -686,16 +935,19 @@ function moveDrag(e){
     }
     return;
   }
+
   const boardRect = board.getBoundingClientRect();
-  if(e.clientY > boardRect.bottom - 28){
+  if(e.clientY > boardRect.bottom - 24){
     board.appendChild(placeholder);
   }
 }
+
 function onGlobalDragEnd(e){
   if(!dragState) return;
   e.preventDefault();
   finishDrag();
 }
+
 function finishDrag(){
   if(!dragState) return;
   const { item, placeholder } = dragState;
@@ -711,16 +963,60 @@ function finishDrag(){
   item.style.margin = '';
   item.style.pointerEvents = '';
   placeholder.replaceWith(item);
-  saveHomeLayoutFromDOM();
+  saveHomeLayout();
   dragState = null;
 }
+
+function cycleHomeSpan(item){
+  const current = Number(item.dataset.span) || 1;
+  const next = current === 3 ? 1 : current + 1;
+  item.dataset.span = String(next);
+  item.style.gridColumn = next > 1 ? `span ${next}` : '';
+  const resize = item.querySelector('.homeResize');
+  if(resize) resize.textContent = `${next}×`;
+  saveHomeLayout();
+}
+
+function setGuestHubMode(mode){
+ const manual = document.getElementById('guestHubManual');
+ const map = document.getElementById('guestHubMap');
+ const manualBtn = document.getElementById('guestManualBtn');
+ const mapBtn = document.getElementById('guestMapBtn');
+ const manualOn = mode === 'manual';
+ if(manual) manual.style.display = manualOn ? '' : 'none';
+ if(map) map.style.display = manualOn ? 'none' : '';
+ if(manualBtn) manualBtn.classList.toggle('active', manualOn);
+ if(mapBtn) mapBtn.classList.toggle('active', !manualOn);
+}
+
+function renderCalendarGrid(){
+ const grid = document.getElementById('calendarGrid');
+ if(!grid) return;
+ grid.innerHTML = '';
+ const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+ // headings for full grid view
+ days.forEach(d=>{
+   const head = document.createElement('div');
+   head.className = 'small';
+   head.style.cssText = 'padding:8px 10px;text-align:center;font-weight:800';
+   head.textContent = d;
+   grid.appendChild(head);
+ });
+ for(let day=1; day<=31; day++){
+   const cell = document.createElement('div');
+   cell.className = 'calendarCell' + (day===14 ? ' active' : '');
+   cell.textContent = day;
+   grid.appendChild(cell);
+ }
+}
+
 function renderThemes(){
  const order = ['default','soft-product','minimal-mono','creative-library','bold-travel','neon-dashboard','art-grid','gradient-finance','habit-pill','stack-cards','modern-web'];
  document.getElementById('themeList').innerHTML = order.map((k,index)=>{
    const t = themes[k];
    const tag = index === 0 ? 'Current base' : 'Theme';
    return `
-   <div class="themeCard ${k==='soft-product'?'sel':''}" data-theme="${k}" onclick="applyTheme('${k}')">
+   <div class="themeCard ${k==='default'?'sel':''}" data-theme="${k}" onclick="applyTheme('${k}')">
      <div class="themeHeader">
        <div class="themeMeta">
          <div class="themeName">${t.label}</div>
@@ -739,6 +1035,8 @@ function getPage(id){ return document.getElementById(id); }
 function inferMainPage(id){
  if(rootPages.includes(id)) return id;
  if(id.startsWith('profile-') || id.startsWith('preferences-')) return 'profile';
+ if(id === 'dashboard-hub') return 'home';
+ if(id === 'manuals-hub' || id === 'guest-hub' || id === 'marketplace-hub' || id === 'providers-hub') return 'profile';
  if(id.startsWith('detail-message')) return 'inbox';
  if(id.startsWith('detail-task')) return 'tasks';
  if(id === 'detail-checkin' || id === 'detail-experience') return 'calendar';
@@ -751,8 +1049,6 @@ function showPage(id){
  page.classList.add('active');
  const main = inferMainPage(page.id);
  document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active', n.dataset.main === main));
- setChromeHidden(false);
- chromeState.lastY = 0;
  window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -838,7 +1134,7 @@ document.querySelectorAll('.chips button').forEach(btn=>{
 });
 
 
-const chromeState = { lastY: 0, ticking: false, hidden: false };
+const chromeState = { lastY: 0, ticking: false, hidden: false, stableY: 0 };
 function setChromeHidden(hidden){
  if(chromeState.hidden === hidden) return;
  chromeState.hidden = hidden;
@@ -849,13 +1145,16 @@ function onScrollChrome(){
  const delta = y - chromeState.lastY;
  const activePage = document.querySelector('.page.active');
  const pageId = activePage ? activePage.id : 'home';
- const allowHide = pageId !== 'preferences-theme' && pageId !== 'preferences-language';
- if(y < 36 || !allowHide){
+ const allowHide = !['preferences-theme','preferences-language'].includes(pageId);
+ if(y < 44 || !allowHide){
    setChromeHidden(false);
- }else if(delta > 10){
+   chromeState.stableY = y;
+ }else if(delta > 14 && y > chromeState.stableY + 26){
    setChromeHidden(true);
- }else if(delta < -8){
+   chromeState.stableY = y;
+ }else if(delta < -10){
    setChromeHidden(false);
+   chromeState.stableY = y;
  }
  chromeState.lastY = y;
  chromeState.ticking = false;
@@ -866,14 +1165,11 @@ window.addEventListener('scroll', () => {
    requestAnimationFrame(onScrollChrome);
  }
 }, { passive:true });
-document.addEventListener('pointerdown', () => {
- if(homeEditMode) setChromeHidden(false);
-}, { passive:true });
 
 renderThemes();
 renderHomeLayout();
-localStorage.setItem('sok-theme','soft-product');
-applyTheme('soft-product');
+renderCalendarGrid();
+applyTheme(localStorage.getItem('sok-theme') || 'default');
 applyLanguage(localStorage.getItem('sok-lang') || 'en');
 showPage('home');
 </script>
