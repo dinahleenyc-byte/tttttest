@@ -17,10 +17,12 @@
 html,body{min-height:100%}
 body{
  font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);
- letter-spacing:var(--tracking);font-size:calc(16px * var(--fontScale));transition:background .28s,color .28s
+ letter-spacing:var(--tracking);font-size:calc(16px * var(--fontScale));
+ transition:background .34s ease,color .34s ease;
+ text-rendering:optimizeLegibility;
 }
 button,input{font:inherit}
-.app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--pageGrad);position:relative;transition:.3s}
+.app{max-width:430px;margin:0 auto;min-height:100vh;background:var(--pageGrad);position:relative;transition:.34s ease}
 .page{display:none;min-height:100vh;padding-bottom:112px;animation:fade .22s ease}
 .page.active{display:block}
 @keyframes fade{from{opacity:.72;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
@@ -28,8 +30,8 @@ button,input{font:inherit}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .brand{font-size:28px;font-weight:800;letter-spacing:-.05em}
 .icon,.back{
- width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--panel) 92%, transparent);
- display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);cursor:pointer;color:var(--text);transition:.2s
+ width:42px;height:42px;border:1px solid color-mix(in srgb,var(--line) 82%, transparent);border-radius:16px;background:linear-gradient(180deg,var(--panel2) 0%, var(--panel) 100%);
+ display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(73,45,21,.06);cursor:pointer;color:var(--text);transition:.24s ease
 }
 .icon:hover,.back:hover,.nav:hover,.setting:hover,.themeCard:hover,.langCard:hover,.card:hover,.tile:hover{transform:translateY(-1px)}
 .search{display:flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:12px 14px;margin-top:12px;box-shadow:var(--shadow);transition:transform .34s cubic-bezier(.22,.61,.36,1),opacity .28s ease,max-height .34s cubic-bezier(.22,.61,.36,1),margin-top .34s cubic-bezier(.22,.61,.36,1),padding .34s cubic-bezier(.22,.61,.36,1),filter .34s ease,border-color .28s ease,box-shadow .28s ease;max-height:72px;opacity:1;overflow:hidden;filter:blur(0)}
@@ -152,17 +154,31 @@ body[data-theme="modern-web"] .card,body[data-theme="modern-web"] .tile,body[dat
 
 
 .homeTools{padding:4px 18px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.homeTools{padding:0 18px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.homeTools .row{gap:8px;flex-wrap:wrap}
 .homeHint{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:12px;color:var(--muted);font-weight:700}
-.homeDoneBtn{display:none;border:none;border-radius:999px;background:var(--primary);color:#fff;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
-body.home-edit-mode .homeDoneBtn{display:inline-flex}
+.homeEditBtn,.homeDoneBtn,.homeResetBtn{border:none;border-radius:999px;background:var(--primary);color:#fff;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
+.homeEditBtn{display:inline-flex}
+.homeDoneBtn,.homeResetBtn{display:none}
+.homeResetBtn{background:color-mix(in srgb,var(--panel2) 78%, var(--panel));color:var(--text);border:1px solid color-mix(in srgb,var(--line) 80%, transparent);box-shadow:none}
+body.home-edit-mode .homeEditBtn{display:none}
+body.home-edit-mode .homeDoneBtn,body.home-edit-mode .homeResetBtn{display:inline-flex}
 body.home-edit-mode .homeHint{background:color-mix(in srgb,var(--primary) 16%, var(--panel));color:var(--text)}
-.homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.homeBoard{padding-bottom:22px}
 .homeItem{position:relative;touch-action:manipulation;user-select:none;-webkit-user-select:none;transition:transform .22s ease, box-shadow .22s ease, opacity .2s ease}
-.homeItem[data-span="2"]{grid-column:span 2}
-.homeGrip{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 78%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2}
-.homeGrip::before{content:'⋮⋮';font-size:10px;line-height:1;letter-spacing:-1px;transform:rotate(90deg)}
-body.home-edit-mode .homeGrip{display:flex}
 body.home-edit-mode .homeItem{animation:wiggle .18s ease-in-out infinite alternate}
+body.home-edit-mode .homeItem .card,body.home-edit-mode .homeItem .tile{outline:1px dashed color-mix(in srgb,var(--primary) 18%, transparent);outline-offset:0}
+.homePlaceholder{border-radius:var(--radius);background:color-mix(in srgb,var(--primary) 8%, var(--panel));border:2px dashed color-mix(in srgb,var(--primary) 24%, transparent)}
+.homeGrip{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 78%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:3}
+.homeGrip::before{content:'⋮⋮';font-size:11px;line-height:1;letter-spacing:-1px;transform:rotate(90deg)}
+body.home-edit-mode .homeGrip{display:flex}
+.homeResize{position:absolute;left:12px;top:12px;min-width:44px;height:30px;padding:0 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--line) 82%, transparent);background:color-mix(in srgb,var(--panel) 86%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:3;font-size:11px;font-weight:800}
+body.home-edit-mode .homeResize{display:flex}
+.homeEditToast{display:none;margin:0 18px 14px;padding:10px 12px;border-radius:16px;background:color-mix(in srgb,var(--primary) 12%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:13px;color:var(--text)}
+body.home-edit-mode .homeEditToast{display:block}
+
+.homeItem[data-span="2"]{grid-column:span 2}
+
 body.home-edit-mode .homeItem:active{animation:none}
 .homeItem.dragging{z-index:80;opacity:.98;animation:none!important;box-shadow:0 26px 60px rgba(0,0,0,.20), var(--shadow);cursor:grabbing}
 .homeItem.dragging .box,.homeItem.dragging .card,.homeItem.dragging .tile{transform:scale(1.02)}
@@ -284,10 +300,15 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
 .homeBoard{padding:0 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
 .homeItem[data-span="2"]{grid-column:span 2}
 .homeItem[data-span="3"]{grid-column:span 3}
-.homeResize{position:absolute;left:12px;top:12px;min-width:34px;height:26px;padding:0 8px;border-radius:999px;border:1px solid color-mix(in srgb,var(--line) 82%, transparent);background:color-mix(in srgb,var(--panel) 86%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:2;font-size:11px;font-weight:800}
-body.home-edit-mode .homeResize{display:flex}
+
+.homeStat{position:relative;padding:18px;justify-content:flex-start;gap:16px}
 .homeStatTop,.homeTileTop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.homeStatTop{position:relative;display:block;min-height:28px}
+.homeStatTop .small{display:block;max-width:84px;line-height:1.1;padding-right:40px}
 .homeWidgetIcon{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background-position:center;background-repeat:no-repeat;background-size:contain;flex:0 0 auto}
+.homeStatTop .homeWidgetIcon,
+.homeStatTop .kpiIcon{position:absolute;top:0;right:0;margin:0}
+.homeStatTop .kpiIcon{width:24px;height:24px;font-size:15px;line-height:1}
 .homeWidgetIcon.arrival{color:var(--green)}
 .homeWidgetIcon.departure{color:var(--primary)}
 .homeWidgetIcon.occupancy{color:var(--muted)}
@@ -301,8 +322,8 @@ body.home-edit-mode .homeResize{display:flex}
 .homeWidgetIcon.messages::before{content:'◻'}
 .homeWidgetIcon.experience::before{content:'✦'}
 .homeWidgetIcon.priority::before{content:'!'}
-.homeStat .small{padding-right:28px}
 .homeStat .big{font-size:32px}
+.homeStatBody{display:grid;gap:8px}
 .homeStatTop .small{font-size:12px}
 .homeTileTitleRow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .homeTileSubRow{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:12px}
@@ -327,6 +348,68 @@ body.home-edit-mode .homeResize{display:flex}
 .messageBubble .time{margin-top:10px;font-size:12px;color:var(--muted)}
 .messageAssist{display:flex;gap:8px;flex-wrap:wrap}
 .messageAssist .badge{padding:7px 10px}
+
+.search{border-radius:999px;background:linear-gradient(180deg,var(--panel2) 0%, var(--panel) 100%)}
+.search span{opacity:.7}
+.title,.tileTitle,h1,h2,h3{letter-spacing:-.045em}
+.small{letter-spacing:.02em;text-transform:none}
+.homeStat,.homeTile,.moduleCard,.marketplaceCard,.providerCard,.messageCard{position:relative}
+.homeStat::after,.homeTile::after,.setting::after{
+ content:'';position:absolute;inset:auto 14px 10px 14px;height:1px;background:linear-gradient(90deg,transparent 0%, rgba(239,106,50,.08) 18%, rgba(239,106,50,.05) 82%, transparent 100%);pointer-events:none
+}
+.homeStat{border-radius:26px}
+.homeTile{border-radius:28px}
+.sectionTitle{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.setting{border-radius:22px}
+.themeCard,.langCard{border-radius:22px}
+.primaryBtn,.homeEditBtn,.homeDoneBtn,.homeResetBtn,.actionBtn{
+ border-radius:999px
+}
+.bottom{background:linear-gradient(180deg,rgba(251,247,241,.82) 0%,rgba(251,247,241,.96) 100%);box-shadow:0 -10px 30px rgba(73,45,21,.06)}
+.bottom .nav{border-radius:18px;transition:background .24s ease,color .24s ease,transform .24s ease}
+.bottom .nav.active{background:color-mix(in srgb,var(--primary) 10%, var(--panel));}
+.homeEditToast{background:linear-gradient(180deg,color-mix(in srgb,var(--primary) 10%, var(--panel)) 0%, color-mix(in srgb,var(--primary) 4%, var(--panel2)) 100%);border-radius:18px}
+.homeStatTop .small,.homeTileTop .homeMetaTag{font-weight:700}
+.homeMetaTag{background:linear-gradient(180deg,color-mix(in srgb,var(--primary) 7%, var(--panel2)) 0%, color-mix(in srgb,var(--primary) 10%, var(--panel)) 100%)}
+.homeMetaTag.dot::before{box-shadow:0 0 0 4px rgba(239,106,50,.08)}
+.kpiIcon.green,.kpiIcon.blue,.kpiIcon.purple,.kpiIcon.gold{
+ border-radius:999px;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+}
+.kpiIcon.green{background:linear-gradient(180deg,#dfeee7 0%,#d0e5db 100%)}
+.kpiIcon.blue{background:linear-gradient(180deg,#e9eff8 0%,#dde7f4 100%)}
+.kpiIcon.purple{background:linear-gradient(180deg,#efe6f8 0%,#e3d7f0 100%)}
+.kpiIcon.gold{background:linear-gradient(180deg,#f6ecd7 0%,#efe1bf 100%)}
+.hero .eyebrow{letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:34px}
+
+
+.rfIcon{--rf-color:var(--primary);--rf-bg:color-mix(in srgb,var(--primary) 10%, var(--panel));width:44px;height:44px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--rf-bg) 0%, color-mix(in srgb,var(--rf-bg) 72%, #fff 28%) 100%);color:var(--rf-color);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 6px 14px rgba(73,45,21,.05);position:relative;flex:0 0 auto}
+.rfIcon.sm{width:34px;height:34px;border-radius:12px}
+.rfIcon::before{content:'';width:22px;height:22px;background:currentColor;-webkit-mask:var(--rf-mask) center/contain no-repeat;mask:var(--rf-mask) center/contain no-repeat}
+.kpiIcon.rf{font-size:0}
+.rfIcon.orange{--rf-color:var(--primary);--rf-bg:color-mix(in srgb,var(--primary) 12%, var(--panel))}
+.rfIcon.sage{--rf-color:var(--green);--rf-bg:color-mix(in srgb,var(--green) 14%, var(--panel))}
+.rfIcon.gold{--rf-color:var(--amber);--rf-bg:color-mix(in srgb,var(--amber) 14%, var(--panel))}
+.rfIcon.ink{--rf-color:var(--text);--rf-bg:color-mix(in srgb,var(--text) 8%, var(--panel))}
+.rfIcon.plum{--rf-color:#9d6fe8;--rf-bg:rgba(157,111,232,.12)}
+.rfIcon.teal{--rf-color:#4b8f93;--rf-bg:rgba(75,143,147,.12)}
+.rfIcon.comm{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M5 5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H11l-4.8 3.6c-.53.4-1.2-.02-1.2-.68V16H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z'/%3E%3C/svg%3E")}
+.rfIcon.board{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9 3h6a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2V4a1 1 0 0 1 1-1Zm1 4H8v1h2V7Zm4 0h-2v1h2V7Zm-5.4 6.1 1.5 1.5 4-4 1.4 1.4-5.4 5.4-2.9-2.9 1.4-1.4Z'/%3E%3C/svg%3E")}
+.rfIcon.spark{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m12 2 1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2Zm7 12 1 2.9L23 18l-3 1.1L19 22l-1.1-2.9L15 18l2.9-1.1L19 14ZM6 15l.9 2.2L9 18l-2.1.8L6 21l-.8-2.2L3 18l2.2-.8L6 15Z'/%3E%3C/svg%3E")}
+.rfIcon.star{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='m12 2.7 2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15l-4.8 2.6.9-5.4L4.2 8.4l5.4-.8L12 2.7Zm0 4.4-1.2 2.4-2.7.4 1.9 1.9-.4 2.7 2.4-1.3 2.4 1.3-.4-2.7 1.9-1.9-2.7-.4L12 7.1Z'/%3E%3C/svg%3E")}
+.rfIcon.signal{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='18' r='2' fill='black'/%3E%3Cpath fill='black' d='M7.8 14.8a6 6 0 0 1 8.4 0l1.4-1.4a8 8 0 0 0-11.2 0l1.4 1.4Zm-2.8-2.8a10 10 0 0 1 14 0l1.4-1.4a12 12 0 0 0-16.8 0L5 12Zm5.6 5.6a2 2 0 0 1 2.8 0l1.4-1.4a4 4 0 0 0-5.6 0l1.4 1.4Z'/%3E%3C/svg%3E")}
+.rfIcon.key{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M14 4a6 6 0 0 0-4.9 9.5l-5.3 5.3a1 1 0 0 0 .7 1.7h2.2V18h2v-2h2v-2h1.8l.6-.6A6 6 0 1 0 14 4Zm0 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z'/%3E%3C/svg%3E")}
+.rfIcon.beacon{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M10 3h4l1 5 3.5 6.5a1 1 0 0 1-.88 1.5H6.38A1 1 0 0 1 5.5 14.5L9 8l1-5Zm1 15h2a3 3 0 0 1-2 2.8A3 3 0 0 1 11 18Zm-5.2-7.5 1.6-.8-1-2-1.8.9 1.2 1.9Zm12.4 0-1.2-1.9 1.8-.9 1 2-1.6.8Z'/%3E%3C/svg%3E")}
+.rfIcon.villa{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3 12.2 12 5l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-7.8Zm5.7-1.8h6.6v1.8H8.7v-1.8Z'/%3E%3C/svg%3E")}
+.rfIcon.calendar{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7 2h2v3H7V2Zm8 0h2v3h-2V2ZM5 5h14a2 2 0 0 1 2 2v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a2 2 0 0 1 2-2Zm0 5v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8H5Zm3 2h3v3H8v-3Z'/%3E%3C/svg%3E")}
+.rfIcon.partners{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7.5 12A3.5 3.5 0 1 0 7.5 5a3.5 3.5 0 0 0 0 7Zm9 0A3.5 3.5 0 1 0 16.5 5a3.5 3.5 0 0 0 0 7ZM3 19a4.5 4.5 0 0 1 9 0v1H3v-1Zm9 1v-1a5.9 5.9 0 0 0-1.1-3.4A4.5 4.5 0 0 1 21 19v1h-9Z'/%3E%3C/svg%3E")}
+.rfIcon.pin{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7Zm0 3.5A3.5 3.5 0 1 0 12 12.5 3.5 3.5 0 0 0 12 5.5Z'/%3E%3C/svg%3E")}
+.rfIcon.cloche{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M11 5a1 1 0 1 1 2 0h.5A7.5 7.5 0 0 1 21 12.5V14H3v-1.5A7.5 7.5 0 0 1 10.5 5H11ZM4 16h16v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2Z'/%3E%3C/svg%3E")}
+.rfIcon.wellness{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7 17c2.5 0 3.5-1.8 4.3-3.6C12 11.8 13 10 15.5 10c1.4 0 2.4.4 3.5 1.4l1.2-1.5C18.8 8.6 17.3 8 15.5 8 12 8 10.6 10.4 9.7 12.4 9 14 8.4 15 7 15c-1.4 0-2.3-.4-3.5-1.4l-1.2 1.5C3.7 16.4 5.2 17 7 17Zm.2-7c1.7 0 3-1 4.1-2.8C12.5 5.1 13.1 4 14.6 4c1 0 1.8.3 2.8 1.1l1.2-1.5C17.4 2.6 16.1 2 14.6 2c-2.7 0-3.9 1.9-5 3.7C8.7 7 8 8 7.2 8c-.8 0-1.4-.3-2.6-1.1L3.4 8.4C4.8 9.5 5.9 10 7.2 10Z'/%3E%3C/svg%3E")}
+.rfIcon.transport{--rf-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6 8 4 12v5h1.5a2.5 2.5 0 0 0 5 0h3a2.5 2.5 0 0 0 5 0H20v-5l-2-4H6Zm1.2 2h9.6l1 2H6.2l1-2ZM8 18.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm8 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z'/%3E%3C/svg%3E")}
+.dashboardPill .rfIcon{width:30px;height:30px;border-radius:12px}
+
 @media (max-width:380px){
   .stayGrid,.featureGrid{grid-template-columns:1fr}
   .calendarGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -354,23 +437,21 @@ body.home-edit-mode .homeResize{display:flex}
     <div class="hero">
       <div class="eyebrow">Thursday, March 12, 2026</div>
       <h1>Good morning, Wayan</h1>
-      <p class="sub">Villa Sari is running smoothly. You have 2 arrivals, 1 departure, and 2 unread guest conversations.</p>
+      <p class="sub">Today is focused on one checkout, one rice-planting experience, and two guest conversations that still need a response.</p>
     </div>
     <div class="homeTools">
-      <div>
-        <div class="title">Home layout</div>
-        <div class="small">Press and hold to rearrange. Resize cards from 1, 2, or 3 columns.</div>
-      </div>
+      <span id="homeEditHint" class="homeHint">Touch and hold</span>
       <div class="row" style="gap:8px">
-        <span id="homeEditHint" class="homeHint">Touch and hold</span>
+        <button id="homeResetBtn" class="homeResetBtn" type="button" onclick="resetHomeLayout()">Reset</button>
         <button id="homeDoneBtn" class="homeDoneBtn" type="button" onclick="disableHomeEditMode()">Done</button>
       </div>
     </div>
+    <div class="homeEditToast">Drag by the handle on the right. Tap the size pill on the left to switch between 1, 2, and 3 columns.</div>
     <div id="homeBoard" class="homeBoard"></div>
   </section>
 
 
-  <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">Compact guest threads designed to feel native on mobile. Open any conversation for the full context and quick reply actions.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI drafts</button></div><div class="inboxShell"><label class="search"><span>⌕</span><input placeholder="Search conversations..."></label><div class="inboxThreadList"><div class="inboxThreadCard" onclick="go('detail-message-chen')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">C</div><div class="inboxMeta"><div class="inboxName">Chen Family</div><div class="small">Villa Sari • Temple visit tomorrow</div></div></div><div class="inboxUnread">1</div></div><div class="inboxSnippet">Thank you! We're excited for the temple visit. What time should we be ready and should the kids wear anything specific?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">AI draft ready</span><span class="inboxPill">Departure</span></div><div class="small">1:30 PM</div></div></div><div class="inboxThreadCard" onclick="go('detail-message-sarah')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">S</div><div class="inboxMeta"><div class="inboxName">Sarah &amp; Tom</div><div class="small">Villa Bambu • Dining request</div></div></div><span class="badge urgent">Unread</span></div><div class="inboxSnippet">Can you recommend a romantic dinner spot for tomorrow night and arrange transport after dessert?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">Needs manager</span></div><div class="small">11:10 AM</div></div></div></div></section>
+  <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">A calmer mobile inbox focused on unread threads, AI-ready drafts, and the next best reply.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI drafts</button></div><div class="inboxShell"><label class="search"><span>⌕</span><input placeholder="Search conversations..."></label><div class="inboxThreadList"><div class="inboxThreadCard" onclick="go('detail-message-chen')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">C</div><div class="inboxMeta"><div class="inboxName">Chen Family</div><div class="small">Villa Sari • Temple visit tomorrow</div></div></div><div class="inboxUnread">1</div></div><div class="inboxSnippet">Thank you! We're excited for the temple visit. What time should we be ready and should the kids wear anything specific?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">AI draft ready</span><span class="inboxPill">Departure</span></div><div class="small">1:30 PM</div></div></div><div class="inboxThreadCard" onclick="go('detail-message-sarah')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">S</div><div class="inboxMeta"><div class="inboxName">Sarah &amp; Tom</div><div class="small">Villa Bambu • Dining request</div></div></div><span class="badge urgent">Unread</span></div><div class="inboxSnippet">Can you recommend a romantic dinner spot for tomorrow night and arrange transport after dessert?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">Needs manager</span></div><div class="small">11:10 AM</div></div></div></div></section>
 
   <section id="calendar" class="page"><div class="hero"><div class="eyebrow">Scheduling</div><h1>Calendar</h1><p class="sub">Villa bookings, experiences, and maintenance in one place.</p></div><div class="calendar"><div class="row" style="margin-bottom:16px"><div class="row"><button class="icon">‹</button><div class="title">March 2026</div><button class="icon">›</button></div><div class="row"><button class="secondary btn" style="padding:10px 12px">Month</button><button class="secondary btn" style="padding:10px 12px">Week</button></div></div><div class="chips" style="padding:0 0 12px"><button>Booked (Airbnb)</button><button>Booked (Direct)</button><button>Available</button><button>Experience</button><button>Maintenance</button></div><div class="calendarGrid" id="calendarGrid"></div></div></section>
 
@@ -396,21 +477,21 @@ body.home-edit-mode .homeResize{display:flex}
           <div><div class="eyebrow" style="margin-bottom:6px">Good morning,</div><div class="dashboardHeroName">Wayan Sudarta</div><div class="sub">Villa Manager • Villa Sari</div></div>
           <div class="dashboardHeroDate"><strong>14</strong>Mar 2026</div>
         </div>
-        <div class="dashboardPills"><div class="dashboardPill">👥 Current Guest: <strong>Chen Family</strong></div><div class="dashboardPill">🕘 Checkout: <strong>Today 11am</strong></div></div>
+        <div class="dashboardPills"><div class="dashboardPill"><span class="rfIcon sm sage partners"></span>Current Guest: <strong>Chen Family</strong></div><div class="dashboardPill"><span class="rfIcon sm orange calendar"></span>Checkout: <strong>Today 11am</strong></div></div>
       </div>
     </div>
     <div class="kpiGrid">
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Response Time</div><div class="kpiNumber">1.8m</div><div class="kpiCaption" style="color:var(--green)">↗ Below 2min target</div></div><div class="kpiIcon green">💬</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Checklists</div><div class="kpiNumber">94%</div><div class="kpiCaption">On-time completion</div></div><div class="kpiIcon blue">📋</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Experiences</div><div class="kpiNumber">8</div><div class="kpiCaption">$680 revenue</div></div><div class="kpiIcon purple">✨</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Compliance</div><div class="kpiNumber">94%</div><div class="kpiCaption">Owner standards met</div></div><div class="kpiIcon gold">⭐</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Response Time</div><div class="kpiNumber">1.8m</div><div class="kpiCaption" style="color:var(--green)">↗ Below 2min target</div></div><div class="kpiIcon rf"><span class="rfIcon sage comm"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Checklists</div><div class="kpiNumber">94%</div><div class="kpiCaption">On-time completion</div></div><div class="kpiIcon rf"><span class="rfIcon teal board"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Experiences</div><div class="kpiNumber">8</div><div class="kpiCaption">$680 revenue</div></div><div class="kpiIcon rf"><span class="rfIcon plum spark"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Compliance</div><div class="kpiNumber">94%</div><div class="kpiCaption">Owner standards met</div></div><div class="kpiIcon rf"><span class="rfIcon gold star"></span></div></div></div>
     </div>
     <div class="panelStack">
       <div class="panelCard"><div class="panelHead"><div class="panelTitle">✅ Active Checklists</div><button class="panelLink" onclick="go('manuals-hub')">View All</button></div><div class="checklistCard"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Turnover: Chen Family</div><div class="checklistMeta">Assigned to Ayu Ketut • Due 2:00 PM</div></div><div style="text-align:right"><div class="tileTitle" style="font-size:16px">12/18</div><div class="small">tasks</div></div></div><div style="display:flex;gap:8px;margin-top:10px"><span class="badge info">In Progress</span><span class="badge urgent">1 Issue</span></div><div class="progressSlim"><span style="width:67%"></span></div><div class="checklistMeta">🕘 Started 7:00 AM</div></div><div class="checklistCard"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Turnover: Sarah &amp; Tom Johnson</div><div class="checklistMeta">Assigned to Wayan Sudarta • Due 1:00 PM</div></div><div style="text-align:right"><div class="tileTitle" style="font-size:16px">0/8</div><div class="small">tasks</div></div></div><div class="progressSlim"><span style="width:0%"></span></div></div></div>
       <div class="panelCard"><div class="panelHead"><div class="panelTitle">💬 Recent Messages</div><button class="panelLink" onclick="go('inbox')">View All</button></div><div class="messageCard"><div class="messageAvatar">C</div><div class="messageContent"><div class="tileTitle" style="font-size:18px">Chen Family</div><div class="tileSub">Thank you! We're excited for the temple visit tomorrow...</div><div class="messageTime">1:30 PM</div></div><span class="badge ok">1</span></div><div class="messageCard"><div class="messageAvatar">S</div><div class="messageContent"><div class="tileTitle" style="font-size:18px">Sarah &amp; Tom Johnson</div><div class="tileSub">Looking forward to our stay! Can you recommend...</div><div class="messageTime">8:15 AM</div></div></div><div class="messageCard"><div class="messageAvatar">J</div><div class="messageContent"><div class="tileTitle" style="font-size:18px">Johnson Group</div><div class="tileSub">Is late check-out possible on Sunday?</div><div class="messageTime">3:45 PM</div></div></div></div>
-      <div class="panelCard"><div class="panelHead"><div class="panelTitle">📅 Today's Schedule</div><button class="panelLink" onclick="go('calendar')">Full Calendar</button></div><div class="emptyState"><div class="emptyIcon">📅</div><div class="tileTitle" style="font-size:17px">No events scheduled for today</div></div></div>
+      <div class="panelCard"><div class="panelHead"><div class="panelTitle">Today's Schedule</div><button class="panelLink" onclick="go('calendar')">Full Calendar</button></div><div class="emptyState"><div class="emptyIcon"><span class="rfIcon teal calendar"></span></div><div class="tileTitle" style="font-size:17px">No events scheduled for today</div></div></div>
       <div class="panelCard"><div class="panelHead"><div class="panelTitle">✨ Experience Bookings</div><button class="panelLink" onclick="go('marketplace-hub')">View All</button></div><div class="experienceRow"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Melukat Purification Ceremony</div><div class="checklistMeta">Chen Family • Mar 19 • 5:00 AM • 3 guests</div></div><span class="badge" style="background:var(--text);color:var(--panel)">Confirmed</span></div></div><div class="experienceRow"><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Rice Planting with Made</div><div class="checklistMeta">Chen Family • Mar 19 • 2:00 PM • 3 guests</div></div><span class="badge" style="background:var(--text);color:var(--panel)">Confirmed</span></div></div></div>
-      <div class="panelCard"><div class="panelHead"><div class="panelTitle">⚡ Quick Actions</div></div><button class="quickBtn" onclick="go('inbox')">💬 Send Message to Guest</button><button class="quickBtn" onclick="go('manuals-hub')">📋 Start New Checklist</button><button class="quickBtn" onclick="go('marketplace-hub')">✨ Suggest Experience</button><button class="quickBtn" onclick="go('providers-hub')">📞 Contact Staff</button></div>
+      <div class="panelCard"><div class="panelHead"><div class="panelTitle">⚡ Quick Actions</div></div><button class="quickBtn" onclick="go('inbox')">Send Message to Guest</button><button class="quickBtn" onclick="go('manuals-hub')">Start New Checklist</button><button class="quickBtn" onclick="go('marketplace-hub')">Suggest Experience</button><button class="quickBtn" onclick="go('providers-hub')">Contact Staff</button></div>
     </div>
   </section>
 
@@ -418,32 +499,32 @@ body.home-edit-mode .homeResize{display:flex}
     <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Operations</div><div class="tileTitle" style="font-size:30px">Operating Manuals</div><p class="sub">Digital checklists for consistent villa operations.</p></div>
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Start New Checklist</button></div>
     <div class="kpiGrid">
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active</div><div class="kpiNumber">1</div></div><div class="kpiIcon blue">▶</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Scheduled</div><div class="kpiNumber">1</div></div><div class="kpiIcon purple">🗓</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Issues</div><div class="kpiNumber">2</div></div><div class="kpiIcon gold">!</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Compliance</div><div class="kpiNumber">94%</div></div><div class="kpiIcon green">↗</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active</div><div class="kpiNumber">1</div></div><div class="kpiIcon rf"><span class="rfIcon teal board"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Scheduled</div><div class="kpiNumber">1</div></div><div class="kpiIcon rf"><span class="rfIcon plum calendar"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Issues</div><div class="kpiNumber">2</div></div><div class="kpiIcon rf"><span class="rfIcon gold beacon"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Compliance</div><div class="kpiNumber">94%</div></div><div class="kpiIcon rf"><span class="rfIcon sage star"></span></div></div></div>
     </div>
     <div class="chips"><button class="active">Active (1)</button><button>Scheduled (1)</button><button>Completed (0)</button><button>Maintenance (2)</button><button>Owner Standards</button></div>
-    <div class="panelStack"><div class="panelCard"><div style="display:flex;gap:8px;margin-bottom:10px"><span class="badge info">In Progress</span><span class="badge urgent">1 Issue</span></div><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Turnover: Chen Family</div><div class="checklistMeta">Checkout: Today 11am • Checkin: Today 3pm</div><div class="checklistMeta">👤 Ayu Ketut &nbsp;&nbsp; 🕘 Started 7:00 AM</div></div><div style="text-align:right"><div class="tileTitle" style="font-size:16px">12/18</div><div class="small">tasks done</div></div></div><div class="progressSlim"><span style="width:67%"></span></div><div class="row" style="margin-top:12px"><div class="checklistMeta">67% complete</div><button class="secondary btn" style="padding:12px 16px;background:var(--text);color:var(--panel);border:none">Resume ›</button></div></div></div>
+    <div class="panelStack"><div class="panelCard"><div style="display:flex;gap:8px;margin-bottom:10px"><span class="badge info">In Progress</span><span class="badge urgent">1 Issue</span></div><div class="checklistRow"><div><div class="tileTitle" style="font-size:18px">Turnover: Chen Family</div><div class="checklistMeta">Checkout: Today 11am • Checkin: Today 3pm</div><div class="checklistMeta">Ayu Ketut &nbsp;&nbsp; • Started 7:00 AM</div></div><div style="text-align:right"><div class="tileTitle" style="font-size:16px">12/18</div><div class="small">tasks done</div></div></div><div class="progressSlim"><span style="width:67%"></span></div><div class="row" style="margin-top:12px"><div class="checklistMeta">67% complete</div><button class="secondary btn" style="padding:12px 16px;background:var(--text);color:var(--panel);border:none">Resume ›</button></div></div></div>
   </section>
 
   <section id="guest-hub" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest Experience</div><div class="tileTitle" style="font-size:30px">Guest Experience Platform</div><p class="sub">Digital villa manual and local guide.</p></div>
+    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest Experience</div><div class="tileTitle" style="font-size:30px">Guest Experience Platform</div><p class="sub">Villa manual, local guide, and nearby recommendations in one guest-facing flow.</p></div>
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button id="guestManualBtn" class="togglePill active" onclick="setGuestHubMode('manual')">Villa Manual</button><button id="guestMapBtn" class="togglePill" onclick="setGuestHubMode('map')">Local Map</button></div>
     <div class="dashboardShell"><div class="dashboardHeroCard"><div class="dashboardHeroTop"><div><div class="eyebrow" style="margin-bottom:6px">Current Guest</div><div class="dashboardHeroName">Chen Family</div><div class="sub">Check-in: 3/18/2025 &nbsp; • &nbsp; Check-out: 3/25/2025</div></div><div class="dashboardHeroDate"><strong>-354</strong>nights left</div></div></div></div>
     <div id="guestHubManual">
       <div class="featureGrid">
-        <div class="featureTile"><div class="kpiIcon blue">📶</div><div>WiFi</div></div>
-        <div class="featureTile"><div class="kpiIcon purple">🗝</div><div>Keys</div></div>
-        <div class="featureTile"><div class="kpiIcon gold">📞</div><div>Emergency</div></div>
-        <div class="featureTile"><div class="kpiIcon green">💬</div><div>Message Us</div></div>
+        <div class="featureTile"><div class="kpiIcon rf"><span class="rfIcon teal signal"></span></div><div>WiFi</div></div>
+        <div class="featureTile"><div class="kpiIcon rf"><span class="rfIcon plum key"></span></div><div>Keys</div></div>
+        <div class="featureTile"><div class="kpiIcon rf"><span class="rfIcon gold beacon"></span></div><div>Emergency</div></div>
+        <div class="featureTile"><div class="kpiIcon rf"><span class="rfIcon sage comm"></span></div><div>Message Us</div></div>
       </div>
       <div class="sceneGrid">
         <div class="sceneCard"><div class="sceneImage living"></div><div class="sceneCardBody"><div><div class="tileTitle">Living Room</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
         <div class="sceneCard"><div class="sceneImage kitchen"></div><div class="sceneCardBody"><div><div class="tileTitle">Kitchen</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
         <div class="sceneCard"><div class="sceneImage bedrooms"></div><div class="sceneCardBody"><div><div class="tileTitle">Bedrooms</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
         <div class="sceneCard"><div class="sceneImage pool"></div><div class="sceneCardBody"><div><div class="tileTitle">Pool &amp; Garden</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
-        <div class="panelCard stayCard"><div class="tileTitle" style="font-size:24px">Your Stay</div><div class="stayGrid"><div class="stayItem"><div class="kpiIcon blue">🕘</div><div><div class="small">Check-in</div><div class="tileTitle" style="font-size:18px">3/18/2025 3:00 PM</div></div></div><div class="stayItem"><div class="kpiIcon blue">🕘</div><div><div class="small">Check-out</div><div class="tileTitle" style="font-size:18px">3/25/2025 11:00 AM</div></div></div><div class="stayItem"><div class="kpiIcon blue">📶</div><div><div class="small">WiFi</div><div class="tileTitle" style="font-size:18px">VillaSari_Guest</div></div></div><div class="stayItem"><div class="kpiIcon purple">🗝</div><div><div class="small">Password</div><div class="tileTitle" style="font-size:18px">Ubud2025!</div></div></div></div></div>
+        <div class="panelCard stayCard"><div class="tileTitle" style="font-size:24px">Your Stay</div><div class="stayGrid"><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-in</div><div class="tileTitle" style="font-size:18px">3/18/2025 3:00 PM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-out</div><div class="tileTitle" style="font-size:18px">3/25/2025 11:00 AM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal signal"></span></div><div><div class="small">WiFi</div><div class="tileTitle" style="font-size:18px">VillaSari_Guest</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon plum key"></span></div><div><div class="small">Password</div><div class="tileTitle" style="font-size:18px">Ubud2025!</div></div></div></div></div>
       </div>
     </div>
     <div id="guestHubMap" style="display:none">
@@ -464,9 +545,9 @@ body.home-edit-mode .homeResize{display:flex}
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Add Experience</button></div>
     <div class="kpiGrid">
       <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Total Bookings</div><div class="kpiNumber">2</div></div><div class="kpiIcon blue">🗓</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Revenue</div><div class="kpiNumber">$200</div></div><div class="kpiIcon green">$</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Providers</div><div class="kpiNumber">3</div></div><div class="kpiIcon purple">👥</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Avg Rating</div><div class="kpiNumber">4.8</div></div><div class="kpiIcon gold">⭐</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Revenue</div><div class="kpiNumber">$200</div></div><div class="kpiIcon rf"><span class="rfIcon sage spark"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Providers</div><div class="kpiNumber">3</div></div><div class="kpiIcon rf"><span class="rfIcon plum partners"></span></div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Avg Rating</div><div class="kpiNumber">4.8</div></div><div class="kpiIcon rf"><span class="rfIcon gold star"></span></div></div></div>
     </div>
     <div class="chips"><button class="active">Browse (6)</button><button>Bookings (2)</button><button>Providers (3)</button><button>Settings</button></div>
     <div class="dashboardShell" style="padding-top:14px"><label class="search"><span>⌕</span><input placeholder="Search experiences..."></label></div>
@@ -485,14 +566,14 @@ body.home-edit-mode .homeResize{display:flex}
     <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Providers</div><div class="tileTitle" style="font-size:30px">Service Providers</div><p class="sub">Manage your local service provider network.</p></div>
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Add Provider</button></div>
     <div class="kpiGrid">
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active Providers</div><div class="kpiNumber">3</div></div><div class="kpiIcon green">👥</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active Providers</div><div class="kpiNumber">3</div></div><div class="kpiIcon rf"><span class="rfIcon sage partners"></span></div></div></div>
       <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Pending Approval</div><div class="kpiNumber">0</div></div><div class="kpiIcon gold">🕘</div></div></div>
-      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Avg Rating</div><div class="kpiNumber">4.8</div></div><div class="kpiIcon gold">⭐</div></div></div>
+      <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Avg Rating</div><div class="kpiNumber">4.8</div></div><div class="kpiIcon rf"><span class="rfIcon gold star"></span></div></div></div>
       <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Total Bookings</div><div class="kpiNumber">170</div></div><div class="kpiIcon blue">🗓</div></div></div>
     </div>
     <div class="chips"><button class="active">Active (3)</button><button>Pending (0)</button><button>All Providers</button></div>
     <div class="providerGrid">
-      <div class="providerCardWide"><div class="providerTop"><div class="providerLeft"><div class="providerAvatar"></div><div><div class="tileTitle">Ketut Sudarta</div><div style="margin-top:8px"><span class="badge info">Transport</span></div></div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</div></div><div class="checklistMeta" style="margin-top:14px">Born and raised in Ubud. 15 years experience as a driver. Knows all the hidden gems!</div><div class="checklistMeta" style="margin-top:10px">🗓 47 bookings &nbsp;&nbsp; $0 earned</div><div class="checklistMeta" style="margin-top:6px">🚙 Toyota Innova</div><div class="providerActions"><button>💬 Message</button><button>📞 Call</button></div></div>
+      <div class="providerCardWide"><div class="providerTop"><div class="providerLeft"><div class="providerAvatar"></div><div><div class="tileTitle">Ketut Sudarta</div><div style="margin-top:8px"><span class="badge info">Transport</span></div></div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</div></div><div class="checklistMeta" style="margin-top:14px">Born and raised in Ubud. 15 years experience as a driver. Knows all the hidden gems!</div><div class="checklistMeta" style="margin-top:10px">🗓 47 bookings &nbsp;&nbsp; $0 earned</div><div class="checklistMeta" style="margin-top:6px">Streamline pod • Toyota Innova</div><div class="providerActions"><button>💬 Message</button><button>📞 Call</button></div></div>
       <div class="providerCardWide"><div class="providerTop"><div class="providerLeft"><div class="providerAvatar nyoman"></div><div><div class="tileTitle">Pak Nyoman</div><div style="margin-top:8px"><span class="badge info">Sacred</span></div></div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.9</div></div><div class="checklistMeta" style="margin-top:14px">Temple priest with 30 years experience. Specializes in purification ceremonies for visitors.</div><div class="checklistMeta" style="margin-top:10px">🗓 89 bookings &nbsp;&nbsp; $68 earned</div><div class="providerActions"><button>💬 Message</button><button>📞 Call</button></div></div>
       <div class="providerCardWide"><div class="providerTop"><div class="providerLeft"><div class="providerAvatar made"></div><div><div class="tileTitle">Made</div><div style="margin-top:8px"><span class="badge ok">Land</span></div></div></div><div class="badge" style="background:transparent;color:var(--amber)">⭐ 4.7</div></div><div class="checklistMeta" style="margin-top:14px">Third-generation rice farmer. Loves sharing the Subak system with visitors.</div><div class="checklistMeta" style="margin-top:10px">🗓 34 bookings &nbsp;&nbsp; $90 earned</div><div class="providerActions"><button>💬 Message</button><button>📞 Call</button></div></div>
     </div>
@@ -600,23 +681,23 @@ function miniHTML(t){
 }
 
 
-const HOME_LAYOUT_KEY = 'sok-home-layout-v2';
-const HOME_SPAN_KEY = 'sok-home-spans-v2';
+const HOME_LAYOUT_KEY = 'sok-home-layout-v3';
+const HOME_SPAN_KEY = 'sok-home-spans-v3';
 const homeItems = [
-  {
-    id:'arrivals', defaultSpan:1, target:'calendar',
-    markup:`<div class="card homeStat">
-      <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon arrival" aria-hidden="true"></span></div>
-      <div class="homeStatBody"><div class="big">2</div><div class="label">Arrivals</div></div>
-    </div>`
-  },
   {
     id:'departures', defaultSpan:1, target:'calendar',
     markup:`<div class="card homeStat">
       <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
       <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon departure" aria-hidden="true"></span></div>
       <div class="homeStatBody"><div class="big">1</div><div class="label">Departures</div></div>
+    </div>`
+  },
+  {
+    id:'arrivals', defaultSpan:1, target:'calendar',
+    markup:`<div class="card homeStat">
+      <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon arrival" aria-hidden="true"></span></div>
+      <div class="homeStatBody"><div class="big">2</div><div class="label">Arrivals</div></div>
     </div>`
   },
   {
@@ -646,13 +727,13 @@ const homeItems = [
     </div>`
   },
   {
-    id:'experience', defaultSpan:3, target:'detail-experience',
+    id:'needs-attention', defaultSpan:3, target:'detail-task-cleaning',
     markup:`<div class="tile homeTile">
       <span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon experience" aria-hidden="true"></span></div>
-      <div class="homeTileTitleRow"><div class="tileTitle">Rice planting experience</div></div>
-      <div class="homeTileSubRow"><div><div class="tileSub">3 guests • 3:00 PM • Confirm pickup and guide timing</div></div><span class="badge ok">Confirmed</span></div>
-      <div class="meta"><span>Made's Farm</span><span>Today</span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Needs Attention</div><span class="homeWidgetIcon priority" aria-hidden="true"></span></div>
+      <div class="homeTileTitleRow"><div class="tileTitle">Pool deck safety check</div></div>
+      <div class="homeTileSubRow"><div><div class="tileSub">One loose board was flagged during turnover. Maintenance should resolve it before the next arrival.</div></div><span class="badge urgent">Today</span></div>
+      <div class="meta"><span>Pak Made assigned</span><span>Recheck at 4:30 PM</span></div>
     </div>`
   },
   {
@@ -669,41 +750,33 @@ const homeItems = [
     markup:`<div class="tile homeTile">
       <span class="homeResize" aria-label="Resize widget">2×</span><span class="homeGrip" aria-hidden="true"></span>
       <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
-      <div class="homeTileTitleRow"><div class="tileTitle">Sarah & Tom</div></div>
+      <div class="homeTileTitleRow"><div class="tileTitle">Sarah &amp; Tom</div></div>
       <div class="tileSub">“Can you recommend a romantic dinner spot?”</div>
     </div>`
   },
   {
+    id:'quick-actions-panel', defaultSpan:3, target:'dashboard-hub',
+    markup:`<div class="tile homeTile">
+      <span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Quick Actions</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
+      <div class="tileSub">Send guest reply • Resume checklist • Review schedule • Contact providers</div>
+    </div>`
+  },
+  {
     id:'response-time', defaultSpan:1, target:'dashboard-hub',
-    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Response Time</div><div class="kpiIcon green" style="width:32px;height:32px;font-size:13px">💬</div></div><div class="homeStatBody"><div class="big">1.8m</div><div class="label">Below 2min target</div></div></div>`
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Response Time</div><div class="kpiIcon green" style="width:24px;height:24px;font-size:14px">💬</div></div><div class="homeStatBody"><div class="big">1.8m</div><div class="label">Below 2min target</div></div></div>`
   },
   {
     id:'checklists-score', defaultSpan:1, target:'manuals-hub',
-    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Checklists</div><div class="kpiIcon blue" style="width:32px;height:32px;font-size:13px">📋</div></div><div class="homeStatBody"><div class="big">94%</div><div class="label">On-time completion</div></div></div>`
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Checklists</div><div class="kpiIcon blue" style="width:24px;height:24px;font-size:14px">📋</div></div><div class="homeStatBody"><div class="big">94%</div><div class="label">On-time completion</div></div></div>`
   },
   {
     id:'experiences-score', defaultSpan:1, target:'marketplace-hub',
-    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Experiences</div><div class="kpiIcon purple" style="width:32px;height:32px;font-size:13px">✨</div></div><div class="homeStatBody"><div class="big">8</div><div class="label">$680 revenue</div></div></div>`
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Experiences</div><div class="kpiIcon purple" style="width:24px;height:24px;font-size:14px">✨</div></div><div class="homeStatBody"><div class="big">8</div><div class="label">$680 revenue</div></div></div>`
   },
   {
     id:'compliance-score', defaultSpan:1, target:'manuals-hub',
-    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Compliance</div><div class="kpiIcon gold" style="width:32px;height:32px;font-size:13px">⭐</div></div><div class="homeStatBody"><div class="big">94%</div><div class="label">Owner standards met</div></div></div>`
-  },
-  {
-    id:'active-checklists-panel', defaultSpan:3, target:'manuals-hub',
-    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Active Checklists</div><span class="homeWidgetIcon priority" aria-hidden="true"></span></div><div class="homeTileTitleRow"><div class="tileTitle">Turnover: Chen Family</div></div><div class="homeTileSubRow"><div><div class="tileSub">Assigned to Ayu Ketut • Due 2:00 PM • 12 / 18 tasks complete</div></div><span class="badge urgent">1 Issue</span></div><div class="meta"><span>Started 7:00 AM</span><span>View checklist</span></div></div>`
-  },
-  {
-    id:'schedule-panel', defaultSpan:3, target:'calendar',
-    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Today's Schedule</div><span class="homeWidgetIcon occupancy" aria-hidden="true"></span></div><div class="homeTileTitleRow"><div class="tileTitle">No events scheduled for today</div></div><div class="tileSub">Use the calendar board to pin airport transfers, ceremonies, wellness bookings, and owner visits.</div></div>`
-  },
-  {
-    id:'experience-bookings-panel', defaultSpan:3, target:'marketplace-hub',
-    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Experience Bookings</div><span class="homeWidgetIcon experience" aria-hidden="true"></span></div><div class="homeTileTitleRow"><div class="tileTitle">Melukat + Rice Planting confirmed</div></div><div class="homeTileSubRow"><div><div class="tileSub">Chen Family • Mar 19 • 2 bookings confirmed</div></div><span class="badge ok">Confirmed</span></div></div>`
-  },
-  {
-    id:'quick-actions-panel', defaultSpan:3, target:'dashboard-hub',
-    markup:`<div class="tile homeTile"><span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeTileTop"><div class="homeMetaTag dot">Quick Actions</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div><div class="tileSub">Send message to guest • Start new checklist • Suggest experience • Contact staff</div></div>`
+    markup:`<div class="card homeStat"><span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span><div class="homeStatTop"><div class="small">Compliance</div><div class="kpiIcon gold" style="width:24px;height:24px;font-size:14px">⭐</div></div><div class="homeStatBody"><div class="big">94%</div><div class="label">Owner standards</div></div></div>`
   }
 ];
 let homeEditMode = false;
@@ -715,7 +788,7 @@ function getHomeItemById(id){
 }
 
 function defaultHomeOrder(){
-  return homeItems.map(item => item.id);
+  return ['departures','arrivals','occupancy','messages','checkout','needs-attention','chen-message','sarah-message','quick-actions-panel'];
 }
 
 function loadHomeLayout(){
@@ -753,11 +826,17 @@ function saveHomeLayout(){
   document.querySelectorAll('#homeBoard .homeItem').forEach(item => spans[item.dataset.id] = Number(item.dataset.span) || 1);
   localStorage.setItem(HOME_SPAN_KEY, JSON.stringify(spans));
 }
+function resetHomeLayout(){
+  localStorage.removeItem(HOME_LAYOUT_KEY);
+  localStorage.removeItem(HOME_SPAN_KEY);
+  disableHomeEditMode();
+  renderHomeLayout();
+}
 
 function updateHomeHint(){
   const hint = document.getElementById('homeEditHint');
   if(!hint) return;
-  hint.textContent = homeEditMode ? 'Drag tiles, then tap Done' : 'Touch and hold';
+  hint.textContent = homeEditMode ? 'Editing home' : 'Touch and hold';
 }
 
 function renderHomeLayout(){
@@ -769,7 +848,7 @@ function renderHomeLayout(){
     const item = getHomeItemById(id);
     if(!item) return '';
     const span = spans[id] || item.defaultSpan || 1;
-    return `<div class="homeItem" data-id="${item.id}" data-target="${item.target}" data-span="${span}" style="${span > 1 ? `grid-column:span ${span}` : ''}">${item.markup}</div>`;
+    return `<div class="homeItem" data-id="${item.id}" data-target="${item.target}" data-span="${span}" style="${span > 1 ? `grid-column:span ${span}` : ''}">${item.markup.replace(/1×|2×|3×/g, formatSpanLabel(span))}</div>`;
   }).join('');
   bindHomeDragHandlers();
   updateHomeHint();
@@ -809,7 +888,7 @@ function bindHomeDragHandlers(){
     item.addEventListener('contextmenu', e => e.preventDefault());
     const resize = item.querySelector('.homeResize');
     if(resize){
-      resize.textContent = `${item.dataset.span}×`;
+      resize.textContent = formatSpanLabel(Number(item.dataset.span) || 1);
       resize.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -821,6 +900,7 @@ function bindHomeDragHandlers(){
 
 function onHomeItemClick(e){
   if(homeEditMode){
+    if(e.target.closest('.homeResize') || e.target.closest('.homeGrip')) return;
     e.preventDefault();
     e.stopPropagation();
     return;
@@ -833,18 +913,27 @@ function onHomePointerDown(e){
   const item = e.currentTarget;
   if(dragState) return;
   if(e.pointerType === 'mouse' && e.button !== 0) return;
-  item._pressMeta = { x:e.clientX, y:e.clientY };
+
+  const onGrip = !!e.target.closest('.homeGrip');
+  const onResize = !!e.target.closest('.homeResize');
+
+  item._pressMeta = { x:e.clientX, y:e.clientY, onGrip, onResize };
+
+  if(onResize) return;
+
   if(homeEditMode){
-    e.preventDefault();
-    startDrag(item, e);
+    if(onGrip){
+      e.preventDefault();
+      startDrag(item, e);
+    }
     return;
   }
+
   item.classList.add('lift-ready');
   longPressTimer = setTimeout(() => {
     longPressTimer = null;
     enableHomeEditMode();
-    startDrag(item, e);
-  }, 320);
+  }, 360);
 }
 
 function onHomePointerMove(e){
@@ -967,13 +1056,17 @@ function finishDrag(){
   dragState = null;
 }
 
+function formatSpanLabel(span){
+  return span === 1 ? '1 col' : span === 2 ? '2 col' : '3 col';
+}
+
 function cycleHomeSpan(item){
   const current = Number(item.dataset.span) || 1;
   const next = current === 3 ? 1 : current + 1;
   item.dataset.span = String(next);
   item.style.gridColumn = next > 1 ? `span ${next}` : '';
   const resize = item.querySelector('.homeResize');
-  if(resize) resize.textContent = `${next}×`;
+  if(resize) resize.textContent = formatSpanLabel(next);
   saveHomeLayout();
 }
 
