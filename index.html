@@ -153,17 +153,17 @@ body[data-theme="habit-pill"] .card,body[data-theme="habit-pill"] .tile,body[dat
 body[data-theme="modern-web"] .card,body[data-theme="modern-web"] .tile,body[data-theme="modern-web"] .setting{border-radius:4px;box-shadow:none}
 
 
-.homeTools{padding:4px 18px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.homeTools{padding:0 18px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.homeTools .row{gap:8px;flex-wrap:wrap}
-.homeHint{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:12px;color:var(--muted);font-weight:700}
-.homeEditBtn,.homeDoneBtn,.homeResetBtn{border:none;border-radius:999px;background:var(--primary);color:#fff;padding:10px 14px;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
-.homeEditBtn{display:inline-flex}
-.homeDoneBtn,.homeResetBtn{display:none}
-.homeResetBtn{background:color-mix(in srgb,var(--panel2) 78%, var(--panel));color:var(--text);border:1px solid color-mix(in srgb,var(--line) 80%, transparent);box-shadow:none}
-body.home-edit-mode .homeEditBtn{display:none}
-body.home-edit-mode .homeDoneBtn,body.home-edit-mode .homeResetBtn{display:inline-flex}
-body.home-edit-mode .homeHint{background:color-mix(in srgb,var(--primary) 16%, var(--panel));color:var(--text)}
+
+
+
+
+
+
+
+
+
+
+
 .homeBoard{padding-bottom:22px}
 .homeItem{position:relative;touch-action:manipulation;user-select:none;-webkit-user-select:none;transition:transform .22s ease, box-shadow .22s ease, opacity .2s ease}
 body.home-edit-mode .homeItem{animation:wiggle .18s ease-in-out infinite alternate}
@@ -174,8 +174,8 @@ body.home-edit-mode .homeItem .card,body.home-edit-mode .homeItem .tile{outline:
 body.home-edit-mode .homeGrip{display:flex}
 .homeResize{position:absolute;left:12px;top:12px;min-width:44px;height:30px;padding:0 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--line) 82%, transparent);background:color-mix(in srgb,var(--panel) 86%, transparent);display:none;align-items:center;justify-content:center;color:var(--muted);backdrop-filter:blur(10px);z-index:3;font-size:11px;font-weight:800}
 body.home-edit-mode .homeResize{display:flex}
-.homeEditToast{display:none;margin:0 18px 14px;padding:10px 12px;border-radius:16px;background:color-mix(in srgb,var(--primary) 12%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:13px;color:var(--text)}
-body.home-edit-mode .homeEditToast{display:block}
+
+
 
 .homeItem[data-span="2"]{grid-column:span 2}
 
@@ -305,19 +305,19 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
 .homeStatTop,.homeTileTop{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .homeStatTop{position:relative;display:block;min-height:28px}
 .homeStatTop .small{display:block;max-width:84px;line-height:1.1;padding-right:40px}
-.homeWidgetIcon{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background-position:center;background-repeat:no-repeat;background-size:contain;flex:0 0 auto}
+.homeWidgetIcon{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;background-position:center;background-repeat:no-repeat;background-size:20px 20px;flex:0 0 auto;font-size:0;line-height:0}
 .homeStatTop .homeWidgetIcon,
 .homeStatTop .kpiIcon{position:absolute;top:0;right:0;margin:0}
 .homeStatTop .kpiIcon{width:24px;height:24px;font-size:15px;line-height:1}
-.homeWidgetIcon.arrival{color:var(--green)}
-.homeWidgetIcon.departure{color:var(--primary)}
+.homeWidgetIcon.arrival{background-image:none !important;color:transparent !important}
+.homeWidgetIcon.departure{background-image:url("data:image/png;base64,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");background-position:center;background-repeat:no-repeat;background-size:20px 20px;color:transparent !important;image-rendering:auto}
 .homeWidgetIcon.occupancy{color:var(--muted)}
-.homeWidgetIcon.messages{color:var(--primary)}
+.homeWidgetIcon.messages{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBjb2xvcj0iI2ZmNjYzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY2NjMzIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNNi4wOTg4MSAxOUM0Ljc5ODcgMTguODcyMSAzLjgyNDc1IDE4LjQ4MTYgMy4xNzE1NyAxNy44Mjg0QzIgMTYuNjU2OSAyIDE0Ljc3MTIgMiAxMVYxMC41QzIgNi43Mjg3NiAyIDQuODQzMTUgMy4xNzE1NyAzLjY3MTU3QzQuMzQzMTUgMi41IDYuMjI4NzYgMi41IDEwIDIuNUgxNEMxNy43NzEyIDIuNSAxOS42NTY5IDIuNSAyMC44Mjg0IDMuNjcxNTdDMjIgNC44NDMxNSAyMiA2LjcyODc2IDIyIDEwLjVWMTFDMjIgMTQuNzcxMiAyMiAxNi42NTY5IDIwLjgyODQgMTcuODI4NEMxOS42NTY5IDE5IDE3Ljc3MTIgMTkgMTQgMTlDMTMuNDM5NSAxOS4wMTI1IDEyLjk5MzEgMTkuMDU1MSAxMi41NTQ2IDE5LjE1NUMxMS4zNTYyIDE5LjQzMDkgMTAuMjQ2NSAyMC4wNDQxIDkuMTQ5ODcgMjAuNTc4OUM3LjU4NzI5IDIxLjM0MDggNi44MDYgMjEuNzIxOCA2LjMxNTY5IDIxLjM2NTFDNS4zNzc2OSAyMC42NjY1IDYuMjk0NTQgMTguNTAxOSA2LjUgMTcuNSIgLz4KPC9zdmc+");background-position:center;background-repeat:no-repeat;background-size:contain;color:transparent !important}
 .homeWidgetIcon.experience{color:var(--amber)}
-.homeWidgetIcon.priority{color:var(--primary)}
-.homeWidgetIcon::before{font-size:22px;line-height:1}
-.homeWidgetIcon.arrival::before{content:'↘'}
-.homeWidgetIcon.departure::before{content:'↗'}
+.homeWidgetIcon.priority{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBjb2xvcj0iI2ZmNjYzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY2NjMzIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMTQuMzk0MiAzLjAwMDgzTDE0LjE0ODEgMi43OTExNUMxMi45MTAzIDEuNzM2MjggMTEuMDg5NyAxLjczNjI4IDkuODUxODkgMi43OTExNUw5LjYwNTg0IDMuMDAwODNDOC45NjUxOCAzLjU0Njc5IDguMTY4NjIgMy44NzY3NCA3LjMyOTU2IDMuOTQzN0w3LjAwNzMxIDMuOTY5NDFDNS4zODYxMyA0LjA5ODc4IDQuMDk4NzggNS4zODYxMyAzLjk2OTQxIDcuMDA3MzFMMy45NDM3IDcuMzI5NTZDMy44NzY3NCA4LjE2ODYyIDMuNTQ2NzkgOC45NjUxOCAzLjAwMDgzIDkuNjA1ODRMMi43OTExNSA5Ljg1MTg5QzEuNzM2MjggMTEuMDg5NyAxLjczNjI4IDEyLjkxMDMgMi43OTExNSAxNC4xNDgxTDMuMDAwODMgMTQuMzk0MkMzLjU0Njc5IDE1LjAzNDggMy44NzY3NCAxNS44MzE0IDMuOTQzNyAxNi42NzA0TDMuOTY5NDEgMTYuOTkyN0M0LjA5ODc4IDE4LjYxMzkgNS4zODYxMyAxOS45MDEyIDcuMDA3MzEgMjAuMDMwNkw3LjMyOTU2IDIwLjA1NjNDOC4xNjg2MiAyMC4xMjMzIDguOTY1MTggMjAuNDUzMiA5LjYwNTg0IDIwLjk5OTJMOS44NTE4OCAyMS4yMDg5QzExLjA4OTcgMjIuMjYzNyAxMi45MTAzIDIyLjI2MzcgMTQuMTQ4MSAyMS4yMDg5TDE0LjM5NDIgMjAuOTk5MkMxNS4wMzQ4IDIwLjQ1MzIgMTUuODMxNCAyMC4xMjMzIDE2LjY3MDQgMjAuMDU2M0wxNi45OTI3IDIwLjAzMDZDMTguNjEzOSAxOS45MDEyIDE5LjkwMTIgMTguNjEzOSAyMC4wMzA2IDE2Ljk5MjdMMjAuMDU2MyAxNi42NzA0QzIwLjEyMzMgMTUuODMxNCAyMC40NTMyIDE1LjAzNDggMjAuOTk5MiAxNC4zOTQyTDIxLjIwODkgMTQuMTQ4MUMyMi4yNjM3IDEyLjkxMDMgMjIuMjYzNyAxMS4wODk3IDIxLjIwODkgOS44NTE4OEwyMC45OTkyIDkuNjA1ODRDMjAuNDUzMiA4Ljk2NTE4IDIwLjEyMzMgOC4xNjg2MiAyMC4wNTYzIDcuMzI5NTZMMjAuMDMwNiA3LjAwNzMxQzE5LjkwMTIgNS4zODYxMyAxOC42MTM5IDQuMDk4NzggMTYuOTkyNyAzLjk2OTQxTDE2LjY3MDQgMy45NDM3QzE1LjgzMTQgMy44NzY3NCAxNS4wMzQ4IDMuNTQ2NzkgMTQuMzk0MiAzLjAwMDgzWiIgLz4KICAgIDxwYXRoIGQ9Ik0xMiA4VjEyIiAvPgogICAgPHBhdGggZD0iTTEyLjEyNSAxNS43NUgxMk0xMi4yNSAxNS43NUMxMi4yNSAxNS44ODgxIDEyLjEzODEgMTYgMTIgMTZDMTEuODYxOSAxNiAxMS43NSAxNS44ODgxIDExLjc1IDE1Ljc1QzExLjc1IDE1LjYxMTkgMTEuODYxOSAxNS41IDEyIDE1LjVDMTIuMTM4MSAxNS41IDEyLjI1IDE1LjYxMTkgMTIuMjUgMTUuNzVaIiAvPgo8L3N2Zz4=");background-position:center;background-repeat:no-repeat;background-size:contain;color:transparent !important}
+
+
+
 .homeWidgetIcon.occupancy::before{content:'⌂'}
 .homeWidgetIcon.messages::before{content:'◻'}
 .homeWidgetIcon.experience::before{content:'✦'}
@@ -420,14 +420,203 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
  .homeBoard{grid-template-columns:repeat(2,minmax(0,1fr))}
  .homeItem[data-span="3"]{grid-column:span 2}
 }
+
+/* cleanup pass */
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+button,input,[onclick]{touch-action:manipulation}
+.nav,.icon,.back,.btn,.chips button,.homeDoneBtn,.homeResetBtn,.homeGrip,.homeResize{min-height:44px}
+.icon,.back{min-width:44px}
+.homeTools{padding:4px 18px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.homeTools .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.homeHint{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 8%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:12px;color:var(--muted);font-weight:700}
+.homeDoneBtn,.homeResetBtn{display:none;min-height:38px;border:none;border-radius:999px;padding:0 14px;font-weight:800;box-shadow:none;cursor:pointer}
+.homeDoneBtn{background:var(--primary);color:#fff}
+.homeResetBtn{background:var(--panel2);color:var(--text);border:1px solid color-mix(in srgb,var(--line) 80%, transparent)}
+
+body.home-edit-mode .homeHint{color:var(--text)}
+.homeEditToast{display:none;margin:0 18px 14px;padding:11px 13px;border-radius:16px;background:color-mix(in srgb,var(--primary) 8%, var(--panel));border:1px solid color-mix(in srgb,var(--line) 80%, transparent);font-size:12px;line-height:1.45;color:var(--muted)}
+
+.homeGrip{width:32px;height:32px;border-radius:12px;border:1px solid color-mix(in srgb,var(--line) 78%, transparent);background:color-mix(in srgb,var(--panel) 82%, transparent);box-shadow:none}
+.homeResize{min-width:46px;height:28px;padding:0 9px;border:1px solid color-mix(in srgb,var(--line) 80%, transparent);background:color-mix(in srgb,var(--panel) 88%, transparent);box-shadow:none}
+.homeBoard{align-items:start}
+.homeStat,.homeTile{overflow:hidden}
+.homeStatTop{position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-height:24px}
+.homeStatTop .small{display:block;max-width:calc(100% - 34px);line-height:1.08;padding-right:0}
+.homeStatTop .homeWidgetIcon,.homeStatTop .kpiIcon{position:relative;top:auto;right:auto;margin:0;flex:0 0 24px}
+.homeStatBody{display:grid;gap:8px;align-content:start}
+.homeStat .big{font-size:34px;line-height:.92}
+.homeStat .label{line-height:1.14}
+.homeTileTop{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.homeTileTop .homeMetaTag{max-width:calc(100% - 36px)}
+.homeTile .tileTitle{line-height:1}
+.homeTile .tileSub{line-height:1.42}
+.homeTile .meta{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.homeTile .meta span{min-width:0;line-height:1.14}
+.homeItem[data-span="1"] .homeStat .big{font-size:30px}
+.homeItem[data-span="1"] .homeStat .label{font-size:14px}
+.homeItem[data-span="1"] .homeTile .tileTitle{font-size:18px}
+.homeItem[data-span="1"] .homeTile .tileSub{font-size:14px}
+.homeItem[data-span="1"] .homeTile .homeTileSubRow{display:grid;grid-template-columns:1fr;gap:10px}
+.homeItem[data-span="1"] .homeTile .badge{justify-self:start}
+.homeItem[data-span="1"] .homeTile .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inboxThreadCard,.messageBubble,.panelCard,.kpiCard,.featureTile,.sceneCard,.marketCardWide,.providerCardWide{overflow:hidden}
+.inboxThreadCard{padding:15px}
+.inboxFooter{align-items:flex-start}
+.inboxPill{font-size:11px}
+.calendarCell{min-height:78px}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+@media (max-width:380px){
+  .homeBoard{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .homeItem[data-span="3"]{grid-column:span 2}
+}
+
+
+/* PNG icon install */
+.homeWidgetIcon{width:24px;height:24px;display:inline-block;background-position:center;background-repeat:no-repeat;background-size:24px 24px}
+.homeWidgetIcon::before{content:'' !important}
+.homeWidgetIcon.arrival{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABJUlEQVR4nO2U0XGFIBBFD5lXAn2kBLETO6CDqCXQAZ2ILaQOenj5cHU2PDQmz4/MJPsjLJd7F/Yi/McXYfTERj8BM0DuwnCpgI1+AHq1lnIX2mcFXtS4B8bcBQO0gLPRu0sESqLchfQs8Ro3+TohHtTaCEw2+lVsLvamM8Xc1PgTMHdhsNEDNJLS/dnmghn3TGEENAnp6abKtTolVjWFUeBJTjF/16KFA1t9baVNG1UVLH04/SZs9HeKk5gd4EpYrepAYJA9G74qUFSEvI1aAQ+nK0+hXVSrBuSaJOdYeqVxfYFLKEvvCgiwB3ohSSz9SSy2TEUh2sabwOEVFQSNJt7Buiv/Ar8j9mw6Aq8qdf8B33vuwttRk2ukprJm1Fznzxb11+MDtF+CSL1yWU0AAAAASUVORK5CYII=");color:transparent !important}
+.homeWidgetIcon.departure{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABCElEQVR4nO2UwRmCMAyFf/2cpEcujkBZg2EsLNM1wBU89MgqejDhqwEE9eKBd4HS5L28pAV2rODwbeJQFx7wQAlcAVxMzU8CQhqEWNGbdZsLjQJDXXTy6m3QDHEvMb0poJG43sVUjQL5Bk+7AWhlvUq8INK6mJqTfC9z1aEukKCgtmV/kThzqkWRO/BAB1RKIpVsJVVCL8+x2NNMDjB/ImbIO17bV0nuWNRkyKpsKgTwZvCNVF69c5k7uAJBW8P0ODLURd4yHeQi+YsDUxUiAs8BB3FwyI+si2n1Hm26aEZY8bY1isUhGyhRyYa27Pgv6K+iBc5m776WZ3BzMV3sx+OHJFvEd3yGB8h9gBUBLUEWAAAAAElFTkSuQmCC");color:transparent !important}
+.homeWidgetIcon.messages{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABH0lEQVR4nL1WwZGDMAxcZ9LI8SRFxLTBFYNTTGgjpojjyZWy94hMNEQQSMzty1j2rmRr1jiS2BNHAHDOmcGhLv0akqLtozVPEo7kKCCEDYBVxAYuIhieBIa6DEIeAXSywcxsAp1Mk4SKtg8k7yqSPUXkIwx1GYTLjwJp8lNyJcKhLgNJHHKRzkELxIy8EcAZkDZNH8DjTrZirtWzHRFJM7lNAr/fJzvNBWwS+Lr+bD6/f+2i3Oi0QIf3/cfCyHWcRuba7V2kCiIA5PIi4OGolpsCYrt6oSLwBm+aO8t4dNPpe5DIGrU5Fm1fqbiOTRGFPALGg2OUe5MqKhl7qS7qdUsv2tMlLwh5yS6s2ZPwSuAC4Cbjai7TJbi9/yp2t4o/4VyWOx/emMMAAAAASUVORK5CYII=");color:transparent !important}
+.bottom .nav .navPng{width:22px;height:22px;display:block;object-fit:contain}
+.bottom .nav.active[data-main="home"] .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA/ElEQVR4nO1VyxGDIBB9ZlKJR5oIaYNmgGZsA2zCI60kB5aICALjOJPM5N1E3mcVdoFvghOM93KGDmEJIBhYAPM4LarGvTWIKwCGHp8ANBlJeneIYgVJap2mJXEJX40ep8U2G5D4J3WJHJkgF6KUXDnBXk4wU928cgxxjg0i8XqSXu4Z8YwGD2u7U9T0HQuIuOG/bAwe8CfiLDYa1XtwFn+DHzCgs60K67zGvzcGkU6w0NiAtW0DlaMdVzAnRAD+8ozTMsC36ZmWNXwTVBlNHu3bVGApKc91z5YbnvuUQ7LBUAIdmbYiOzt28yDp8b3YzYTDmdwz5EtD6XK8ASTYfOfMCj3FAAAAAElFTkSuQmCC")}
+.bottom .nav[data-main="home"]:not(.active) .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABAUlEQVR4nO1VuxKDIBBcnfxX9IPsrGyQhoqOD1L/LAUHATwEdTKTzGQ78W73jsce8E2YxqE7m9OcIBYAnMAKYFPazKXctoJ8BrDQZw9AkpCgf4fIdpBULdNqiVzAdiOVNmu1AJH7qnPJgQi4IliBsDKlTc8RMzkLMp22SaAjl7XkAECxEsy5+A4S8iioFgGH39bdLbpKnuS6c4kEnrA34i4ijuI7uIu/wA8ITOMwc6ZG610p/1FZiJjGwRkb8LZtoHC1ww62JBGAfTxKmwbWCjZalrCvdWY4uyAu6mClSjvOPWteOLeVTRLgXTEQrQU7O47s+gp2Rnk4k88M+dxQ+jheje51PDaa+wgAAAAASUVORK5CYII=")}
+.bottom .nav.active[data-main="inbox"] .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABH0lEQVR4nL1WwZGDMAxcZ9LI8SRFxLTBFYNTTGgjpojjyZWy94hMNEQQSMzty1j2rmRr1jiS2BNHAHDOmcGhLv0akqLtozVPEo7kKCCEDYBVxAYuIhieBIa6DEIeAXSywcxsAp1Mk4SKtg8k7yqSPUXkIwx1GYTLjwJp8lNyJcKhLgNJHHKRzkELxIy8EcAZkDZNH8DjTrZirtWzHRFJM7lNAr/fJzvNBWwS+Lr+bD6/f+2i3Oi0QIf3/cfCyHWcRuba7V2kCiIA5PIi4OGolpsCYrt6oSLwBm+aO8t4dNPpe5DIGrU5Fm1fqbiOTRGFPALGg2OUe5MqKhl7qS7qdUsv2tMlLwh5yS6s2ZPwSuAC4Cbjai7TJbi9/yp2t4o/4VyWOx/emMMAAAAASUVORK5CYII=")}
+.bottom .nav[data-main="inbox"]:not(.active) .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHklEQVR4nL1WO5aDMAwc5+VemAORijRsARRLE6pwoIiTKcXKrJ4RJDiQqfQse2b8QcIxM47EGQCcc2ayKgv/DknXD2SNMzMcM08CQlgDeIvYQCuCzUygKotGyAnAKAtMZxG0mToIdf3QMPPfEalkG9Q3QJtogtGqLAgAnQAE90ggn0FxeAA4fUr4ClqAduQlABmA6Q6ykEn9Lpae+m5HxMymuU0CP9eLbXMFmwR+b/fN5/fVV7Q3Ri0wIr3+WJi4znFm6bmlIuyAgP+S8QnismNVU0DKrp6oCLzBG8YyiadqGveDQFarxdT1Q67yOheDhJwAo+HEqMriIbvIJfayO9Lz1jra7JJXhDwS+sUrgRbAQ+J8yeka3NF/FYeXiifNhIeeB6XgEAAAAABJRU5ErkJggg==")}
+.bottom .nav.active[data-main="calendar"] .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABJUlEQVR4nO2VsW3EMAxFXw4ZIYNkA8sbXJ8Z1KlSc3bjyp0XuQ1O2iQjZIAAlyKUQyuylZyBBAjyG5ug+D8lUST8JryznXfW3OoHOFQ0GuC0w8/dSmYGMCo4rMQb8UWAYZy6TQEhPkmgxpZAjnYYp3n9fea8CFk7jFPwzl4ks7bErv3e2Y6PI5sFDmpxJ79RZRCBfiX7hV+OpwdM8eKlIq4bZF+Cd/aqkv1URWGvgHA0ydB38AQ8eGfPWUBtV3klPgIvydA7yC98D15LpM8Awzgd9zCnykqoveTd+Bf4uwKxJBApd8fvYsGhBQLMLfsm6B6UkM+D9EhiaXhUyA0yS4Zxmnnz9tDzPhOMd3bR1ysw8g3AYnasjcxOmU1pTYYIBD3JfgxvowFgXu2J2Y4AAAAASUVORK5CYII=")}
+.bottom .nav[data-main="calendar"]:not(.active) .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABJUlEQVR4nO2VsW3EMAxFXw4ZIYNkA8sbXJ8Z1KlSc3bjyp0XuQ1O2iQjZIAAlyKUQyuylZyBBAjyG5ug+D8lUST8JryznXfW3OoHOFQ0GuC0w8/dSmYGMCo4rMQb8UWAYZy6TQEhPkmgxpZAjnYYp3n9fea8CFk7jFPwzl4ks7bErv3e2Y6PI5sFDmpxJ79RZRCBfiX7hV+OpwdM8eKlIq4bZF+Cd/aqkv1URWGvgHA0ydB38AQ8eGfPWUBtV3klPgIvydA7yC98D15LpM8Awzgd9zCnykqoveTd+Bf4uwKxJBApd8fvYsGhBQLMLfsm6B6UkM+D9EhiaXhUyA0yS4Zxmnnz9tDzPhOMd3bR1ysw8g3AYnasjcxOmU1pTYYIBD3JfgxvowFgXu2J2Y4AAAAASUVORK5CYII=")}
+.bottom .nav.active[data-main="tasks"] .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABFklEQVR4nNWV3Q3CIBSFP40LuAVb2E7FI+XRqUq3cAtG0JdLvVBaa8QYT2JiL/f/0B74Mg6l4XY9d0AHXHbmmACMjUPt8FgkH4ARcGLqNhKnMwc4iV0vIA4O8MbGA+DlyBsbe/1LXRe+TqbPMK8oFZCAZBul01DrvvC9S8FsEr2iS5lIuvUsEYC+YlvwdqoEZ1gjby+Or10+w/8XWOVAbtWrl80bG8OWw+8m+PT2JLSeYCoN73KwunN5KRdozsHteh70N6kZB5LU8fzKBmg0gSQf5bHXzbVaUdKPBUe6wMS2wMyQPQ/pv8RVL4AuEFTAHjjRiyRS1bhMk5WqzQUr8MbGoPeuhadExoF04amLTAZZxy7fr+IB8uJ1uLHLLwAAAAAASUVORK5CYII=")}
+.bottom .nav[data-main="tasks"]:not(.active) .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABFElEQVR4nNWVTQ7CIBCFP433sj2QO1duKBtW7DhQ6cl0M9SB0lojxvgSEzvM/6N98GUcSsPteumADjjvzDEBOB+G2uGxSD4AI2DE1G0kTmcGMBK7XkAcDGCdDwfAypF1PvT6l7oufI1Mn2FeUSogAck2Sqex1n3he5eC2SR6RecykXRrWSICfcW24O1UCc6wRt5eHF+7fIb/L7DKgdyqVy+bdT7ELYffTfDp7UloPcFUGt7lYHXn8lIu0JyD2/Uy6G9SMw4kqeH5lY3QaAJJPspjr5trtaKkHwuOdIGJbYGZIXse0n+Jq14AXSCqgD0wohdJpKpxmSYrVZsLVmCdD1HvXQtPiYwD6cJSF5kMso5dvl/FA3hCdhQhEcDrAAAAAElFTkSuQmCC")}
+.bottom .nav.active[data-main="profile"] .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABLElEQVR4nO1UMZKDMAzcZO5fkR/kzpUboKGi40HRvSwpkIiQDThJd3M7w4wHy7uStTLw55FTpG/OXw6I77K0AsM4zf07AtcDciUOAAb5OiPchKICQx7GaWa3RwDuAHic5tAisKlACAjLVbAPln8BALX2xl8RCVG/d8AIfyRwA8CVOA+WWABbp/nKftzBXwBdgwBhafras5ziuinrME4z+wq4loVFTrHXWFkTlr6wfIPsd8CXLlLLekflFB+QmakOmhHRbFgyIhiLGsF1AKWq7kxAD9awmWZLiKXxZGOOroiVEC9LFgROpEigIM8pPkwjazG9xBQV1sxxMZuaxemDVrv7PVibNpED6zTr41dkXQhYb5+RGzTFbgat9sDtofVNUoEbXp5/B80J/WMXT7hjozss93UYAAAAAElFTkSuQmCC")}
+.bottom .nav[data-main="profile"]:not(.active) .navPng{content:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABLElEQVR4nO1UMZKDMAzcZO5fkR/kzpUboKGi40HRvSwpkIiQDThJd3M7w4wHy7uStTLw55FTpG/OXw6I77K0AsM4zf07AtcDciUOAAb5OiPchKICQx7GaWa3RwDuAHic5tAisKlACAjLVbAPln8BALX2xl8RCVG/d8AIfyRwA8CVOA+WWABbp/nKftzBXwBdgwBhafras5ziuinrME4z+wq4loVFTrHXWFkTlr6wfIPsd8CXLlLLekflFB+QmakOmhHRbFgyIhiLGsF1AKWq7kxAD9awmWZLiKXxZGOOroiVEC9LFgROpEigIM8pPkwjazG9xBQV1sxxMZuaxemDVrv7PVibNpED6zTr41dkXQhYb5+RGzTFbgat9sDtofVNUoEbXp5/B80J/WMXT7hjozss93UYAAAAAElFTkSuQmCC")}
+
+.homeWidgetIcon.quickactions{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBjb2xvcj0iI2ZmNjYzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY2NjMzIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMTUgMkgxMCIgLz4KICAgIDxwYXRoIGQ9Ik00IDEzLjVDNCA4LjgwNTU4IDcuODA1NTggNSAxMi41IDVDMTQuODQ3MiA1IDE2Ljk3MjIgNS45NTEzOSAxOC41MTA0IDcuNDg5NTlNMTguNTEwNCA3LjQ4OTU5QzIwLjA0ODYgOS4wMjc3OSAyMSAxMS4xNTI4IDIxIDEzLjVDMjEgMTguMTk0NCAxNy4xOTQ0IDIyIDEyLjUgMjJIM00xOC41MTA0IDcuNDg5NTlMMjAgNiIgLz4KICAgIDxwYXRoIGQ9Ik04IDE5SDMiIC8+CiAgICA8cGF0aCBkPSJNNiAxNkgzIiAvPgogICAgPHBhdGggZD0iTTEyLjUgMTMuNUwxNiAxMCIgLz4KPC9zdmc+");background-position:center;background-repeat:no-repeat;background-size:contain;color:transparent !important}
+
+
+.homeWidgetIconImg{display:block;width:24px;height:24px;object-fit:contain;image-rendering:auto}
+.homeWidgetIconImg.msg{width:22px;height:22px}
+
+
+.homeWidgetIcon.arrival,
+.homeWidgetIcon.departure,
+.homeWidgetIcon.messages{
+  background-image:none !important;
+}
+
+
+.homeTileTop .tileCornerIcon{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:0 0 24px}
+.homeTileTop .tileCornerIcon img{display:block;width:24px;height:24px;object-fit:contain}
+
+
+.homeWidgetIcon.occupancy{background-image:none !important}
+.homeWidgetIconImg.occupancy{width:22px;height:22px;object-fit:contain}
+
+
+
+
+
+/* final top stat label position fix: lower label without adding card space */
+.homeStat{
+  padding:18px !important;
+  min-height:150px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+}
+.homeItem[data-span="1"] .homeStat{
+  min-height:150px !important;
+}
+.homeStatTop{
+  position:relative !important;
+  display:block !important;
+  min-height:24px !important;
+  margin-bottom:0 !important;
+}
+.homeStatTop .small{
+  display:block !important;
+  max-width:calc(100% - 40px) !important;
+  padding-top:34px !important;
+  padding-right:0 !important;
+  line-height:1.08 !important;
+  font-size:12px !important;
+}
+.homeStatTop .homeWidgetIcon,
+.homeStatTop .kpiIcon{
+  position:absolute !important;
+  top:0 !important;
+  right:0 !important;
+  margin:0 !important;
+}
+.homeStatBody{
+  display:grid !important;
+  gap:8px !important;
+  margin-top:6px !important;
+}
+.homeStat .big{
+  font-size:32px !important;
+  line-height:.92 !important;
+}
+.homeStat .label{
+  font-size:14px !important;
+  line-height:1.14 !important;
+}
+
+
+.bottom .nav[data-main="home"] .uiPngIcon.home{display:inline-flex}
+.bottom .nav[data-main="home"].active .uiPngIcon.home{display:none}
+.bottom .nav[data-main="home"] .uiPngIcon.homeSelected{display:none;width:22px;height:22px;color:currentColor;align-items:center;justify-content:center;flex:0 0 auto;margin-bottom:2px}
+
+.bottom .nav[data-main="home"].active .uiPngIcon.homeSelected{display:inline-flex}
+
+
+
+.bottom .nav[data-main="home"] .uiPngIcon.home img{
+  display:block;
+  width:22px;
+  height:22px;
+  object-fit:contain;
+}
+.bottom .nav[data-main="home"].active .uiPngIcon.home{
+  display:none !important;
+}
+.bottom .nav[data-main="home"]:not(.active) .uiPngIcon.home{
+  display:inline-flex !important;
+}
+
+
+/* explicit home nav icon states */
+.bottom .nav[data-main="home"] .uiPngIcon.home,
+.bottom .nav[data-main="home"] .uiPngIcon.homeSelected{
+  width:22px;
+  height:22px;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  margin-bottom:2px;
+}
+.bottom .nav[data-main="home"] .uiPngIcon.home img,
+.bottom .nav[data-main="home"] .uiPngIcon.homeSelected img{
+  display:block;
+  width:22px;
+  height:22px;
+  object-fit:contain;
+}
+.bottom .nav[data-main="home"] .uiPngIcon.home{display:inline-flex}
+.bottom .nav[data-main="home"] .uiPngIcon.homeSelected{display:none}
+.bottom .nav[data-main="home"].active .uiPngIcon.home{display:none !important}
+.bottom .nav[data-main="home"].active .uiPngIcon.homeSelected{display:inline-flex !important}
+.bottom .nav[data-main="home"]:not(.active) .uiPngIcon.home{display:inline-flex !important}
+.bottom .nav[data-main="home"]:not(.active) .uiPngIcon.homeSelected{display:none !important}
+
 </style>
 </head>
 <body data-theme="default">
 <div class="app">
   <div class="top">
     <div class="row"><div class="brand">Sok</div><div class="row">
-<button class="icon" onclick="go('inbox')" style="position:relative"><span style="position:absolute;top:8px;right:9px;width:10px;height:10px;border-radius:50%;background:var(--primary);border:2px solid var(--panel)"></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg></button>
-<button class="icon" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<button class="icon" aria-label="Open inbox" onclick="go('inbox')" style="position:relative"><span style="position:absolute;top:8px;right:9px;width:10px;height:10px;border-radius:50%;background:var(--primary);border:2px solid var(--panel)"></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5"/><path d="M9.5 17a2.5 2.5 0 0 0 5 0"/></svg></button>
+<button class="icon" aria-label="Open profile" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div></div>
     <label class="search"><span>⌕</span><input id="search" placeholder="Search guests, tasks, or bookings"></label>
   </div>
@@ -437,7 +626,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
     <div class="hero">
       <div class="eyebrow">Thursday, March 12, 2026</div>
       <h1>Good morning, Wayan</h1>
-      <p class="sub">Today is focused on one checkout, one rice-planting experience, and two guest conversations that still need a response.</p>
+      <p class="sub">One departure, one confirmed experience, and two guest conversations need attention today.</p>
     </div>
     <div class="homeTools">
       <span id="homeEditHint" class="homeHint">Touch and hold</span>
@@ -446,12 +635,12 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
         <button id="homeDoneBtn" class="homeDoneBtn" type="button" onclick="disableHomeEditMode()">Done</button>
       </div>
     </div>
-    <div class="homeEditToast">Drag by the handle on the right. Tap the size pill on the left to switch between 1, 2, and 3 columns.</div>
+    <div class="homeEditToast">Drag from the right handle. Tap the size pill to switch between 1, 2, and 3 columns.</div>
     <div id="homeBoard" class="homeBoard"></div>
   </section>
 
 
-  <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">A calmer mobile inbox focused on unread threads, AI-ready drafts, and the next best reply.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI drafts</button></div><div class="inboxShell"><label class="search"><span>⌕</span><input placeholder="Search conversations..."></label><div class="inboxThreadList"><div class="inboxThreadCard" onclick="go('detail-message-chen')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">C</div><div class="inboxMeta"><div class="inboxName">Chen Family</div><div class="small">Villa Sari • Temple visit tomorrow</div></div></div><div class="inboxUnread">1</div></div><div class="inboxSnippet">Thank you! We're excited for the temple visit. What time should we be ready and should the kids wear anything specific?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">AI draft ready</span><span class="inboxPill">Departure</span></div><div class="small">1:30 PM</div></div></div><div class="inboxThreadCard" onclick="go('detail-message-sarah')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">S</div><div class="inboxMeta"><div class="inboxName">Sarah &amp; Tom</div><div class="small">Villa Bambu • Dining request</div></div></div><span class="badge urgent">Unread</span></div><div class="inboxSnippet">Can you recommend a romantic dinner spot for tomorrow night and arrange transport after dessert?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">Needs manager</span></div><div class="small">11:10 AM</div></div></div></div></section>
+  <section id="inbox" class="page"><div class="hero"><div class="eyebrow">Messages</div><h1>Inbox</h1><p class="sub">Unread threads, suggested replies, and the next response — arranged for a calmer rhythm on mobile.</p></div><div class="chips"><button class="active">All</button><button>Unread</button><button>Urgent</button><button>AI drafts</button></div><div class="inboxShell"><label class="search"><span>⌕</span><input placeholder="Search conversations..."></label><div class="inboxThreadList"><div class="inboxThreadCard" onclick="go('detail-message-chen')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">C</div><div class="inboxMeta"><div class="inboxName">Chen Family</div><div class="small">Villa Sari • Temple visit tomorrow</div></div></div><div class="inboxUnread">1</div></div><div class="inboxSnippet">Thank you! We're excited for the temple visit. What time should we be ready and should the kids wear anything specific?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">AI draft ready</span><span class="inboxPill">Departure</span></div><div class="small">1:30 PM</div></div></div><div class="inboxThreadCard" onclick="go('detail-message-sarah')"><div class="inboxThreadHead"><div class="inboxThreadWho"><div class="inboxAvatar">S</div><div class="inboxMeta"><div class="inboxName">Sarah &amp; Tom</div><div class="small">Villa Bambu • Dining request</div></div></div><span class="badge urgent">Unread</span></div><div class="inboxSnippet">Can you recommend a romantic dinner spot for tomorrow night and arrange transport after dessert?</div><div class="inboxFooter"><div class="inboxTags"><span class="inboxPill">Needs manager</span></div><div class="small">11:10 AM</div></div></div></div></section>
 
   <section id="calendar" class="page"><div class="hero"><div class="eyebrow">Scheduling</div><h1>Calendar</h1><p class="sub">Villa bookings, experiences, and maintenance in one place.</p></div><div class="calendar"><div class="row" style="margin-bottom:16px"><div class="row"><button class="icon">‹</button><div class="title">March 2026</div><button class="icon">›</button></div><div class="row"><button class="secondary btn" style="padding:10px 12px">Month</button><button class="secondary btn" style="padding:10px 12px">Week</button></div></div><div class="chips" style="padding:0 0 12px"><button>Booked (Airbnb)</button><button>Booked (Direct)</button><button>Available</button><button>Experience</button><button>Maintenance</button></div><div class="calendarGrid" id="calendarGrid"></div></div></section>
 
@@ -459,18 +648,18 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
 
   <section id="profile" class="page"><div class="hero"><div class="eyebrow">Account</div><h1>Wayan Sudarta</h1><p class="sub">Villa Manager • Sok Pro • 4 properties connected</p></div><div class="stack"><div class="setting" onclick="go('dashboard-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Villa Intelligence Dashboard</div><div class="tileSub">Expanded dashboard, KPIs, and operational overview</div></div><div>›</div></div></div><div class="setting" onclick="go('manuals-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Operating Manuals</div><div class="tileSub">Checklists, issues, owner standards, and live progress</div></div><div>›</div></div></div><div class="setting" onclick="go('guest-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Guest Experience</div><div class="tileSub">Villa manual, local map, stay info, and curated places</div></div><div>›</div></div></div><div class="setting" onclick="go('marketplace-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Experience Marketplace</div><div class="tileSub">Bookings, revenue, provider settings, and offers</div></div><div>›</div></div></div><div class="setting" onclick="go('providers-hub')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Service Providers</div><div class="tileSub">Drivers, priests, and local specialists</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-account')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Account</div><div class="tileSub">Profile, security, notifications</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-villas')"><div class="row"><div><div class="tileTitle" style="font-size:17px">My Villas</div><div class="tileSub">Villa Sari, Villa Bambu, Villa Umah</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-team')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Team</div><div class="tileSub">8 members • roles and access</div></div><div>›</div></div></div><div class="setting" onclick="go('profile-preferences')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Preferences</div><div class="tileSub">Language, alerts, and automation settings</div></div><div>›</div></div></div></div></section>
 
-  <section id="profile-account" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Profile settings</div><div class="tileTitle" style="font-size:30px">Account</div><p class="sub">Manage profile info, security preferences, and app notifications.</p></div></section>
-  <section id="profile-villas" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Portfolio</div><div class="tileTitle" style="font-size:30px">My Villas</div><p class="sub">Overview of connected villas and current occupancy.</p></div></section>
-  <section id="profile-team" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Team</div><div class="tileTitle" style="font-size:30px">Team members</div><p class="sub">Manage permissions for operations, housekeeping, and drivers.</p></div></section>
-  <section id="detail-checkin" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Departure workflow</div><div class="tileTitle" style="font-size:30px">Chen Family check-out</div><p class="sub">Villa Sari • 11:00 AM today • Cleaning and maintenance follow-up attached to this booking.</p></div></section>
-  <section id="detail-experience" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Experience booking</div><div class="tileTitle" style="font-size:30px">Rice planting with Made</div><p class="sub">3:00 PM • 3 guests • Pickup at 2:20 PM from Villa Sari.</p></div></section>
-  <section id="detail-message-chen" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Chen Family</div><p class="sub">Villa Sari • Temple visit tomorrow • AI drafted response ready.</p></div><div class="messageThread"><div class="messageBubble"><div class="who">Chen Family</div><div class="body">Hi! We’re excited for tomorrow’s temple visit. What time should we be ready, and is there anything special the kids should wear?</div><div class="time">9:00 AM</div></div><div class="messageBubble ai"><div class="who">Kadek AI</div><div class="body">Please be ready in the lobby at <strong>8:15 AM</strong>. I recommend light temple-appropriate clothing, covered shoulders, and sandals that are easy to remove. I can also prepare child-friendly snacks for the drive.</div><div class="time">Draft ready</div></div><div class="messageAssist"><span class="badge ok">Send AI reply</span><span class="badge info">Edit draft</span><span class="badge urgent">Call guest</span></div></div></section>
-  <section id="detail-message-sarah" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Sarah &amp; Tom</div><p class="sub">Villa Bambu • Dining recommendations • Needs manager response.</p></div><div class="messageThread"><div class="messageBubble"><div class="who">Sarah &amp; Tom</div><div class="body">Can you recommend a romantic dinner spot for tomorrow night? We'd love something beautiful, intimate, and easy to reach from the villa.</div><div class="time">11:10 AM</div></div><div class="messageBubble ai"><div class="who">Suggested reply</div><div class="body">I’d recommend <strong>Locavore NXT</strong> for a special tasting-menu evening or <strong>Apéritif</strong> for a more cinematic, elegant setting. I can hold a reservation and arrange transport both ways.</div><div class="time">Awaiting approval</div></div><div class="messageAssist"><span class="badge ok">Approve &amp; send</span><span class="badge info">Swap restaurant</span></div></div></section>
-  <section id="detail-task-cleaning" class="page"><div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Task detail</div><div class="tileTitle" style="font-size:30px">Deep clean Villa Sari</div><p class="sub">Assigned to Ayu Ketut • Due 3:00 PM • Includes maintenance inspection.</p></div></section>
+  <section id="profile-account" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Profile settings</div><div class="tileTitle" style="font-size:30px">Account</div><p class="sub">Manage profile info, security preferences, and app notifications.</p></div></section>
+  <section id="profile-villas" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Portfolio</div><div class="tileTitle" style="font-size:30px">My Villas</div><p class="sub">Overview of connected villas and current occupancy.</p></div></section>
+  <section id="profile-team" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Team</div><div class="tileTitle" style="font-size:30px">Team members</div><p class="sub">Manage permissions for operations, housekeeping, and drivers.</p></div></section>
+  <section id="detail-checkin" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Departure workflow</div><div class="tileTitle" style="font-size:30px">Chen Family check-out</div><p class="sub">Villa Sari • 11:00 AM today • Cleaning and maintenance follow-up attached to this booking.</p></div></section>
+  <section id="detail-experience" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Experience booking</div><div class="tileTitle" style="font-size:30px">Rice planting with Made</div><p class="sub">3:00 PM • 3 guests • Pickup at 2:20 PM from Villa Sari.</p></div></section>
+  <section id="detail-message-chen" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Chen Family</div><p class="sub">Villa Sari • Temple visit tomorrow • AI drafted response ready.</p></div><div class="messageThread"><div class="messageBubble"><div class="who">Chen Family</div><div class="body">Hi! We’re excited for tomorrow’s temple visit. What time should we be ready, and is there anything special the kids should wear?</div><div class="time">9:00 AM</div></div><div class="messageBubble ai"><div class="who">Kadek AI</div><div class="body">Please be ready in the lobby at <strong>8:15 AM</strong>. I recommend light temple-appropriate clothing, covered shoulders, and sandals that are easy to remove. I can also prepare child-friendly snacks for the drive.</div><div class="time">Draft ready</div></div><div class="messageAssist"><span class="badge ok">Send AI reply</span><span class="badge info">Edit draft</span><span class="badge urgent">Call guest</span></div></div></section>
+  <section id="detail-message-sarah" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest conversation</div><div class="tileTitle" style="font-size:30px">Sarah &amp; Tom</div><p class="sub">Villa Bambu • Dining recommendations • Needs manager response.</p></div><div class="messageThread"><div class="messageBubble"><div class="who">Sarah &amp; Tom</div><div class="body">Can you recommend a romantic dinner spot for tomorrow night? We'd love something beautiful, intimate, and easy to reach from the villa.</div><div class="time">11:10 AM</div></div><div class="messageBubble ai"><div class="who">Suggested reply</div><div class="body">I’d recommend <strong>Locavore NXT</strong> for a special tasting-menu evening or <strong>Apéritif</strong> for a more cinematic, elegant setting. I can hold a reservation and arrange transport both ways.</div><div class="time">Awaiting approval</div></div><div class="messageAssist"><span class="badge ok">Approve &amp; send</span><span class="badge info">Swap restaurant</span></div></div></section>
+  <section id="detail-task-cleaning" class="page"><div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Task detail</div><div class="tileTitle" style="font-size:30px">Deep clean Villa Sari</div><p class="sub">Assigned to Ayu Ketut • Due 3:00 PM • Includes maintenance inspection.</p></div></section>
 
   
   <section id="dashboard-hub" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Villa Intelligence</div><div class="tileTitle" style="font-size:30px">Dashboard</div><p class="sub">Expanded dashboard widgets translated into the existing Sok mobile design.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Villa Intelligence</div><div class="tileTitle" style="font-size:30px">Dashboard</div><p class="sub">Expanded dashboard widgets translated into the existing Sok mobile design.</p></div>
     <div class="dashboardShell">
       <div class="dashboardHeroCard">
         <div class="dashboardHeroTop">
@@ -496,7 +685,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
   <section id="manuals-hub" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Operations</div><div class="tileTitle" style="font-size:30px">Operating Manuals</div><p class="sub">Digital checklists for consistent villa operations.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Operations</div><div class="tileTitle" style="font-size:30px">Operating Manuals</div><p class="sub">Digital checklists for consistent villa operations.</p></div>
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Start New Checklist</button></div>
     <div class="kpiGrid">
       <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active</div><div class="kpiNumber">1</div></div><div class="kpiIcon rf"><span class="rfIcon teal board"></span></div></div></div>
@@ -509,7 +698,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
   <section id="guest-hub" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest Experience</div><div class="tileTitle" style="font-size:30px">Guest Experience Platform</div><p class="sub">Villa manual, local guide, and nearby recommendations in one guest-facing flow.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Guest Experience</div><div class="tileTitle" style="font-size:30px">Guest Experience Platform</div><p class="sub">Villa manual, local guide, and nearby recommendations in one guest-facing flow.</p></div>
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button id="guestManualBtn" class="togglePill active" onclick="setGuestHubMode('manual')">Villa Manual</button><button id="guestMapBtn" class="togglePill" onclick="setGuestHubMode('map')">Local Map</button></div>
     <div class="dashboardShell"><div class="dashboardHeroCard"><div class="dashboardHeroTop"><div><div class="eyebrow" style="margin-bottom:6px">Current Guest</div><div class="dashboardHeroName">Chen Family</div><div class="sub">Check-in: 3/18/2025 &nbsp; • &nbsp; Check-out: 3/25/2025</div></div><div class="dashboardHeroDate"><strong>-354</strong>nights left</div></div></div></div>
     <div id="guestHubManual">
@@ -541,7 +730,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
   <section id="marketplace-hub" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Experiences</div><div class="tileTitle" style="font-size:30px">Experience Marketplace</div><p class="sub">Curated local experiences for your guests.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Experiences</div><div class="tileTitle" style="font-size:30px">Experience Marketplace</div><p class="sub">Curated local experiences for your guests.</p></div>
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Add Experience</button></div>
     <div class="kpiGrid">
       <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Total Bookings</div><div class="kpiNumber">2</div></div><div class="kpiIcon blue">🗓</div></div></div>
@@ -563,7 +752,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
   <section id="providers-hub" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Providers</div><div class="tileTitle" style="font-size:30px">Service Providers</div><p class="sub">Manage your local service provider network.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Providers</div><div class="tileTitle" style="font-size:30px">Service Providers</div><p class="sub">Manage your local service provider network.</p></div>
     <div class="sectionActions" style="padding:0 18px 14px;justify-content:flex-end"><button class="primary btn">＋ Add Provider</button></div>
     <div class="kpiGrid">
       <div class="kpiCard"><div class="kpiCardHead"><div><div class="small">Active Providers</div><div class="kpiNumber">3</div></div><div class="kpiIcon rf"><span class="rfIcon sage partners"></span></div></div></div>
@@ -580,7 +769,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
 <section id="profile-preferences" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">App Preferences</div><p class="sub">Set your theme, language, alerts, and automation settings.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">App Preferences</div><p class="sub">Set your theme, language, alerts, and automation settings.</p></div>
     <div class="stack">
       <div class="setting" onclick="go('preferences-theme')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Design & Theme</div><div class="tileSub">Change the app design style and color palette</div></div><div>›</div></div></div>
       <div class="setting" onclick="go('preferences-language')"><div class="row"><div><div class="tileTitle" style="font-size:17px">Language</div><div class="tileSub">Translate the whole app instantly</div></div><div>›</div></div></div>
@@ -590,7 +779,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
   <section id="preferences-theme" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">Design & Theme</div><p class="sub">Choose a look and color palette for the app. Each style keeps Sok usable while refining tone, contrast, and card feel.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">Design & Theme</div><p class="sub">Choose a look and color palette for the app. Each style keeps Sok usable while refining tone, contrast, and card feel.</p></div>
     <div class="themeShell">
       <div class="themeHeroCard">
         <div class="themeHeroTop">
@@ -623,7 +812,7 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
   <section id="preferences-language" class="page">
-    <div class="detail"><button class="back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">Language</div><p class="sub">Choose a language and translate the visible UI labels.</p></div>
+    <div class="detail"><button class="back" aria-label="Go back" onclick="back()">‹</button><div class="eyebrow" style="margin-top:14px">Preferences</div><div class="tileTitle" style="font-size:30px">Language</div><p class="sub">Choose a language and translate the visible UI labels.</p></div>
     <div class="langList">
       <div class="langCard" data-lang="en" onclick="applyLanguage('en')"><div><div class="tileTitle" style="font-size:17px">English</div><div class="tileSub">English</div></div><div>✓</div></div>
       <div class="langCard" data-lang="id" onclick="applyLanguage('id')"><div><div class="tileTitle" style="font-size:17px">Indonesian</div><div class="tileSub">Bahasa Indonesia</div></div><div>○</div></div>
@@ -637,16 +826,28 @@ body.home-edit-mode .homeBoard{padding-bottom:24px}
   </section>
 
   <nav class="bottom">
-    <button class="nav active" data-main="home" onclick="go('home')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></button>
-    <button class="nav" data-main="inbox" onclick="go('inbox')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Inbox</span></button>
-    <button class="nav" data-main="calendar" onclick="go('calendar')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><span>Calendar</span></button>
-    <button class="nav" data-main="tasks" onclick="go('tasks')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tasks</span></button>
-    <button class="nav" data-main="profile" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></button>
+    <button aria-label="Home" class="nav active" data-main="home" onclick="go('home')"><span class="uiPngIcon home" aria-hidden="true"><img src="data:image/png;base64,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" alt=""/></span><span class="uiPngIcon homeSelected" aria-hidden="true"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICA8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMzAuMi4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogMi4xLjEgQnVpbGQgMSkgIC0tPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuc3QwLCAuc3QxIHsKICAgICAgICBmaWxsOiBub25lOwogICAgICB9CgogICAgICAuc3QwLCAuc3QxLCAuc3QyIHsKICAgICAgICBzdHJva2UtbGluZWNhcDogcm91bmQ7CiAgICAgICAgc3Ryb2tlLWxpbmVqb2luOiByb3VuZDsKICAgICAgICBzdHJva2Utd2lkdGg6IDUuMzNweDsKICAgICAgfQoKICAgICAgLnN0MCwgLnN0MiB7CiAgICAgICAgc3Ryb2tlOiAjZjYzOwogICAgICB9CgogICAgICAuc3QxIHsKICAgICAgICBzdHJva2U6ICNmZmY7CiAgICAgIH0KCiAgICAgIC5zdDIgewogICAgICAgIGZpbGw6ICNmNjM7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xNiw2My45NHYxMy4zOWMwLDE3LjYsMCwyNi40LDUuNDcsMzEuODcsNS40Nyw1LjQ3LDE0LjI3LDUuNDcsMzEuODcsNS40N2gyMS4zM2MxNy42LDAsMjYuNCwwLDMxLjg3LTUuNDcsNS40Ny01LjQ3LDUuNDctMTQuMjcsNS40Ny0zMS44N3YtMTMuMzljMC04Ljk3LDAtMTMuNDUtMS45LTE3LjMzLTEuOS0zLjg4LTUuNDQtNi42My0xMi41MS0xMi4xNGwtMTAuNjctOC4zYy0xMS4wMS04LjU2LTE2LjUyLTEyLjg1LTIyLjkyLTEyLjg1cy0xMS45MSw0LjI4LTIyLjkyLDEyLjg1bC0xMC42Nyw4LjNjLTcuMDgsNS41LTEwLjYyLDguMjYtMTIuNTEsMTIuMTQtMS45LDMuODgtMS45LDguMzYtMS45LDE3LjMzWiIvPgogIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04MCw5MC42N2MtNC4yNiwzLjMyLTkuODcsNS4zMy0xNiw1LjMzcy0xMS43NC0yLjAxLTE2LTUuMzMiLz4KICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNODAuMDQsOTAuNTdjLTQuMjYsMy4zMi05Ljg3LDUuMzMtMTYsNS4zM3MtMTEuNzQtMi4wMS0xNi01LjMzIi8+Cjwvc3ZnPg==" alt=""/></span><span>Home</span></button>
+    <button aria-label="Inbox" class="nav" data-main="inbox" onclick="go('inbox')"><img class="navPng" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHklEQVR4nL1WO5aDMAwc5+VemAORijRsARRLE6pwoIiTKcXKrJ4RJDiQqfQse2b8QcIxM47EGQCcc2ayKgv/DknXD2SNMzMcM08CQlgDeIvYQCuCzUygKotGyAnAKAtMZxG0mToIdf3QMPPfEalkG9Q3QJtogtGqLAgAnQAE90ggn0FxeAA4fUr4ClqAduQlABmA6Q6ykEn9Lpae+m5HxMymuU0CP9eLbXMFmwR+b/fN5/fVV7Q3Ri0wIr3+WJi4znFm6bmlIuyAgP+S8QnismNVU0DKrp6oCLzBG8YyiadqGveDQFarxdT1Q67yOheDhJwAo+HEqMriIbvIJfayO9Lz1jra7JJXhDwS+sUrgRbAQ+J8yeka3NF/FYeXiifNhIeeB6XgEAAAAABJRU5ErkJggg=="/><span>Inbox</span></button>
+    <button aria-label="Calendar" class="nav" data-main="calendar" onclick="go('calendar')"><img class="navPng" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABJUlEQVR4nO2VsW3EMAxFXw4ZIYNkA8sbXJ8Z1KlSc3bjyp0XuQ1O2iQjZIAAlyKUQyuylZyBBAjyG5ug+D8lUST8JryznXfW3OoHOFQ0GuC0w8/dSmYGMCo4rMQb8UWAYZy6TQEhPkmgxpZAjnYYp3n9fea8CFk7jFPwzl4ks7bErv3e2Y6PI5sFDmpxJ79RZRCBfiX7hV+OpwdM8eKlIq4bZF+Cd/aqkv1URWGvgHA0ydB38AQ8eGfPWUBtV3klPgIvydA7yC98D15LpM8Awzgd9zCnykqoveTd+Bf4uwKxJBApd8fvYsGhBQLMLfsm6B6UkM+D9EhiaXhUyA0yS4Zxmnnz9tDzPhOMd3bR1ysw8g3AYnasjcxOmU1pTYYIBD3JfgxvowFgXu2J2Y4AAAAASUVORK5CYII="/><span>Calendar</span></button>
+    <button aria-label="Tasks" class="nav" data-main="tasks" onclick="go('tasks')"><img class="navPng" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABFElEQVR4nNWVTQ7CIBCFP433sj2QO1duKBtW7DhQ6cl0M9SB0lojxvgSEzvM/6N98GUcSsPteumADjjvzDEBOB+G2uGxSD4AI2DE1G0kTmcGMBK7XkAcDGCdDwfAypF1PvT6l7oufI1Mn2FeUSogAck2Sqex1n3he5eC2SR6RecykXRrWSICfcW24O1UCc6wRt5eHF+7fIb/L7DKgdyqVy+bdT7ELYffTfDp7UloPcFUGt7lYHXn8lIu0JyD2/Uy6G9SMw4kqeH5lY3QaAJJPspjr5trtaKkHwuOdIGJbYGZIXse0n+Jq14AXSCqgD0wohdJpKpxmSYrVZsLVmCdD1HvXQtPiYwD6cJSF5kMso5dvl/FA3hCdhQhEcDrAAAAAElFTkSuQmCC"/><span>Tasks</span></button>
+    <button aria-label="Profile" class="nav" data-main="profile" onclick="go('profile')"><img class="navPng" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABLElEQVR4nO1UMZKDMAzcZO5fkR/kzpUboKGi40HRvSwpkIiQDThJd3M7w4wHy7uStTLw55FTpG/OXw6I77K0AsM4zf07AtcDciUOAAb5OiPchKICQx7GaWa3RwDuAHic5tAisKlACAjLVbAPln8BALX2xl8RCVG/d8AIfyRwA8CVOA+WWABbp/nKftzBXwBdgwBhafras5ziuinrME4z+wq4loVFTrHXWFkTlr6wfIPsd8CXLlLLekflFB+QmakOmhHRbFgyIhiLGsF1AKWq7kxAD9awmWZLiKXxZGOOroiVEC9LFgROpEigIM8pPkwjazG9xBQV1sxxMZuaxemDVrv7PVibNpED6zTr41dkXQhYb5+RGzTFbgat9sDtofVNUoEbXp5/B80J/WMXT7hjozss93UYAAAAAElFTkSuQmCC"/><span>Profile</span></button>
   </nav>
 </div>
 
 <script>
 const rootPages = ['home','inbox','calendar','tasks','profile'];
+
+const haptics = {
+  canVibrate: typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function',
+  prefersReducedMotion: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  run(pattern){
+    if(this.prefersReducedMotion || !this.canVibrate) return;
+    try{ navigator.vibrate(pattern); }catch(e){}
+  },
+  soft(){ this.run(6); },
+  success(){ this.run([8,20,10]); }
+};
+
 const pageHistory = ['home'];
 
 const themes = {
@@ -688,7 +889,7 @@ const homeItems = [
     id:'departures', defaultSpan:1, target:'calendar',
     markup:`<div class="card homeStat">
       <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon departure" aria-hidden="true"></span></div>
+      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon departure" aria-hidden="true"><img class="homeWidgetIconImg" src="data:image/png;base64,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" alt=""/></span></div>
       <div class="homeStatBody"><div class="big">1</div><div class="label">Departures</div></div>
     </div>`
   },
@@ -696,7 +897,7 @@ const homeItems = [
     id:'arrivals', defaultSpan:1, target:'calendar',
     markup:`<div class="card homeStat">
       <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon arrival" aria-hidden="true"></span></div>
+      <div class="homeStatTop"><div class="small">Today</div><span class="homeWidgetIcon arrival" aria-hidden="true"><img class="homeWidgetIconImg" src="data:image/png;base64,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" alt=""/></span></div>
       <div class="homeStatBody"><div class="big">2</div><div class="label">Arrivals</div></div>
     </div>`
   },
@@ -704,7 +905,7 @@ const homeItems = [
     id:'occupancy', defaultSpan:1, target:'profile',
     markup:`<div class="card homeStat">
       <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="small">Occupancy</div><span class="homeWidgetIcon occupancy" aria-hidden="true"></span></div>
+      <div class="homeStatTop"><div class="small">Occupancy</div><span class="homeWidgetIcon occupancy" aria-hidden="true"><img class="homeWidgetIconImg occupancy" src="data:image/png;base64,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" alt=""/></span></div>
       <div class="homeStatBody"><div class="big">67%</div><div class="label">2 / 3 villas</div></div>
     </div>`
   },
@@ -712,7 +913,7 @@ const homeItems = [
     id:'messages', defaultSpan:1, target:'inbox',
     markup:`<div class="card homeStat">
       <span class="homeResize" aria-label="Resize widget">1×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeStatTop"><div class="small">Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
+      <div class="homeStatTop"><div class="small">Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"><img class="homeWidgetIconImg msg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBjb2xvcj0iI2ZmNjYzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY2NjMzIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNNi4wOTg4MSAxOUM0Ljc5ODcgMTguODcyMSAzLjgyNDc1IDE4LjQ4MTYgMy4xNzE1NyAxNy44Mjg0QzIgMTYuNjU2OSAyIDE0Ljc3MTIgMiAxMVYxMC41QzIgNi43Mjg3NiAyIDQuODQzMTUgMy4xNzE1NyAzLjY3MTU3QzQuMzQzMTUgMi41IDYuMjI4NzYgMi41IDEwIDIuNUgxNEMxNy43NzEyIDIuNSAxOS42NTY5IDIuNSAyMC44Mjg0IDMuNjcxNTdDMjIgNC44NDMxNSAyMiA2LjcyODc2IDIyIDEwLjVWMTFDMjIgMTQuNzcxMiAyMiAxNi42NTY5IDIwLjgyODQgMTcuODI4NEMxOS42NTY5IDE5IDE3Ljc3MTIgMTkgMTQgMTlDMTMuNDM5NSAxOS4wMTI1IDEyLjk5MzEgMTkuMDU1MSAxMi41NTQ2IDE5LjE1NUMxMS4zNTYyIDE5LjQzMDkgMTAuMjQ2NSAyMC4wNDQxIDkuMTQ5ODcgMjAuNTc4OUM3LjU4NzI5IDIxLjM0MDggNi44MDYgMjEuNzIxOCA2LjMxNTY5IDIxLjM2NTFDNS4zNzc2OSAyMC42NjY1IDYuMjk0NTQgMTguNTAxOSA2LjUgMTcuNSIgLz4KPC9zdmc+" alt=""/></span></div>
       <div class="homeStatBody"><div class="big">2</div><div class="label">Unread messages</div></div>
     </div>`
   },
@@ -720,7 +921,7 @@ const homeItems = [
     id:'checkout', defaultSpan:3, target:'detail-checkin',
     markup:`<div class="tile homeTile">
       <span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon departure" aria-hidden="true"></span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Next 24 Hours</div><span class="homeWidgetIcon departure" aria-hidden="true"><img class="homeWidgetIconImg" src="data:image/png;base64,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" alt=""/></span></div>
       <div class="homeTileTitleRow"><div class="tileTitle">Chen Family check-out</div></div>
       <div class="homeTileSubRow"><div><div class="tileSub">Villa Sari • 11:00 AM departure • Cleaning team assigned</div></div><span class="badge urgent">Priority</span></div>
       <div class="meta"><span>Ayu Ketut assigned</span><span>Due 3:00 PM</span></div>
@@ -740,7 +941,7 @@ const homeItems = [
     id:'chen-message', defaultSpan:2, target:'detail-message-chen',
     markup:`<div class="tile homeTile">
       <span class="homeResize" aria-label="Resize widget">2×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"><img class="homeWidgetIconImg msg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBjb2xvcj0iI2ZmNjYzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY2NjMzIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNNi4wOTg4MSAxOUM0Ljc5ODcgMTguODcyMSAzLjgyNDc1IDE4LjQ4MTYgMy4xNzE1NyAxNy44Mjg0QzIgMTYuNjU2OSAyIDE0Ljc3MTIgMiAxMVYxMC41QzIgNi43Mjg3NiAyIDQuODQzMTUgMy4xNzE1NyAzLjY3MTU3QzQuMzQzMTUgMi41IDYuMjI4NzYgMi41IDEwIDIuNUgxNEMxNy43NzEyIDIuNSAxOS42NTY5IDIuNSAyMC44Mjg0IDMuNjcxNTdDMjIgNC44NDMxNSAyMiA2LjcyODc2IDIyIDEwLjVWMTFDMjIgMTQuNzcxMiAyMiAxNi42NTY5IDIwLjgyODQgMTcuODI4NEMxOS42NTY5IDE5IDE3Ljc3MTIgMTkgMTQgMTlDMTMuNDM5NSAxOS4wMTI1IDEyLjk5MzEgMTkuMDU1MSAxMi41NTQ2IDE5LjE1NUMxMS4zNTYyIDE5LjQzMDkgMTAuMjQ2NSAyMC4wNDQxIDkuMTQ5ODcgMjAuNTc4OUM3LjU4NzI5IDIxLjM0MDggNi44MDYgMjEuNzIxOCA2LjMxNTY5IDIxLjM2NTFDNS4zNzc2OSAyMC42NjY1IDYuMjk0NTQgMTguNTAxOSA2LjUgMTcuNSIgLz4KPC9zdmc+" alt=""/></span></div>
       <div class="homeTileTitleRow"><div class="tileTitle">Chen Family</div></div>
       <div class="tileSub">“What time should we be ready for tomorrow's temple visit?”</div>
     </div>`
@@ -749,7 +950,7 @@ const homeItems = [
     id:'sarah-message', defaultSpan:2, target:'detail-message-sarah',
     markup:`<div class="tile homeTile">
       <span class="homeResize" aria-label="Resize widget">2×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Recent Messages</div><span class="homeWidgetIcon messages" aria-hidden="true"><img class="homeWidgetIconImg msg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBjb2xvcj0iI2ZmNjYzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY2NjMzIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNNi4wOTg4MSAxOUM0Ljc5ODcgMTguODcyMSAzLjgyNDc1IDE4LjQ4MTYgMy4xNzE1NyAxNy44Mjg0QzIgMTYuNjU2OSAyIDE0Ljc3MTIgMiAxMVYxMC41QzIgNi43Mjg3NiAyIDQuODQzMTUgMy4xNzE1NyAzLjY3MTU3QzQuMzQzMTUgMi41IDYuMjI4NzYgMi41IDEwIDIuNUgxNEMxNy43NzEyIDIuNSAxOS42NTY5IDIuNSAyMC44Mjg0IDMuNjcxNTdDMjIgNC44NDMxNSAyMiA2LjcyODc2IDIyIDEwLjVWMTFDMjIgMTQuNzcxMiAyMiAxNi42NTY5IDIwLjgyODQgMTcuODI4NEMxOS42NTY5IDE5IDE3Ljc3MTIgMTkgMTQgMTlDMTMuNDM5NSAxOS4wMTI1IDEyLjk5MzEgMTkuMDU1MSAxMi41NTQ2IDE5LjE1NUMxMS4zNTYyIDE5LjQzMDkgMTAuMjQ2NSAyMC4wNDQxIDkuMTQ5ODcgMjAuNTc4OUM3LjU4NzI5IDIxLjM0MDggNi44MDYgMjEuNzIxOCA2LjMxNTY5IDIxLjM2NTFDNS4zNzc2OSAyMC42NjY1IDYuMjk0NTQgMTguNTAxOSA2LjUgMTcuNSIgLz4KPC9zdmc+" alt=""/></span></div>
       <div class="homeTileTitleRow"><div class="tileTitle">Sarah &amp; Tom</div></div>
       <div class="tileSub">“Can you recommend a romantic dinner spot?”</div>
     </div>`
@@ -758,7 +959,7 @@ const homeItems = [
     id:'quick-actions-panel', defaultSpan:3, target:'dashboard-hub',
     markup:`<div class="tile homeTile">
       <span class="homeResize" aria-label="Resize widget">3×</span><span class="homeGrip" aria-hidden="true"></span>
-      <div class="homeTileTop"><div class="homeMetaTag dot">Quick Actions</div><span class="homeWidgetIcon messages" aria-hidden="true"></span></div>
+      <div class="homeTileTop"><div class="homeMetaTag dot">Quick Actions</div><span class="homeWidgetIcon quickactions" aria-hidden="true"></span></div>
       <div class="tileSub">Send guest reply • Resume checklist • Review schedule • Contact providers</div>
     </div>`
   },
@@ -783,6 +984,17 @@ let homeEditMode = false;
 let longPressTimer = null;
 let dragState = null;
 
+
+function normalizeHomeSpans(spans, order){
+  const out = {};
+  order.forEach(id => {
+    const item = getHomeItemById(id);
+    const raw = Number(spans[id]);
+    out[id] = [1,2,3].includes(raw) ? raw : (item?.defaultSpan || 1);
+  });
+  return out;
+}
+
 function getHomeItemById(id){
   return homeItems.find(item => item.id === id);
 }
@@ -806,16 +1018,9 @@ function loadHomeLayout(){
 function loadHomeSpans(){
   try{
     const saved = JSON.parse(localStorage.getItem(HOME_SPAN_KEY) || '{}');
-    const out = {};
-    homeItems.forEach(item => {
-      const raw = Number(saved[item.id]);
-      out[item.id] = [1,2,3].includes(raw) ? raw : item.defaultSpan;
-    });
-    return out;
+    return normalizeHomeSpans(saved, defaultHomeOrder());
   }catch(err){
-    const out = {};
-    homeItems.forEach(item => out[item.id] = item.defaultSpan);
-    return out;
+    return normalizeHomeSpans({}, defaultHomeOrder());
   }
 }
 
@@ -827,6 +1032,7 @@ function saveHomeLayout(){
   localStorage.setItem(HOME_SPAN_KEY, JSON.stringify(spans));
 }
 function resetHomeLayout(){
+ haptics.success();
   localStorage.removeItem(HOME_LAYOUT_KEY);
   localStorage.removeItem(HOME_SPAN_KEY);
   disableHomeEditMode();
@@ -855,12 +1061,14 @@ function renderHomeLayout(){
 }
 
 function enableHomeEditMode(){
+ haptics.soft();
   homeEditMode = true;
   document.body.classList.add('home-edit-mode');
   updateHomeHint();
 }
 
 function disableHomeEditMode(){
+ haptics.success();
   finishDrag();
   homeEditMode = false;
   document.body.classList.remove('home-edit-mode');
@@ -1061,6 +1269,7 @@ function formatSpanLabel(span){
 }
 
 function cycleHomeSpan(item){
+ haptics.soft();
   const current = Number(item.dataset.span) || 1;
   const next = current === 3 ? 1 : current + 1;
   item.dataset.span = String(next);
@@ -1146,6 +1355,7 @@ function showPage(id){
 }
 
 function go(id, options = {}){
+ haptics.soft();
  const page = getPage(id);
  if(!page) return showPage('home');
  if(id !== 'home' && homeEditMode){
@@ -1161,6 +1371,7 @@ function go(id, options = {}){
 }
 
 function back(){
+ haptics.soft();
  if(homeEditMode){
    disableHomeEditMode();
  }
@@ -1184,6 +1395,7 @@ function updateThemeHero(theme){
 }
 
 function applyTheme(name){
+ haptics.success();
  const t = themes[name] || themes.default;
  const s = document.documentElement.style;
  const tokens = {
@@ -1201,6 +1413,7 @@ function applyTheme(name){
 }
 
 function applyLanguage(lang){
+ haptics.success();
  document.querySelectorAll('.langCard').forEach(c=>{
    const sel = c.dataset.lang === lang;
    c.classList.toggle('sel', sel);
