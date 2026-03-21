@@ -949,13 +949,17 @@ body.home-edit-mode .homeHint{color:var(--text)}
 
 /* minimal top bar + scroll-aware hide/show */
 .top{
-  transition:transform .34s cubic-bezier(.22,.61,.36,1), opacity .24s ease, background .34s ease, border-color .34s ease, box-shadow .34s ease !important;
-  transform:translateY(0);
+  transition:transform .46s cubic-bezier(.22,1,.36,1), opacity .28s ease, filter .46s cubic-bezier(.22,1,.36,1), background .34s ease, border-color .34s ease, box-shadow .34s ease !important;
+  transform:translateY(0) scale(1);
   opacity:1;
+  filter:blur(0);
+  will-change:transform, opacity, filter;
 }
+body.chrome-hidden .top,
 .top.top-hidden{
-  transform:translateY(calc(-100% - 10px));
-  opacity:.0;
+  transform:translateY(calc(-100% - 14px)) scale(.985);
+  opacity:0;
+  filter:blur(6px);
   pointer-events:none;
 }
 .top .row{
@@ -1432,6 +1436,261 @@ body.home-edit-mode .homeViewRail .homeDelete{
   display:flex !important;
 }
 
+
+/* senior ux refinement pass */
+:root{
+  --contentMax:394px;
+}
+.app{
+  max-width:430px;
+}
+.hero,.detail,.dashboardShell,.panelStack,.marketGrid,.providerGrid,.themeShell,.langList,.stack,.kpiGrid,.featureGrid,.sceneGrid,.messageThread,.inboxShell{
+  scroll-margin-top:92px;
+}
+.hero p.sub,.detail p.sub{
+  max-width:34ch;
+}
+.hero{
+  padding-top:18px;
+}
+.page{
+  animation:fade .18s ease;
+}
+.section,.panelHead{
+  min-height:28px;
+}
+.top{
+  background:color-mix(in srgb,var(--bg) 88%, rgba(255,255,255,.72));
+  border-bottom:1px solid color-mix(in srgb,var(--line) 74%, transparent);
+}
+.topSearchShell{
+  max-width:100%;
+}
+.topSearchField{
+  padding:0 46px 0 16px !important;
+}
+.topSearchField input{
+  font-size:15px;
+}
+.topSearchClear{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  width:32px;
+  height:32px;
+  border:none;
+  border-radius:12px;
+  background:transparent;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease,color .18s ease,background .18s ease;
+}
+.top.search-active .topSearchClear{
+  opacity:1;
+  pointer-events:auto;
+}
+.topSearchClear:hover,
+.topSearchClear:focus-visible{
+  background:color-mix(in srgb,var(--primary) 8%, var(--panel));
+  color:var(--text);
+}
+.bottom{
+  width:min(410px, calc(100% - 14px));
+  padding:6px;
+  gap:2px;
+  border-radius:28px;
+  box-shadow:0 16px 32px rgba(73,45,21,.08);
+  transition:transform .46s cubic-bezier(.22,1,.36,1), opacity .28s ease, filter .46s cubic-bezier(.22,1,.36,1), box-shadow .32s ease;
+  will-change:transform, opacity, filter;
+}
+body.chrome-hidden .bottom{
+  transform:translateX(-50%) translateY(calc(100% + env(safe-area-inset-bottom) + 28px)) scale(.985);
+  opacity:0;
+  filter:blur(10px);
+  pointer-events:none;
+}
+.bottom .nav{
+  min-height:60px;
+  gap:4px;
+  border-radius:18px;
+}
+.bottom .nav span:last-child{
+  line-height:1;
+}
+.bottom .nav.active{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--primary) 11%, var(--panel2)) 0%, color-mix(in srgb,var(--primary) 8%, var(--panel)) 100%);
+}
+.homeTools{
+  display:flex !important;
+  align-items:center;
+  justify-content:space-between;
+}
+.homeDoneBtn,.homeResetBtn{
+  display:none;
+}
+body.home-edit-mode .homeDoneBtn,
+body.home-edit-mode .homeResetBtn{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+}
+.homeEditToast{
+  display:none !important;
+}
+body.home-edit-mode .homeEditToast{
+  display:block !important;
+}
+.homeHint{
+  transition:color .2s ease,opacity .2s ease;
+}
+body.home-edit-mode .homeHint{
+  color:var(--text) !important;
+  opacity:.92;
+}
+.homeViewRail{
+  position:relative;
+  padding-bottom:6px;
+  margin-bottom:14px;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+  mask-image:linear-gradient(90deg, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+}
+.homeRailTrack{
+  gap:10px;
+}
+.homeViewRail .homeItem .card,
+.homeViewRail .homeItem .tile{
+  min-height:146px;
+}
+body.home-edit-mode .homeViewRail .homeItem{
+  opacity:.9;
+}
+body.home-edit-mode .homeViewRail .homeItem.edit-focus{
+  opacity:1;
+}
+.homePlaceholder{
+  min-height:116px !important;
+}
+.panelCard,.kpiCard,.inboxThreadCard,.marketCardWide,.providerCardWide,.sceneCard,.featureTile{
+  border-radius:24px;
+}
+.panelHead .panelLink,
+.section .link{
+  min-height:36px;
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:0 2px;
+}
+.quickBtn{
+  min-height:50px;
+  border-radius:18px;
+  transition:transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.quickBtn:active{
+  transform:scale(.985);
+}
+.inboxThreadCard{
+  padding:16px;
+}
+.inboxName{
+  line-height:1.05;
+}
+.inboxSnippet{
+  -webkit-line-clamp:3;
+}
+.messageBubble{
+  border-radius:20px;
+}
+.emptyState{
+  padding:20px 18px;
+  border-radius:20px;
+}
+.themeCard,.langCard,.setting{
+  border-radius:20px;
+}
+.calendarGrid{
+  gap:8px;
+}
+.calendarCell{
+  border-radius:14px;
+}
+@media (max-width:380px){
+  .bottom{
+    width:min(100%, calc(100% - 10px));
+    padding:5px;
+  }
+  .bottom .nav{
+    min-height:58px;
+  }
+}
+
+
+/* ux stabilization pass */
+.homeCustomizeBtn,.homeDoneBtn,.homeResetBtn{
+  min-height:34px !important;
+  padding:0 14px !important;
+  border:none;
+  border-radius:999px !important;
+  font:800 13px Inter,sans-serif;
+  cursor:pointer;
+  transition:transform .18s ease, opacity .18s ease, background .18s ease, border-color .18s ease;
+}
+.homeCustomizeBtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--primary);
+  color:#fff;
+}
+.homeResetBtn{
+  background:color-mix(in srgb,var(--panel2) 82%, var(--panel)) !important;
+  color:var(--text);
+  border:1px solid color-mix(in srgb,var(--line) 72%, transparent);
+}
+.homeDoneBtn{
+  background:var(--primary);
+  color:#fff;
+}
+body.home-edit-mode .homeCustomizeBtn{display:none !important}
+body:not(.home-edit-mode) .homeCustomizeBtn{display:inline-flex !important}
+body:not(.home-edit-mode) .homeDoneBtn,
+body:not(.home-edit-mode) .homeResetBtn{display:none !important}
+body.home-edit-mode .homeDoneBtn,
+body.home-edit-mode .homeResetBtn{display:inline-flex !important;align-items:center;justify-content:center}
+.bottom .nav .uiPngIcon{
+  display:none;
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:2px;
+  background:none !important;
+  border:none !important;
+  box-shadow:none !important;
+  outline:none !important;
+  border-radius:0 !important;
+  padding:0 !important;
+}
+.bottom .nav .uiPngIcon img{
+  display:block;
+  width:22px;
+  height:22px;
+  object-fit:contain;
+}
+.bottom .nav:not(.active) .uiPngIcon:not([class*="Selected"]){display:inline-flex !important}
+.bottom .nav.active .uiPngIcon[class*="Selected"]{display:inline-flex !important}
+.bottom .nav[aria-current="page"]{
+  color:var(--primary);
+}
+.topSearchShell[role="search"]{z-index:3}
+
 </style>
 </head>
 <body data-theme="default">
@@ -1440,12 +1699,13 @@ body.home-edit-mode .homeViewRail .homeDelete{
     <div class="row"><div class="row">
 
 
-<button class="icon topSearchToggle" id="topSearchToggle" aria-label="Open search" type="button">
+<button class="icon topSearchToggle" id="topSearchToggle" aria-label="Open search" aria-expanded="false" type="button">
   <span class="topSearchIcon" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIGNvbG9yPSIjOTU4MTZlIiBmaWxsPSJub25lIiBzdHJva2U9IiM5NTgxNmUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTTE1IDE1TDE2LjUgMTYuNSIgLz4KICAgIDxwYXRoIGQ9Ik0xNi45MzMzIDE5LjAyNTJDMTYuMzU1NiAxOC40NDc1IDE2LjM1NTYgMTcuNTEwOSAxNi45MzMzIDE2LjkzMzNDMTcuNTEwOSAxNi4zNTU2IDE4LjQ0NzUgMTYuMzU1NiAxOS4wMjUyIDE2LjkzMzNMMjEuMDY2NyAxOC45NzQ4QzIxLjY0NDQgMTkuNTUyNSAyMS42NDQ0IDIwLjQ4OTEgMjEuMDY2NyAyMS4wNjY3QzIwLjQ4OTEgMjEuNjQ0NCAxOS41NTI1IDIxLjY0NDQgMTguOTc0OCAyMS4wNjY3TDE2LjkzMzMgMTkuMDI1MloiIC8+CiAgICA8cGF0aCBkPSJNMTYuNSA5LjVDMTYuNSA1LjYzNDAxIDEzLjM2NiAyLjUgOS41IDIuNUM1LjYzNDAxIDIuNSAyLjUgNS42MzQwMSAyLjUgOS41QzIuNSAxMy4zNjYgNS42MzQwMSAxNi41IDkuNSAxNi41QzEzLjM2NiAxNi41IDE2LjUgMTMuMzY2IDE2LjUgOS41WiIgLz4KPC9zdmc+" alt=""/></span>
 </button>
 <div class="topSearchShell" id="topSearchShell">
   <div class="topSearchField">
     <input id="topSearchInput" type="search" placeholder="Search guests, tasks, or bookings" autocomplete="off"/>
+    <button class="topSearchClear" id="topSearchClear" type="button" aria-label="Clear search">×</button>
   </div>
 </div>
 
@@ -1455,18 +1715,19 @@ body.home-edit-mode .homeViewRail .homeDelete{
   
   <section id="home" class="page active">
     <div class="hero">
-      <div class="eyebrow">Thursday, March 12, 2026</div>
+      <div class="eyebrow">Friday, March 13, 2026</div>
       <h1>Good morning, Wayan</h1>
       <p class="sub">One departure, one confirmed experience, and two guest conversations need attention today.</p>
     </div>
     <div class="homeTools">
-      <span id="homeEditHint" class="homeHint">Touch and hold</span>
-      <div class="row" style="gap:8px">
+      <span id="homeEditHint" class="homeHint">Customize your home</span>
+      <div class="row homeToolActions" style="gap:8px">
+        <button id="homeCustomizeBtn" class="homeCustomizeBtn" type="button" onclick="enableHomeEditMode()">Customize</button>
         <button id="homeResetBtn" class="homeResetBtn" type="button" onclick="resetHomeLayout()">Reset</button>
         <button id="homeDoneBtn" class="homeDoneBtn" type="button" onclick="disableHomeEditMode()">Done</button>
       </div>
     </div>
-    <div class="homeEditToast">Hold a pod to enter edit mode. Only 1-column pods can live in the first swipe row, and dragging one there shifts the others to make space.</div>
+    <div class="homeEditToast">Drag pods between the swipe row and the board, resize them, or remove anything you do not need.</div>
     <div id="homeRestoreShelf" class="homeRestoreShelf"><div class="homeRestoreTitle">Add pods back</div><div id="homeRestoreGrid" class="homeRestoreGrid"></div></div>
     <div id="homeViewRail" class="homeViewRail"></div><div id="homeBoard" class="homeBoard"></div>
   </section>
@@ -1496,7 +1757,7 @@ body.home-edit-mode .homeViewRail .homeDelete{
       <div class="dashboardHeroCard">
         <div class="dashboardHeroTop">
           <div><div class="eyebrow" style="margin-bottom:6px">Good morning,</div><div class="dashboardHeroName">Wayan Sudarta</div><div class="sub">Villa Manager • Villa Sari</div></div>
-          <div class="dashboardHeroDate"><strong>14</strong>Mar 2026</div>
+          <div class="dashboardHeroDate"><strong>13</strong>Mar 2026</div>
         </div>
         <div class="dashboardPills"><div class="dashboardPill"><span class="rfIcon sm sage partners"></span>Current Guest: <strong>Chen Family</strong></div><div class="dashboardPill"><span class="rfIcon sm orange calendar"></span>Checkout: <strong>Today 11am</strong></div></div>
       </div>
@@ -1545,7 +1806,7 @@ body.home-edit-mode .homeViewRail .homeDelete{
         <div class="sceneCard"><div class="sceneImage kitchen"></div><div class="sceneCardBody"><div><div class="tileTitle">Kitchen</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
         <div class="sceneCard"><div class="sceneImage bedrooms"></div><div class="sceneCardBody"><div><div class="tileTitle">Bedrooms</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
         <div class="sceneCard"><div class="sceneImage pool"></div><div class="sceneCardBody"><div><div class="tileTitle">Pool &amp; Garden</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
-        <div class="panelCard stayCard"><div class="tileTitle" style="font-size:24px">Your Stay</div><div class="stayGrid"><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-in</div><div class="tileTitle" style="font-size:18px">3/18/2025 3:00 PM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-out</div><div class="tileTitle" style="font-size:18px">3/25/2025 11:00 AM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal signal"></span></div><div><div class="small">WiFi</div><div class="tileTitle" style="font-size:18px">VillaSari_Guest</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon plum key"></span></div><div><div class="small">Password</div><div class="tileTitle" style="font-size:18px">Ubud2025!</div></div></div></div></div>
+        <div class="panelCard stayCard"><div class="tileTitle" style="font-size:24px">Your Stay</div><div class="stayGrid"><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-in</div><div class="tileTitle" style="font-size:18px">3/11/2026 3:00 PM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-out</div><div class="tileTitle" style="font-size:18px">3/18/2026 11:00 AM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal signal"></span></div><div><div class="small">WiFi</div><div class="tileTitle" style="font-size:18px">VillaSari_Guest</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon plum key"></span></div><div><div class="small">Password</div><div class="tileTitle" style="font-size:18px">Ubud2025!</div></div></div></div></div>
       </div>
     </div>
     <div id="guestHubMap" style="display:none">
@@ -1714,9 +1975,9 @@ function miniHTML(t){
 }
 
 
-const HOME_LAYOUT_KEY = 'sok-home-layout-v3';
-const HOME_SPAN_KEY = 'sok-home-spans-v4';
-const HOME_HIDDEN_KEY = 'sok-home-hidden-v4';
+const HOME_LAYOUT_KEY = 'sok-home-layout-v6';
+const HOME_SPAN_KEY = 'sok-home-spans-v5';
+const HOME_HIDDEN_KEY = 'sok-home-hidden-v5';
 const homeItems = [
   {
     id:'departures', defaultSpan:1, minSpan:1, target:'calendar',
@@ -1903,7 +2164,7 @@ function resetHomeLayout(){
 function updateHomeHint(){
   const hint = document.getElementById('homeEditHint');
   if(!hint) return;
-  hint.textContent = homeEditMode ? 'Editing home' : 'Hold a pod to arrange';
+  hint.textContent = homeEditMode ? 'Editing layout' : 'Hold a pod to arrange';
 }
 
 
@@ -2376,6 +2637,7 @@ function inferMainPage(id){
 }
 
 function showPage(id){
+ closeTopSearch();
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  const page = getPage(id) || getPage('home');
  page.classList.add('active');
@@ -2497,6 +2759,7 @@ window.addEventListener('scroll', () => {
 const topSearchToggle = document.getElementById('topSearchToggle');
 const topSearchShell = document.getElementById('topSearchShell');
 const topSearchInput = document.getElementById('topSearchInput');
+const topSearchClear = document.getElementById('topSearchClear');
 
 function runTopSearchQuery(q){
   const value = (q || '').toLowerCase().trim();
@@ -2507,17 +2770,27 @@ function runTopSearchQuery(q){
   else if(value.includes('profile') || value.includes('villa') || value.includes('account')) go('profile');
   else go('dashboard-hub');
 }
+function syncTopSearchClear(){
+  if(!topSearchClear) return;
+  const hasValue = !!topSearchInput?.value?.trim();
+  topSearchClear.style.opacity = document.querySelector('.top')?.classList.contains('search-active') ? '1' : '0';
+  topSearchClear.style.color = hasValue ? 'var(--text)' : 'var(--muted)';
+}
 function closeTopSearch(){
   topSearchShell.classList.remove('open');
   topSearchToggle.classList.remove('search-open');
   document.querySelector('.top')?.classList.remove('search-active');
   topSearchToggle.setAttribute('aria-label','Open search');
+  topSearchToggle.setAttribute('aria-expanded','false');
+  syncTopSearchClear();
 }
 function openTopSearch(){
   topSearchShell.classList.add('open');
   topSearchToggle.classList.add('search-open');
   document.querySelector('.top')?.classList.add('search-active');
   topSearchToggle.setAttribute('aria-label','Search');
+  topSearchToggle.setAttribute('aria-expanded','true');
+  syncTopSearchClear();
   setTimeout(() => topSearchInput.focus(), 140);
 }
 function toggleTopSearch(){
@@ -2532,9 +2805,21 @@ topSearchToggle.addEventListener('click', (e) => {
     toggleTopSearch();
   }
 });
+topSearchInput.addEventListener('input', () => {
+  syncTopSearchClear();
+});
 topSearchInput.addEventListener('keydown', e => {
   if(e.key === 'Enter') runTopSearchQuery(topSearchInput.value);
   if(e.key === 'Escape') closeTopSearch();
+});
+topSearchClear?.addEventListener('click', () => {
+  if(topSearchInput.value.trim()){
+    topSearchInput.value = '';
+    syncTopSearchClear();
+    topSearchInput.focus();
+  }else{
+    closeTopSearch();
+  }
 });
 document.addEventListener('click', e => {
   if(!topSearchToggle.contains(e.target) && !topSearchShell.contains(e.target)) closeTopSearch();
@@ -2569,11 +2854,377 @@ window.addEventListener('scroll', () => {
   }
 }, { passive:true });
 
+
+/* ux stabilization overrides */
+function homeAllItemIds(){
+  return homeItems.map(item => item.id);
+}
+function homeDefaultVisibleIds(){
+  return ['departures','arrivals','occupancy','messages','checkout','needs-attention','chen-message','sarah-message','quick-actions-panel'];
+}
+function homeDefaultHiddenIds(){
+  return homeAllItemIds().filter(id => !homeDefaultVisibleIds().includes(id));
+}
+function homeDefaultZones(){
+  return {
+    rail:['departures','arrivals','occupancy','messages'],
+    board:['checkout','needs-attention','chen-message','sarah-message','quick-actions-panel']
+  };
+}
+function saveHomeLayoutState(layout){
+  localStorage.setItem(HOME_LAYOUT_KEY, JSON.stringify({
+    rail:Array.isArray(layout && layout.rail) ? layout.rail : [],
+    board:Array.isArray(layout && layout.board) ? layout.board : []
+  }));
+}
+const homeItemTitleCache = {};
+function getHomeItemTitle(item){
+  if(!item) return 'Widget';
+  if(homeItemTitleCache[item.id]) return homeItemTitleCache[item.id];
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = item.markup;
+  const title = wrapper.querySelector('.tileTitle')?.textContent?.trim()
+    || wrapper.querySelector('.label')?.textContent?.trim()
+    || wrapper.querySelector('.small')?.textContent?.trim()
+    || item.id.replace(/-/g,' ');
+  homeItemTitleCache[item.id] = title;
+  return title;
+}
+
+loadHiddenHomeItems = function(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(HOME_HIDDEN_KEY) || 'null');
+    if(saved === null) return homeDefaultHiddenIds();
+    return Array.isArray(saved) ? [...new Set(saved.filter(id => homeAllItemIds().includes(id)))] : homeDefaultHiddenIds();
+  }catch(err){
+    return homeDefaultHiddenIds();
+  }
+};
+saveHiddenHomeItems = function(ids){
+  const clean = [...new Set((ids || []).filter(id => homeAllItemIds().includes(id)))];
+  localStorage.setItem(HOME_HIDDEN_KEY, JSON.stringify(clean));
+};
+getHiddenHomeItemData = function(){
+  const hidden = new Set(loadHiddenHomeItems());
+  return homeAllItemIds().map(id => getHomeItemById(id)).filter(Boolean).filter(item => hidden.has(item.id));
+};
+defaultHomeOrder = function(){
+  return homeDefaultVisibleIds();
+};
+loadHomeLayout = function(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(HOME_LAYOUT_KEY) || 'null');
+    if(!saved || typeof saved !== 'object') return homeDefaultZones();
+    const valid = new Set(homeAllItemIds());
+    const seen = new Set();
+    const rail = Array.isArray(saved.rail)
+      ? saved.rail.filter(id => valid.has(id) && !seen.has(id) && (seen.add(id), true))
+      : [];
+    const board = Array.isArray(saved.board)
+      ? saved.board.filter(id => valid.has(id) && !seen.has(id) && (seen.add(id), true))
+      : [];
+    return { rail, board };
+  }catch(err){
+    return homeDefaultZones();
+  }
+};
+loadHomeSpans = function(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(HOME_SPAN_KEY) || '{}');
+    return normalizeHomeSpans(saved, homeAllItemIds());
+  }catch(err){
+    return normalizeHomeSpans({}, homeAllItemIds());
+  }
+};
+function getVisibleHomeZones(){
+  const hidden = new Set(loadHiddenHomeItems());
+  const spans = loadHomeSpans();
+  const savedZones = loadHomeLayout();
+  const defaults = homeDefaultZones();
+  const seen = new Set();
+  const rail = [];
+  const board = [];
+  const pushId = (preferredZone, id) => {
+    if(!id || hidden.has(id) || seen.has(id)) return;
+    const item = getHomeItemById(id);
+    if(!item) return;
+    const minSpan = getHomeMinSpan(item);
+    const span = Math.max(minSpan, Number(spans[id]) || item.defaultSpan || minSpan);
+    if(preferredZone === 'rail' && span === 1 && rail.length < 8) rail.push(id);
+    else board.push(id);
+    seen.add(id);
+  };
+  savedZones.rail.forEach(id => pushId('rail', id));
+  savedZones.board.forEach(id => pushId('board', id));
+  defaults.rail.forEach(id => pushId('rail', id));
+  defaults.board.forEach(id => pushId('board', id));
+  return { rail, board };
+}
+saveHomeLayout = function(){
+  const layout = {
+    rail:[...document.querySelectorAll('#homeViewRail .homeItem')].map(item => item.dataset.id),
+    board:[...document.querySelectorAll('#homeBoard .homeItem')].map(item => item.dataset.id)
+  };
+  saveHomeLayoutState(layout);
+  const spans = {};
+  document.querySelectorAll('#homeViewRail .homeItem, #homeBoard .homeItem').forEach(item => {
+    spans[item.dataset.id] = Number(item.dataset.span) || 1;
+  });
+  localStorage.setItem(HOME_SPAN_KEY, JSON.stringify(spans));
+};
+resetHomeLayout = function(){
+  haptics.success();
+  localStorage.removeItem(HOME_LAYOUT_KEY);
+  localStorage.removeItem(HOME_SPAN_KEY);
+  localStorage.removeItem(HOME_HIDDEN_KEY);
+  disableHomeEditMode();
+  renderHomeLayout();
+};
+updateHomeHint = function(){
+  const hint = document.getElementById('homeEditHint');
+  if(!hint) return;
+  hint.textContent = homeEditMode ? 'Drag, resize, or remove pods' : 'Customize your home';
+};
+renderHomeLayout = function(){
+  const board = document.getElementById('homeBoard');
+  const rail = document.getElementById('homeViewRail');
+  if(!board) return;
+  const spans = loadHomeSpans();
+  const zones = getVisibleHomeZones();
+  const resolveEntry = (id) => {
+    const item = getHomeItemById(id);
+    if(!item) return null;
+    const minSpan = getHomeMinSpan(item);
+    let span = Number(spans[id]) || item.defaultSpan || minSpan;
+    span = Math.max(minSpan, span);
+    return { id, item, span };
+  };
+  const railItems = zones.rail.map(resolveEntry).filter(Boolean);
+  const boardItems = zones.board.map(resolveEntry).filter(Boolean);
+  if(rail){
+    rail.style.display = railItems.length ? '' : 'none';
+    rail.innerHTML = railItems.length
+      ? `<div class="homeRailTrack">${railItems.map(entry => renderHomeItemShell(entry.item, 1, 'homeRailCard')).join('')}</div>`
+      : '';
+  }
+  board.innerHTML = boardItems.map(entry => renderHomeItemShell(entry.item, entry.span)).join('');
+  renderHomeRestoreShelf();
+  bindHomeDragHandlers();
+  bindHomeRailHandlers();
+  initHomeRailSnap();
+  if(homeEditMode) setHomeEditFocus(homeEditFocusId || document.querySelector('#homeViewRail .homeItem, #homeBoard .homeItem'));
+  updateHomeHint();
+  enhanceInteractiveElements();
+};
+renderHomeRestoreShelf = function(){
+  const shelf = document.getElementById('homeRestoreShelf');
+  const grid = document.getElementById('homeRestoreGrid');
+  if(!shelf || !grid) return;
+  const hiddenItems = getHiddenHomeItemData();
+  shelf.classList.toggle('has-items', hiddenItems.length > 0);
+  grid.innerHTML = hiddenItems.map(item => `<button class="homeRestoreBtn" type="button" data-restore-id="${item.id}">Add ${getHomeItemTitle(item)}</button>`).join('');
+  grid.querySelectorAll('.homeRestoreBtn').forEach(btn => {
+    btn.addEventListener('click', () => restoreHomeItem(btn.dataset.restoreId));
+  });
+};
+restoreHomeItem = function(id){
+  const hidden = loadHiddenHomeItems().filter(v => v !== id);
+  saveHiddenHomeItems(hidden);
+  const layout = loadHomeLayout();
+  layout.rail = layout.rail.filter(v => v !== id);
+  layout.board = layout.board.filter(v => v !== id);
+  const item = getHomeItemById(id);
+  const span = Math.max(getHomeMinSpan(item), Number(loadHomeSpans()[id]) || item?.defaultSpan || getHomeMinSpan(item));
+  const preferredZone = span === 1 && layout.rail.length < 8 ? 'rail' : 'board';
+  layout[preferredZone].push(id);
+  saveHomeLayoutState(layout);
+  homeEditFocusId = id;
+  renderHomeLayout();
+};
+enableHomeEditMode = function(focusItem){
+  haptics.soft();
+  homeEditMode = true;
+  document.body.classList.add('home-edit-mode');
+  setChromeHidden(true);
+  homeEditFocusId = typeof focusItem === 'string' ? focusItem : focusItem?.dataset?.id || homeEditFocusId;
+  renderHomeLayout();
+  setHomeEditFocus(homeEditFocusId || document.querySelector('#homeViewRail .homeItem, #homeBoard .homeItem'));
+};
+disableHomeEditMode = function(){
+  haptics.success();
+  finishDrag();
+  homeEditMode = false;
+  homeEditFocusId = null;
+  document.body.classList.remove('home-edit-mode');
+  setChromeHidden(false);
+  document.querySelectorAll('#homeViewRail .homeItem, #homeBoard .homeItem').forEach(item => item.classList.remove('lift-ready','edit-focus'));
+  renderHomeLayout();
+};
+cycleHomeSpan = function(item){
+  haptics.soft();
+  const homeItem = getHomeItemById(item.dataset.id);
+  const minSpan = getHomeMinSpan(homeItem);
+  const current = Number(item.dataset.span) || minSpan;
+  const next = current === 3 ? minSpan : current + 1;
+  item.dataset.span = String(next);
+  item.style.gridColumn = next > 1 ? `span ${next}` : '';
+  const resize = item.querySelector('.homeResize');
+  if(resize) resize.textContent = formatSpanLabel(next);
+  if(next > 1 && item.closest('#homeViewRail')){
+    const board = document.getElementById('homeBoard');
+    if(board) board.prepend(item);
+  }
+  saveHomeLayout();
+  if(homeEditMode) renderHomeLayout();
+};
+setChromeHidden = function(hidden){
+  if(chromeState.hidden === hidden) return;
+  chromeState.hidden = hidden;
+  document.body.classList.toggle('chrome-hidden', hidden);
+  document.querySelector('.top')?.classList.toggle('top-hidden', hidden);
+  const bottomNav = document.querySelector('.bottom');
+  if(bottomNav) bottomNav.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+};
+onScrollChrome = function(){
+  const y = window.scrollY || 0;
+  const delta = y - chromeState.lastY;
+  const activePage = document.querySelector('.page.active');
+  const pageId = activePage ? activePage.id : 'home';
+  const searchOpen = document.querySelector('.top')?.classList.contains('search-active');
+  const allowHide = !homeEditMode && !searchOpen && !['preferences-theme','preferences-language'].includes(pageId);
+
+  if(!allowHide || y <= 16){
+    setChromeHidden(false);
+    chromeState.stableY = y;
+  }else if(delta > 0){
+    if(y > 72 && (y - chromeState.stableY) > 22){
+      setChromeHidden(true);
+      chromeState.stableY = y;
+    }
+  }else if(delta < 0){
+    if((chromeState.stableY - y) > 10 || delta < -14){
+      setChromeHidden(false);
+      chromeState.stableY = y;
+    }
+  }
+
+  chromeState.lastY = y;
+  chromeState.ticking = false;
+};
+updateTopChromeOnScroll = function(){
+  lastScrollY = window.scrollY || 0;
+  scrollTicking = false;
+};
+runTopSearchQuery = function(q){
+  const value = (q || '').toLowerCase().trim();
+  if(!value) return;
+  const routes = [
+    { id:'detail-message-chen', terms:['chen','temple','visit'] },
+    { id:'detail-message-sarah', terms:['sarah','tom','romantic dinner','dining'] },
+    { id:'detail-checkin', terms:['checkout','check-out','departure','departures'] },
+    { id:'detail-task-cleaning', terms:['clean','cleaning','ac','maintenance','attention'] },
+    { id:'calendar', terms:['calendar','arrival','arrivals','booking','schedule'] },
+    { id:'inbox', terms:['message','messages','guest','guests','reply','inbox','conversation'] },
+    { id:'tasks', terms:['task','tasks','operations','checklist'] },
+    { id:'dashboard-hub', terms:['dashboard','overview','kpi'] },
+    { id:'profile', terms:['profile','account','villa','team','preferences'] }
+  ];
+  const match = routes.find(route => route.terms.some(term => value.includes(term)));
+  go(match ? match.id : 'dashboard-hub');
+  if(topSearchInput) topSearchInput.value = '';
+  syncTopSearchClear();
+  closeTopSearch();
+};
+syncTopSearchClear = function(){
+  if(!topSearchClear) return;
+  const searchOpen = document.querySelector('.top')?.classList.contains('search-active');
+  const hasValue = !!topSearchInput?.value?.trim();
+  topSearchClear.style.opacity = searchOpen ? '1' : '0';
+  topSearchClear.style.color = hasValue ? 'var(--text)' : 'var(--muted)';
+  topSearchClear.setAttribute('aria-label', hasValue ? 'Clear search' : 'Close search');
+};
+showPage = function(id){
+  closeTopSearch();
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = getPage(id) || getPage('home');
+  page.classList.add('active');
+  const main = inferMainPage(page.id);
+  document.querySelectorAll('.nav').forEach(n => {
+    const active = n.dataset.main === main;
+    n.classList.toggle('active', active);
+    if(active) n.setAttribute('aria-current', 'page');
+    else n.removeAttribute('aria-current');
+  });
+  page.setAttribute('tabindex','-1');
+  window.scrollTo(0,0);
+  if(page.id === 'home') syncHomeHeroMeta();
+  updateHomeHint();
+  enhanceInteractiveElements();
+  enhanceChipGroups();
+};
+function enhanceInteractiveElements(){
+  const focusableSelectors = '[onclick], #homeViewRail .homeItem, #homeBoard .homeItem';
+  document.querySelectorAll(focusableSelectors).forEach(el => {
+    if(/^(BUTTON|A|INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+    if(el.classList.contains('homeDelete') || el.classList.contains('homeGrip') || el.classList.contains('homeResize')) return;
+    el.setAttribute('role','button');
+    el.setAttribute('tabindex','0');
+    if(el.classList.contains('homeItem')){
+      const item = getHomeItemById(el.dataset.id);
+      if(item) el.setAttribute('aria-label', getHomeItemTitle(item));
+    }
+    if(el.dataset.keyA11yBound) return;
+    el.dataset.keyA11yBound = '1';
+    el.addEventListener('keydown', evt => {
+      if(evt.key === 'Enter' || evt.key === ' '){
+        evt.preventDefault();
+        el.click();
+      }
+    });
+  });
+  document.querySelectorAll('.search input').forEach(input => {
+    if(!input.getAttribute('aria-label')){
+      input.setAttribute('aria-label', input.getAttribute('placeholder') || 'Search');
+    }
+  });
+}
+function enhanceChipGroups(){
+  document.querySelectorAll('.chips').forEach(group => {
+    group.querySelectorAll('button').forEach(btn => {
+      btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+      if(btn.dataset.chipA11yBound) return;
+      btn.dataset.chipA11yBound = '1';
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('button').forEach(candidate => {
+          candidate.setAttribute('aria-pressed', candidate.classList.contains('active') ? 'true' : 'false');
+        });
+      });
+    });
+  });
+}
+function syncHomeHeroMeta(){
+  const eyebrow = document.querySelector('#home .hero .eyebrow');
+  const heading = document.querySelector('#home .hero h1');
+  const now = new Date();
+  const greeting = now.getHours() < 12 ? 'morning' : now.getHours() < 17 ? 'afternoon' : 'evening';
+  if(eyebrow){
+    eyebrow.textContent = new Intl.DateTimeFormat('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' }).format(now);
+  }
+  if(heading){
+    heading.textContent = `Good ${greeting}, Wayan`;
+  }
+}
+topSearchToggle?.setAttribute('aria-controls', 'topSearchShell');
+topSearchShell?.setAttribute('role', 'search');
+topSearchInput?.setAttribute('aria-label', 'Search the app');
+syncHomeHeroMeta();
 renderThemes();
 renderHomeLayout();
 renderCalendarGrid();
 applyTheme(localStorage.getItem('sok-theme') || 'default');
 applyLanguage(localStorage.getItem('sok-lang') || 'en');
+enhanceInteractiveElements();
+enhanceChipGroups();
 showPage('home');
 </script>
 </body>
