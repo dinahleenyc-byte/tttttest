@@ -1432,192 +1432,6 @@ body.home-edit-mode .homeViewRail .homeDelete{
   display:flex !important;
 }
 
-
-/* senior ux refinement pass */
-:root{
-  --contentMax:394px;
-}
-.app{
-  max-width:430px;
-}
-.hero,.detail,.dashboardShell,.panelStack,.marketGrid,.providerGrid,.themeShell,.langList,.stack,.kpiGrid,.featureGrid,.sceneGrid,.messageThread,.inboxShell{
-  scroll-margin-top:92px;
-}
-.hero p.sub,.detail p.sub{
-  max-width:34ch;
-}
-.hero{
-  padding-top:18px;
-}
-.page{
-  animation:fade .18s ease;
-}
-.section,.panelHead{
-  min-height:28px;
-}
-.top{
-  background:color-mix(in srgb,var(--bg) 88%, rgba(255,255,255,.72));
-  border-bottom:1px solid color-mix(in srgb,var(--line) 74%, transparent);
-}
-.topSearchShell{
-  max-width:100%;
-}
-.topSearchField{
-  padding:0 46px 0 16px !important;
-}
-.topSearchField input{
-  font-size:15px;
-}
-.topSearchClear{
-  position:absolute;
-  right:8px;
-  top:50%;
-  transform:translateY(-50%);
-  width:32px;
-  height:32px;
-  border:none;
-  border-radius:12px;
-  background:transparent;
-  color:var(--muted);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .18s ease,color .18s ease,background .18s ease;
-}
-.top.search-active .topSearchClear{
-  opacity:1;
-  pointer-events:auto;
-}
-.topSearchClear:hover,
-.topSearchClear:focus-visible{
-  background:color-mix(in srgb,var(--primary) 8%, var(--panel));
-  color:var(--text);
-}
-.bottom{
-  width:min(410px, calc(100% - 14px));
-  padding:6px;
-  gap:2px;
-  border-radius:28px;
-  box-shadow:0 16px 32px rgba(73,45,21,.08);
-}
-.bottom .nav{
-  min-height:60px;
-  gap:4px;
-  border-radius:18px;
-}
-.bottom .nav span:last-child{
-  line-height:1;
-}
-.bottom .nav.active{
-  background:linear-gradient(180deg,color-mix(in srgb,var(--primary) 11%, var(--panel2)) 0%, color-mix(in srgb,var(--primary) 8%, var(--panel)) 100%);
-}
-.homeTools{
-  display:flex !important;
-  align-items:center;
-  justify-content:space-between;
-}
-.homeDoneBtn,.homeResetBtn{
-  display:none;
-}
-body.home-edit-mode .homeDoneBtn,
-body.home-edit-mode .homeResetBtn{
-  display:inline-flex !important;
-  align-items:center;
-  justify-content:center;
-}
-.homeEditToast{
-  display:none !important;
-}
-body.home-edit-mode .homeEditToast{
-  display:block !important;
-}
-.homeHint{
-  transition:color .2s ease,opacity .2s ease;
-}
-body.home-edit-mode .homeHint{
-  color:var(--text) !important;
-  opacity:.92;
-}
-.homeViewRail{
-  position:relative;
-  padding-bottom:6px;
-  margin-bottom:14px;
-  -webkit-mask-image:linear-gradient(90deg, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
-  mask-image:linear-gradient(90deg, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
-}
-.homeRailTrack{
-  gap:10px;
-}
-.homeViewRail .homeItem .card,
-.homeViewRail .homeItem .tile{
-  min-height:146px;
-}
-body.home-edit-mode .homeViewRail .homeItem{
-  opacity:.9;
-}
-body.home-edit-mode .homeViewRail .homeItem.edit-focus{
-  opacity:1;
-}
-.homePlaceholder{
-  min-height:116px !important;
-}
-.panelCard,.kpiCard,.inboxThreadCard,.marketCardWide,.providerCardWide,.sceneCard,.featureTile{
-  border-radius:24px;
-}
-.panelHead .panelLink,
-.section .link{
-  min-height:36px;
-  display:inline-flex;
-  align-items:center;
-  border-radius:999px;
-  padding:0 2px;
-}
-.quickBtn{
-  min-height:50px;
-  border-radius:18px;
-  transition:transform .18s ease, background .18s ease, border-color .18s ease;
-}
-.quickBtn:active{
-  transform:scale(.985);
-}
-.inboxThreadCard{
-  padding:16px;
-}
-.inboxName{
-  line-height:1.05;
-}
-.inboxSnippet{
-  -webkit-line-clamp:3;
-}
-.messageBubble{
-  border-radius:20px;
-}
-.emptyState{
-  padding:20px 18px;
-  border-radius:20px;
-}
-.themeCard,.langCard,.setting{
-  border-radius:20px;
-}
-.calendarGrid{
-  gap:8px;
-}
-.calendarCell{
-  border-radius:14px;
-}
-@media (max-width:380px){
-  .bottom{
-    width:min(100%, calc(100% - 10px));
-    padding:5px;
-  }
-  .bottom .nav{
-    min-height:58px;
-  }
-}
-
 </style>
 </head>
 <body data-theme="default">
@@ -1626,13 +1440,12 @@ body.home-edit-mode .homeViewRail .homeItem.edit-focus{
     <div class="row"><div class="row">
 
 
-<button class="icon topSearchToggle" id="topSearchToggle" aria-label="Open search" aria-expanded="false" type="button">
+<button class="icon topSearchToggle" id="topSearchToggle" aria-label="Open search" type="button">
   <span class="topSearchIcon" aria-hidden="true"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIGNvbG9yPSIjOTU4MTZlIiBmaWxsPSJub25lIiBzdHJva2U9IiM5NTgxNmUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTTE1IDE1TDE2LjUgMTYuNSIgLz4KICAgIDxwYXRoIGQ9Ik0xNi45MzMzIDE5LjAyNTJDMTYuMzU1NiAxOC40NDc1IDE2LjM1NTYgMTcuNTEwOSAxNi45MzMzIDE2LjkzMzNDMTcuNTEwOSAxNi4zNTU2IDE4LjQ0NzUgMTYuMzU1NiAxOS4wMjUyIDE2LjkzMzNMMjEuMDY2NyAxOC45NzQ4QzIxLjY0NDQgMTkuNTUyNSAyMS42NDQ0IDIwLjQ4OTEgMjEuMDY2NyAyMS4wNjY3QzIwLjQ4OTEgMjEuNjQ0NCAxOS41NTI1IDIxLjY0NDQgMTguOTc0OCAyMS4wNjY3TDE2LjkzMzMgMTkuMDI1MloiIC8+CiAgICA8cGF0aCBkPSJNMTYuNSA5LjVDMTYuNSA1LjYzNDAxIDEzLjM2NiAyLjUgOS41IDIuNUM1LjYzNDAxIDIuNSAyLjUgNS42MzQwMSAyLjUgOS41QzIuNSAxMy4zNjYgNS42MzQwMSAxNi41IDkuNSAxNi41QzEzLjM2NiAxNi41IDE2LjUgMTMuMzY2IDE2LjUgOS41WiIgLz4KPC9zdmc+" alt=""/></span>
 </button>
 <div class="topSearchShell" id="topSearchShell">
   <div class="topSearchField">
     <input id="topSearchInput" type="search" placeholder="Search guests, tasks, or bookings" autocomplete="off"/>
-    <button class="topSearchClear" id="topSearchClear" type="button" aria-label="Clear search">×</button>
   </div>
 </div>
 
@@ -1642,7 +1455,7 @@ body.home-edit-mode .homeViewRail .homeItem.edit-focus{
   
   <section id="home" class="page active">
     <div class="hero">
-      <div class="eyebrow">Friday, March 13, 2026</div>
+      <div class="eyebrow">Thursday, March 12, 2026</div>
       <h1>Good morning, Wayan</h1>
       <p class="sub">One departure, one confirmed experience, and two guest conversations need attention today.</p>
     </div>
@@ -1653,7 +1466,7 @@ body.home-edit-mode .homeViewRail .homeItem.edit-focus{
         <button id="homeDoneBtn" class="homeDoneBtn" type="button" onclick="disableHomeEditMode()">Done</button>
       </div>
     </div>
-    <div class="homeEditToast">Hold a pod to arrange your home. One-column pods can live in the first swipe row.</div>
+    <div class="homeEditToast">Hold a pod to enter edit mode. Only 1-column pods can live in the first swipe row, and dragging one there shifts the others to make space.</div>
     <div id="homeRestoreShelf" class="homeRestoreShelf"><div class="homeRestoreTitle">Add pods back</div><div id="homeRestoreGrid" class="homeRestoreGrid"></div></div>
     <div id="homeViewRail" class="homeViewRail"></div><div id="homeBoard" class="homeBoard"></div>
   </section>
@@ -1683,7 +1496,7 @@ body.home-edit-mode .homeViewRail .homeItem.edit-focus{
       <div class="dashboardHeroCard">
         <div class="dashboardHeroTop">
           <div><div class="eyebrow" style="margin-bottom:6px">Good morning,</div><div class="dashboardHeroName">Wayan Sudarta</div><div class="sub">Villa Manager • Villa Sari</div></div>
-          <div class="dashboardHeroDate"><strong>13</strong>Mar 2026</div>
+          <div class="dashboardHeroDate"><strong>14</strong>Mar 2026</div>
         </div>
         <div class="dashboardPills"><div class="dashboardPill"><span class="rfIcon sm sage partners"></span>Current Guest: <strong>Chen Family</strong></div><div class="dashboardPill"><span class="rfIcon sm orange calendar"></span>Checkout: <strong>Today 11am</strong></div></div>
       </div>
@@ -1732,7 +1545,7 @@ body.home-edit-mode .homeViewRail .homeItem.edit-focus{
         <div class="sceneCard"><div class="sceneImage kitchen"></div><div class="sceneCardBody"><div><div class="tileTitle">Kitchen</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
         <div class="sceneCard"><div class="sceneImage bedrooms"></div><div class="sceneCardBody"><div><div class="tileTitle">Bedrooms</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
         <div class="sceneCard"><div class="sceneImage pool"></div><div class="sceneCardBody"><div><div class="tileTitle">Pool &amp; Garden</div><div class="tileSub">4 tips</div></div><div>›</div></div></div>
-        <div class="panelCard stayCard"><div class="tileTitle" style="font-size:24px">Your Stay</div><div class="stayGrid"><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-in</div><div class="tileTitle" style="font-size:18px">3/11/2026 3:00 PM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-out</div><div class="tileTitle" style="font-size:18px">3/18/2026 11:00 AM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal signal"></span></div><div><div class="small">WiFi</div><div class="tileTitle" style="font-size:18px">VillaSari_Guest</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon plum key"></span></div><div><div class="small">Password</div><div class="tileTitle" style="font-size:18px">Ubud2025!</div></div></div></div></div>
+        <div class="panelCard stayCard"><div class="tileTitle" style="font-size:24px">Your Stay</div><div class="stayGrid"><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-in</div><div class="tileTitle" style="font-size:18px">3/18/2025 3:00 PM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal calendar"></span></div><div><div class="small">Check-out</div><div class="tileTitle" style="font-size:18px">3/25/2025 11:00 AM</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon teal signal"></span></div><div><div class="small">WiFi</div><div class="tileTitle" style="font-size:18px">VillaSari_Guest</div></div></div><div class="stayItem"><div class="kpiIcon rf"><span class="rfIcon plum key"></span></div><div><div class="small">Password</div><div class="tileTitle" style="font-size:18px">Ubud2025!</div></div></div></div></div>
       </div>
     </div>
     <div id="guestHubMap" style="display:none">
@@ -2090,7 +1903,7 @@ function resetHomeLayout(){
 function updateHomeHint(){
   const hint = document.getElementById('homeEditHint');
   if(!hint) return;
-  hint.textContent = homeEditMode ? 'Editing layout' : 'Hold a pod to arrange';
+  hint.textContent = homeEditMode ? 'Editing home' : 'Hold a pod to arrange';
 }
 
 
@@ -2563,7 +2376,6 @@ function inferMainPage(id){
 }
 
 function showPage(id){
- closeTopSearch();
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  const page = getPage(id) || getPage('home');
  page.classList.add('active');
@@ -2685,7 +2497,6 @@ window.addEventListener('scroll', () => {
 const topSearchToggle = document.getElementById('topSearchToggle');
 const topSearchShell = document.getElementById('topSearchShell');
 const topSearchInput = document.getElementById('topSearchInput');
-const topSearchClear = document.getElementById('topSearchClear');
 
 function runTopSearchQuery(q){
   const value = (q || '').toLowerCase().trim();
@@ -2696,27 +2507,17 @@ function runTopSearchQuery(q){
   else if(value.includes('profile') || value.includes('villa') || value.includes('account')) go('profile');
   else go('dashboard-hub');
 }
-function syncTopSearchClear(){
-  if(!topSearchClear) return;
-  const hasValue = !!topSearchInput?.value?.trim();
-  topSearchClear.style.opacity = document.querySelector('.top')?.classList.contains('search-active') ? '1' : '0';
-  topSearchClear.style.color = hasValue ? 'var(--text)' : 'var(--muted)';
-}
 function closeTopSearch(){
   topSearchShell.classList.remove('open');
   topSearchToggle.classList.remove('search-open');
   document.querySelector('.top')?.classList.remove('search-active');
   topSearchToggle.setAttribute('aria-label','Open search');
-  topSearchToggle.setAttribute('aria-expanded','false');
-  syncTopSearchClear();
 }
 function openTopSearch(){
   topSearchShell.classList.add('open');
   topSearchToggle.classList.add('search-open');
   document.querySelector('.top')?.classList.add('search-active');
   topSearchToggle.setAttribute('aria-label','Search');
-  topSearchToggle.setAttribute('aria-expanded','true');
-  syncTopSearchClear();
   setTimeout(() => topSearchInput.focus(), 140);
 }
 function toggleTopSearch(){
@@ -2731,21 +2532,9 @@ topSearchToggle.addEventListener('click', (e) => {
     toggleTopSearch();
   }
 });
-topSearchInput.addEventListener('input', () => {
-  syncTopSearchClear();
-});
 topSearchInput.addEventListener('keydown', e => {
   if(e.key === 'Enter') runTopSearchQuery(topSearchInput.value);
   if(e.key === 'Escape') closeTopSearch();
-});
-topSearchClear?.addEventListener('click', () => {
-  if(topSearchInput.value.trim()){
-    topSearchInput.value = '';
-    syncTopSearchClear();
-    topSearchInput.focus();
-  }else{
-    closeTopSearch();
-  }
 });
 document.addEventListener('click', e => {
   if(!topSearchToggle.contains(e.target) && !topSearchShell.contains(e.target)) closeTopSearch();
